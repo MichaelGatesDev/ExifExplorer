@@ -1,7 +1,8 @@
-# ExifExplorer
+![ExifExplorer Logo (Camera with Magnifying Glass)](https://i.imgur.com/IJi8LyF.png) 
+
+# ExifExplorer 
+
 ExifExplorer is a multiplatform open-source desktop application which allows photographers to enter criteria such as focal length, aperture, and camera model to filter their photos and view images which meet the criteria.
-
-
 
 
 ## Building/Compiling
@@ -33,3 +34,8 @@ jfx:jar -DskipTests=true
 ## Screenshots
 
 (Coming soon)
+
+## TODO
+
+* Add screenshots
+* Add localization
