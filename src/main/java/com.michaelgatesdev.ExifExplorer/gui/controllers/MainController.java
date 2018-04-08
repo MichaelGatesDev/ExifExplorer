@@ -16,29 +16,18 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer;
+package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
-public class ExifExplorerApp
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainController implements Initializable
 {
-    private final Application application;
-    
-    
-    /**
-     * The entrypoint to the binary
-     *
-     * @param args any arguments specified by the command line
-     */
-    public static void main(String[] args)
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
     {
-        new ExifExplorerApp();
-    }
     
-    
-    private ExifExplorerApp()
-    {
-        application = new ExifExplorer(); // instantiate application
-        application.onEnable(); // call start function
-        
-        Runtime.getRuntime().addShutdownHook(new Thread(application::onDisable)); // when program shuts down, call disable function
     }
 }
