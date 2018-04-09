@@ -133,7 +133,7 @@ public class Main extends Application
     
         // Package window
         stage.getIcons().add(new Image("img/logo.png"));
-        stage.setTitle("Old Leaf");
+        stage.setTitle("ExifExplorer");
         stage.setScene(scene);
         stage.setMinWidth(MAIN_WINDOW_WIDTH);
         stage.setMinHeight(MAIN_WINDOW_HEIGHT);
