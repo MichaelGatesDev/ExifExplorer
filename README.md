@@ -33,7 +33,13 @@ jfx:jar -DskipTests=true
 
 ## Screenshots
 
-(Coming soon)
+### Mockup
+
+![asdf](https://i.imgur.com/EkQkwnH.jpg)
+
+### Actual 
+
+* TBD
 
 ## TODO
 
