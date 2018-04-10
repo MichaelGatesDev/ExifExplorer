@@ -35,13 +35,13 @@ jfx:jar -DskipTests=true
 
 ### Mockup
 
-![asdf](https://i.imgur.com/EkQkwnH.jpg)
+![Mockup Image](https://i.imgur.com/EkQkwnH.jpg)
 
 ### Actual 
 
-* TBD
+![Prototype Image](https://i.imgur.com/pU37gOE.jpg)
 
 ## TODO
 
-* Add screenshots
+* Add more screenshots
 * Add localization
