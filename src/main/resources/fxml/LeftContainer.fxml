@@ -20,9 +20,9 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.3" orientation="VERTICAL" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.3" orientation="VERTICAL" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <items>
-        <AnchorPane SplitPane.resizableWithParent="false">
+        <AnchorPane minHeight="175.0" prefWidth="175.0" SplitPane.resizableWithParent="false">
             <children>
 
                 <!-- Workspace Info -->
