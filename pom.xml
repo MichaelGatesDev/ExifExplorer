@@ -111,7 +111,7 @@
     <!-- Build Settings -->
     <build>
         <finalName>${project.name}</finalName>
-        <defaultGoal>clean package install</defaultGoal>
+        <defaultGoal>jfx:jar</defaultGoal>
 
         <!-- Resources-->
         <resources>
