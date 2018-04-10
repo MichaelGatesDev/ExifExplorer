@@ -23,12 +23,12 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <fx:include source="components/NavBar.fxml"/>
+        <fx:include source="components/TopMenuBar.fxml"/>
     </top>
     <center>
     </center>
     <center>
-        <fx:include source="components/FilterContainer.fxml"/>
+        <fx:include source="MainContainer.fxml"/>
     </center>
     <bottom>
     </bottom>

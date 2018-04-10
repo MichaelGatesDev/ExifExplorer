@@ -19,12 +19,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<TabPane prefHeight="600.0"
-         prefWidth="1000.0"
-         tabClosingPolicy="UNAVAILABLE"
-         xmlns="http://javafx.com/javafx/8.0.121"
-         xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.ViewContainerController">
+<TabPane prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.ViewContainerController">
     <tabs>
         <Tab text="Table View">
             <content>
@@ -32,19 +27,16 @@
                     <children>
                         <TableView prefHeight="346.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="Date Taken"/>
-                                <TableColumn prefWidth="75.0" text="Dimensions"/>
-                                <TableColumn prefWidth="75.0" text="Size"/>
-                                <TableColumn prefWidth="75.0" text="Camera Manufacturer"/>
-                                <TableColumn prefWidth="75.0" text="Camera Model"/>
-                                <TableColumn prefWidth="75.0" text="ISO"/>
-                                <TableColumn prefWidth="75.0" text="Aperture"/>
-                                <TableColumn prefWidth="75.0" text="Shutter Speed"/>
-                                <TableColumn prefWidth="75.0" text="Focal Length"/>
+                                <TableColumn minWidth="125.0" text="Date Taken" />
+                                <TableColumn minWidth="125.0" text="Dimensions" />
+                                <TableColumn minWidth="125.0" text="Size" />
+                                <TableColumn minWidth="125.0" text="Camera Manufacturer" />
+                                <TableColumn minWidth="125.0" text="Camera Model" />
+                                <TableColumn minWidth="125.0" text="ISO" />
+                                <TableColumn minWidth="125.0" text="Aperture" />
+                                <TableColumn minWidth="125.0" text="Shutter Speed" />
+                                <TableColumn minWidth="125.0" text="Focal Length" />
                             </columns>
-                            <columnResizePolicy>
-                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-                            </columnResizePolicy>
                         </TableView>
                     </children>
                 </AnchorPane>
@@ -52,7 +44,7 @@
         </Tab>
         <Tab text="Image View">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
         </Tab>
     </tabs>

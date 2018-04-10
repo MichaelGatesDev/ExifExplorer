@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2015
+ * Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2018
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -117,7 +117,7 @@ public class Main extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        URL res = Main.class.getClassLoader().getResource("fxml/Main.fxml");
+        URL res = Main.class.getClassLoader().getResource("fxml/Base.fxml");
     
         if (res == null)
         {
