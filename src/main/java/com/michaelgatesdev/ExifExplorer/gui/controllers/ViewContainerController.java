@@ -18,16 +18,44 @@
 
 package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
+import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewContainerController implements Initializable
 {
+    @FXML
+    private TableView<PhotoRow> table;
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-    
+        final ObservableList<PhotoRow> data = FXCollections.observableArrayList(
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM"),
+                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "ISO-100", "F2.8", "1/125", "50 MM")
+        );
+        
+        Platform.runLater(() -> {
+            table.setItems(data);
+        });
     }
 }

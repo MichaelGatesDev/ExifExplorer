@@ -17,29 +17,75 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
 <TabPane prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.ViewContainerController">
     <tabs>
         <Tab text="Table View">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <TableView prefHeight="346.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <columns>
-                                <TableColumn minWidth="125.0" text="Date Taken" />
-                                <TableColumn minWidth="125.0" text="Dimensions" />
-                                <TableColumn minWidth="125.0" text="Size" />
-                                <TableColumn minWidth="125.0" text="Camera Manufacturer" />
-                                <TableColumn minWidth="125.0" text="Camera Model" />
-                                <TableColumn minWidth="125.0" text="ISO" />
-                                <TableColumn minWidth="125.0" text="Aperture" />
-                                <TableColumn minWidth="125.0" text="Shutter Speed" />
-                                <TableColumn minWidth="125.0" text="Focal Length" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
+                <ScrollPane fitToHeight="true" fitToWidth="true">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <TableView fx:id="table" prefHeight="557.0" prefWidth="1127.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columns>
+                                        <TableColumn minWidth="125.0" text="Date/Time">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="dateTaken" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="Dimensions">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="dimensions" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="Size">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="size" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="Camera Manufacturer">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="manufacturer" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="Camera Model">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="model" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="ISO">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="iso" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="Aperture">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="aperture" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="Shutter Speed">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="shutterSpeed" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="125.0" text="Focal Length">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="focalLength" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
             </content>
         </Tab>
         <Tab text="Image View">

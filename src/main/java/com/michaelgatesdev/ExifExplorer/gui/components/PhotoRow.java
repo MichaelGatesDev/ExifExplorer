@@ -104,4 +104,112 @@ public class PhotoRow
     {
         this.focalLength.set(focalLength);
     }
+    
+    
+    public String getDateTaken()
+    {
+        return dateTaken.get();
+    }
+    
+    
+    public SimpleStringProperty dateTakenProperty()
+    {
+        return dateTaken;
+    }
+    
+    
+    public String getDimensions()
+    {
+        return dimensions.get();
+    }
+    
+    
+    public SimpleStringProperty dimensionsProperty()
+    {
+        return dimensions;
+    }
+    
+    
+    public String getSize()
+    {
+        return size.get();
+    }
+    
+    
+    public SimpleStringProperty sizeProperty()
+    {
+        return size;
+    }
+    
+    
+    public String getManufacturer()
+    {
+        return manufacturer.get();
+    }
+    
+    
+    public SimpleStringProperty manufacturerProperty()
+    {
+        return manufacturer;
+    }
+    
+    
+    public String getModel()
+    {
+        return model.get();
+    }
+    
+    
+    public SimpleStringProperty modelProperty()
+    {
+        return model;
+    }
+    
+    
+    public String getIso()
+    {
+        return iso.get();
+    }
+    
+    
+    public SimpleStringProperty isoProperty()
+    {
+        return iso;
+    }
+    
+    
+    public String getAperture()
+    {
+        return aperture.get();
+    }
+    
+    
+    public SimpleStringProperty apertureProperty()
+    {
+        return aperture;
+    }
+    
+    
+    public String getShutterSpeed()
+    {
+        return shutterSpeed.get();
+    }
+    
+    
+    public SimpleStringProperty shutterSpeedProperty()
+    {
+        return shutterSpeed;
+    }
+    
+    
+    public String getFocalLength()
+    {
+        return focalLength.get();
+    }
+    
+    
+    public SimpleStringProperty focalLengthProperty()
+    {
+        return focalLength;
+    }
 }
