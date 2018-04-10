@@ -21,9 +21,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<SplitPane dividerPositions="0.25" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.26169265033407574" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <items>
-        <AnchorPane maxWidth="-Infinity" prefHeight="160.0" prefWidth="400.0" SplitPane.resizableWithParent="false">
+        <AnchorPane SplitPane.resizableWithParent="false">
             <fx:include source="LeftContainer.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="857.0">

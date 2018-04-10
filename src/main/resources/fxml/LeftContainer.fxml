@@ -17,23 +17,24 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.*?>
-<VBox alignment="TOP_CENTER" prefHeight="598.0" prefWidth="247.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-      xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
 
-    <!-- Workspace Info -->
-    <fx:include source="components/WorkspaceInfo.fxml"/>
+<SplitPane dividerPositions="0.3" orientation="VERTICAL" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane SplitPane.resizableWithParent="false">
+            <children>
 
-    <!-- Separator -->
-    <Separator>
-        <VBox.margin>
-            <Insets bottom="5.0" top="5.0"/>
-        </VBox.margin>
-    </Separator>
+                <!-- Workspace Info -->
+                <fx:include source="components/WorkspaceInfo.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <children>
 
-    <!-- Filters -->
-    <fx:include source="components/Filters.fxml"/>
-
-</VBox>
+                <!-- Filters -->
+                <fx:include source="components/Filters.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>

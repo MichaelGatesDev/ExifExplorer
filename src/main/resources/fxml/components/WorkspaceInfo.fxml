@@ -28,34 +28,34 @@
     <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Workspace Information:" textAlignment="CENTER">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="16.0"/>
             </font>
         </Text>
         <VBox alignment="CENTER_LEFT">
             <children>
                 <Label text="Importing From">
                     <padding>
-                        <Insets bottom="5.0" top="5.0" />
+                        <Insets bottom="5.0" top="5.0"/>
                     </padding>
                 </Label>
-                <TextField editable="false" mouseTransparent="true" text="D:\Import\Path" />
+                <TextField editable="false" mouseTransparent="true" text="D:\Import\Path"/>
             </children>
             <VBox.margin>
-                <Insets bottom="15.0" top="15.0" />
+                <Insets bottom="15.0" top="15.0"/>
             </VBox.margin>
         </VBox>
         <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="47.0">
             <children>
                 <Label text="Exporting To">
                     <padding>
-                        <Insets bottom="5.0" top="5.0" />
+                        <Insets bottom="5.0" top="5.0"/>
                     </padding>
                 </Label>
-                <TextField editable="false" mouseTransparent="true" text="F:\Export\Path" />
+                <TextField editable="false" mouseTransparent="true" text="F:\Export\Path"/>
             </children>
         </VBox>
     </children>
     <VBox.margin>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </VBox.margin>
 </VBox>
