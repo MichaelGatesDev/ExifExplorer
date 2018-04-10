@@ -141,6 +141,46 @@
                      </AnchorPane>
                   </content>
                </TitledPane>
+               <TitledPane animated="false" layoutX="10.0" layoutY="62.0" minHeight="400.0" prefHeight="400.0" text="Photo Specifications">
+                  <content>
+                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <VBox alignment="TOP_CENTER" layoutX="9.600000381469727" layoutY="9.600000381469727" prefHeight="374.0" prefWidth="245.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <children>
+                                 <HBox alignment="CENTER">
+                                    <children>
+                                       <Label text="ISO" />
+                                       <TextField promptText="100" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0">
+                                    <children>
+                                       <Label text="Shutter Speed" />
+                                       <TextField promptText="1/125" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="51.0">
+                                    <children>
+                                       <VBox>
+                                          <children>
+                                             <TextField promptText="F2.8" />
+                                             <Label text="Aperture" />
+                                          </children>
+                                       </VBox>
+                                    </children>
+                                 </HBox>
+                                 <VBox>
+                                    <children>
+                                       <Label text="Focal Length" />
+                                       <TextField promptText="50 MM" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </VBox>
+                        </children>
+                     </AnchorPane>
+                  </content>
+               </TitledPane>
               </panes>
           </Accordion>
       </content>
