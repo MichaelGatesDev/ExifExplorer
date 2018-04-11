@@ -118,19 +118,19 @@ public class Main extends Application
     public void start(Stage stage) throws Exception
     {
         URL res = Main.class.getClassLoader().getResource("fxml/Base.fxml");
-    
+        
         if (res == null)
         {
             logger.error("Main resource path does not exist");
             return;
         }
-    
+        
         FXMLLoader loader = new FXMLLoader(res);
         Parent root = loader.load();
-    
-    
+        
+        
         Scene scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
-    
+        
         // Package window
         stage.getIcons().add(new Image("img/logo.png"));
         stage.setTitle("ExifExplorer");
@@ -144,7 +144,7 @@ public class Main extends Application
     // ============================================================================================================================================ \\
     
     
-    private URL getResourceURL(String path)
+    public URL getResourceURL(String path)
     {
         return Main.class.getClassLoader().getResource(path);
     }

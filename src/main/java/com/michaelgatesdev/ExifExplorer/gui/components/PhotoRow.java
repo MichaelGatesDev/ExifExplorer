@@ -22,6 +22,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class PhotoRow
 {
+    // ============================================================================================================================================ \\
+    
     private final SimpleStringProperty dateTaken    = new SimpleStringProperty("");
     private final SimpleStringProperty dimensions   = new SimpleStringProperty("");
     private final SimpleStringProperty size         = new SimpleStringProperty("");
@@ -32,10 +34,14 @@ public class PhotoRow
     private final SimpleStringProperty shutterSpeed = new SimpleStringProperty("");
     private final SimpleStringProperty focalLength  = new SimpleStringProperty("");
     
+    // ============================================================================================================================================ \\
+    
     
     public PhotoRow()
     {
     }
+    
+    // ============================================================================================================================================ \\
     
     
     public PhotoRow(String dateTaken, String dimensions, String size, String manufacturer, String model, String iso, String aperture, String shutterSpeed, String focalLength)
@@ -50,6 +56,8 @@ public class PhotoRow
         setShutterSpeed(shutterSpeed);
         setFocalLength(focalLength);
     }
+    
+    // ============================================================================================================================================ \\
     
     
     public void setDateTaken(String dateTaken)
@@ -104,6 +112,8 @@ public class PhotoRow
     {
         this.focalLength.set(focalLength);
     }
+    
+    // ============================================================================================================================================ \\
     
     
     public String getDateTaken()
@@ -212,4 +222,6 @@ public class PhotoRow
     {
         return focalLength;
     }
+    
+    // ============================================================================================================================================ \\
 }
