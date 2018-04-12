@@ -36,14 +36,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="250.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="30.0" valignment="TOP" vgrow="NEVER" />
       <RowConstraints minHeight="200.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="30.0" valignment="BOTTOM" vgrow="NEVER" />
+      <RowConstraints valignment="BOTTOM" vgrow="NEVER" />
    </rowConstraints>
    <children>
        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter(s)" textAlignment="CENTER">
