@@ -18,33 +18,26 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-public class InvalidShutterSpeedException extends Exception
+import com.michaelgatesdev.ExifExplorer.util.math.ShutterSpeed;
+
+public class ShutterSpeedPhotoProperty extends PhotoProperty<ShutterSpeed>
 {
-    public InvalidShutterSpeedException()
+//    private static final ShutterSpeed MAX_SS = new ShutterSpeed(1, 8000); // Sony A7S, could change later
+    
+    
+    public ShutterSpeedPhotoProperty(int dividend, int divisor)
     {
+        super(new ShutterSpeed(dividend, divisor));
+//        if (value < 0 || value > MAX_ISO)
+//        {
+//            return;
+//        }
     }
     
     
-    public InvalidShutterSpeedException(String message)
+    @Override
+    public String toString()
     {
-        super(message);
-    }
-    
-    
-    public InvalidShutterSpeedException(String message, Throwable cause)
-    {
-        super(message, cause);
-    }
-    
-    
-    public InvalidShutterSpeedException(Throwable cause)
-    {
-        super(cause);
-    }
-    
-    
-    public InvalidShutterSpeedException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace)
-    {
-        super(message, cause, enableSuppression, writableStackTrace);
+        return "" + value;
     }
 }

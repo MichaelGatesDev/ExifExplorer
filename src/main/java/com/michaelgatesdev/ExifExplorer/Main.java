@@ -87,7 +87,6 @@ public class Main extends Application
         // Create/Initialize all the directories */
         initializeDirectories();
         
-        
         // Init GUI
         launch();
     }

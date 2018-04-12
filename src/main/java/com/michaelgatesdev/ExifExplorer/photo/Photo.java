@@ -23,12 +23,7 @@ import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
-import com.drew.metadata.exif.ExifSubIFDDirectory;
-import com.michaelgatesdev.ExifExplorer.exceptions.InvalidApertureException;
-import com.michaelgatesdev.ExifExplorer.exceptions.InvalidISOException;
-import com.michaelgatesdev.ExifExplorer.exceptions.ShutterSpeedPhotoProperty;
 import com.michaelgatesdev.ExifExplorer.photo.properties.*;
-import com.michaelgatesdev.ExifExplorer.util.math.Fraction;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,15 +43,11 @@ public class Photo
     
     public Photo(File f)
     {
+        this.file = f;
         this.properties = new HashMap<>();
         try
         {
             metadata = ImageMetadataReader.readMetadata(f);
-            
-            
-            // obtain the Exif directory
-            ExifSubIFDDirectory directory = metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
-            
             
             for (Directory dir : metadata.getDirectories())
             {
@@ -89,10 +80,7 @@ public class Photo
                                 return;
                             }
                             
-                            int dividend = Integer.parseInt(ss[0]);
-                            int divisor = Integer.parseInt(ss[1]);
-                            
-                            setShutterSpeed(dividend, divisor);
+                            setShutterSpeed(Integer.parseInt(ss[0]), Integer.parseInt(ss[1]));
 //                            System.out.println("Set shutter speed to " + this.getProperty(PhotoPropertyType.SHUTTER_SPEED));
                             break;
                         }
@@ -102,7 +90,7 @@ public class Photo
             }
             
         }
-        catch (ImageProcessingException | IOException | InvalidApertureException | InvalidISOException | InvalidShutterSpeedException e)
+        catch (ImageProcessingException | IOException e)
         {
             e.printStackTrace();
         }
@@ -112,24 +100,25 @@ public class Photo
     // ============================================================================================================================================ \\
     
     
-    private void setISO(int n) throws InvalidISOException
+    private void setISO(int n)
     {
         this.properties.remove(PhotoPropertyType.ISO);
         this.properties.put(PhotoPropertyType.ISO, new ISOPhotoProperty(n));
     }
     
     
-    private void setAperture(float f) throws InvalidApertureException
+    private void setAperture(float f)
     {
         this.properties.remove(PhotoPropertyType.APERTURE);
         this.properties.put(PhotoPropertyType.APERTURE, new AperturePhotoProperty(f));
     }
     
     
-    private void setShutterSpeed(int dividend, int divisor) throws InvalidShutterSpeedException
+    private void setShutterSpeed(int dividend, int divisor)
     {
         this.properties.remove(PhotoPropertyType.SHUTTER_SPEED);
-        this.properties.put(PhotoPropertyType.SHUTTER_SPEED, new ShutterSpeedPhotoProperty(new Fraction(dividend, divisor)));
+        this.properties.put(PhotoPropertyType.SHUTTER_SPEED, new ShutterSpeedPhotoProperty(dividend, divisor));
+//        System.out.println("Put in SS " + dividend + "/" + divisor);
     }
     
     

@@ -18,22 +18,20 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-import com.michaelgatesdev.ExifExplorer.exceptions.InvalidApertureException;
-
 public class AperturePhotoProperty extends PhotoProperty<Float>
 {
-    private static final float MIN_APERTURE = 1.0F;
-    private static final float MAX_APERTURE = 256.0F;
-    private              float value;
+//    private static final float MIN_APERTURE = 1.0F;
+//    private static final float MAX_APERTURE = 256.0F;
     
     
-    public AperturePhotoProperty(float value) throws InvalidApertureException
+    public AperturePhotoProperty(Float value)
     {
-        if (value < MIN_APERTURE || value > MAX_APERTURE)
-        {
-            throw new InvalidApertureException();
-        }
-        this.value = value;
+//        if (value < MIN_APERTURE || value > MAX_APERTURE)
+//        {
+//            return;
+//        }
+//        this.value = value;
+        super(value);
     }
     
     

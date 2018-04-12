@@ -18,21 +18,20 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-import com.michaelgatesdev.ExifExplorer.exceptions.InvalidISOException;
 
 public class ISOPhotoProperty extends PhotoProperty<Integer>
 {
-    private static final int MAX_ISO = 409600; // Sony A7S, could change later
-    private              int value;
+//    private static final int MAX_ISO = 409600; // Sony A7S, could change later
     
     
-    public ISOPhotoProperty(int value) throws InvalidISOException
+    public ISOPhotoProperty(Integer value)
     {
-        if (value < 0 || value > MAX_ISO)
-        {
-            throw new InvalidISOException();
-        }
-        this.value = value;
+//        if (value < 0 || value > MAX_ISO)
+//        {
+//            return;
+//        }
+//        this.value = value;
+        super(value);
     }
     
     
@@ -45,6 +44,6 @@ public class ISOPhotoProperty extends PhotoProperty<Integer>
     @Override
     public String toString()
     {
-        return "iso-" + value;
+        return "ISO-" + value;
     }
 }

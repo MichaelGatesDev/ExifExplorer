@@ -15,12 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.michaelgatesdev.ExifExplorer.exceptions.ShutterSpeedPhotoProperty;
 import com.michaelgatesdev.ExifExplorer.photo.Photo;
 import com.michaelgatesdev.ExifExplorer.photo.properties.ISOPhotoProperty;
 import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoPropertyType;
-import com.michaelgatesdev.ExifExplorer.util.math.Fraction;
+import com.michaelgatesdev.ExifExplorer.photo.properties.ShutterSpeedPhotoProperty;
+import com.michaelgatesdev.ExifExplorer.util.math.ShutterSpeed;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
@@ -36,6 +37,10 @@ public class PhotoDataTest
     
     private File testDirISO;
     private File testDirSS;
+    
+    
+    @Before
+    public void init()
     {
         try
         {
@@ -47,6 +52,7 @@ public class PhotoDataTest
             e.printStackTrace();
         }
     }
+    
     
     @Test
     public void testFoldersExist()
@@ -116,20 +122,25 @@ public class PhotoDataTest
                 continue;
             }
             
+            
             ShutterSpeedPhotoProperty prop = (ShutterSpeedPhotoProperty) photo.getProperty(PhotoPropertyType.SHUTTER_SPEED);
+
+//            if (prop == null)
+//            {
+//                continue;
+//            }
             
             String rawDividend = m.group(1);
             int expectedDividend = Integer.parseInt(rawDividend);
             String rawDivisor = m.group(2);
             int expectedDivisor = Integer.parseInt(rawDivisor);
             
-            Fraction frac = prop.getValue();
-            int actualDividend = frac.getDividend();
-            int actualDivisor = frac.getDivisor();
-
-            //TODO figure out how to test this
+            ShutterSpeed speed = prop.getValue();
+            int actualDividend = speed.getDividend();
+            int actualDivisor = speed.getDivisor();
+            
             System.out.println("[" + name + "] Expected SS = " + expectedDividend + "/" + expectedDivisor + ", actual is " + actualDividend + "/" + actualDivisor);
-//            Assert.assertEquals(new Fraction(expectedDividend, expectedDivisor), new Fraction(actualDividend, actualDivisor));
+            Assert.assertEquals(new ShutterSpeed(expectedDividend, expectedDivisor), new ShutterSpeed(actualDividend, actualDivisor));
         }
     }
     

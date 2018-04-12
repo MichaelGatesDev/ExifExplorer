@@ -57,13 +57,19 @@ public class Fraction
     
     public boolean lessThan(Fraction minSpeed)
     {
-        return ((float) (dividend / divisor)) < ((float) (minSpeed.dividend / minSpeed.divisor));
+        return (float) (dividend / divisor) < (float) (minSpeed.dividend / minSpeed.divisor);
     }
     
     
-    public boolean greaterThan(Fraction minSpeed)
+    public boolean greaterThan(Fraction maxSpeed)
     {
-        return ((float) (dividend / divisor)) > ((float) (minSpeed.dividend / minSpeed.divisor));
+        return (float) (dividend / divisor) > (float) (maxSpeed.dividend / maxSpeed.divisor);
+    }
+    
+    
+    float getQuotient()
+    {
+        return (float) (dividend / divisor);
     }
     
     
