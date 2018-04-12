@@ -60,10 +60,9 @@ public class TopMenuBarController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        menuItemImport.setOnAction(event ->
-        {
-            Main.getInstance().doAskImport();
-        });
+        menuItemImport.setOnAction(event -> Main.getInstance().doAskImport());
+        menuItemExport.setOnAction(event -> Main.getInstance().doAskExport());
+        menuItemQuit.setOnAction(event -> Main.getInstance().doAskQuit());
         
         
     }
