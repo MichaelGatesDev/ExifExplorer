@@ -21,8 +21,7 @@ package com.michaelgatesdev.ExifExplorer.photo.properties;
 public enum PhotoPropertyType
 {
     DATE_TIME,
-    WIDTH,
-    HEIGHT,
+    DIMENSIONS,
     SIZE,
     MANUFACTURER,
     MODEL,

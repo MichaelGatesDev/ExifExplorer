@@ -18,6 +18,8 @@
 
 package com.michaelgatesdev.ExifExplorer.gui.components;
 
+import com.michaelgatesdev.ExifExplorer.photo.Photo;
+import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoPropertyType;
 import javafx.beans.property.SimpleStringProperty;
 
 public class PhotoRow
@@ -40,6 +42,48 @@ public class PhotoRow
     public PhotoRow()
     {
     }
+    
+    
+    public PhotoRow(Photo p)
+    {
+        if (p.hasProperty(PhotoPropertyType.DATE_TIME))
+        {
+            setDateTaken(p.getProperty(PhotoPropertyType.DATE_TIME).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.DIMENSIONS))
+        {
+            setDimensions(p.getProperty(PhotoPropertyType.DIMENSIONS).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.SIZE))
+        {
+            setSize(p.getProperty(PhotoPropertyType.SIZE).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.MANUFACTURER))
+        {
+            setManufacturer(p.getProperty(PhotoPropertyType.MANUFACTURER).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.MODEL))
+        {
+            setModel(p.getProperty(PhotoPropertyType.MODEL).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.ISO))
+        {
+            setIso(p.getProperty(PhotoPropertyType.ISO).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.APERTURE))
+        {
+            setAperture(p.getProperty(PhotoPropertyType.APERTURE).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.SHUTTER_SPEED))
+        {
+            setShutterSpeed(p.getProperty(PhotoPropertyType.SHUTTER_SPEED).asString());
+        }
+        if (p.hasProperty(PhotoPropertyType.FOCAL_LENGTH))
+        {
+            setFocalLength(p.getProperty(PhotoPropertyType.FOCAL_LENGTH).asString());
+        }
+    }
+    
     
     // ============================================================================================================================================ \\
     

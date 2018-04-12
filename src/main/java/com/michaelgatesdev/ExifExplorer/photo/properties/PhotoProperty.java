@@ -20,7 +20,7 @@ package com.michaelgatesdev.ExifExplorer.photo.properties;
 
 public abstract class PhotoProperty<T>
 {
-    T value;
+    private T value;
     
     
     public PhotoProperty(T value)
@@ -32,5 +32,11 @@ public abstract class PhotoProperty<T>
     public T getValue()
     {
         return value;
+    }
+    
+    
+    public String asString()
+    {
+        return value.toString();
     }
 }

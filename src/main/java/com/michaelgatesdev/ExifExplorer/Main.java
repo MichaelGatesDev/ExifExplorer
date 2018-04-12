@@ -20,6 +20,7 @@ package com.michaelgatesdev.ExifExplorer;
 
 import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
 import com.michaelgatesdev.ExifExplorer.locale.UTF8Control;
+import com.michaelgatesdev.ExifExplorer.photo.Photo;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,8 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -58,8 +61,9 @@ public class Main extends Application
     private File textResDir;
     private File backupsDir;
     
-    private File importDir;
-    private File exportDir;
+    private File        importDir;
+    private File        exportDir;
+    private List<Photo> photos;
     
     // ============================================================================================================================================ \\
     
@@ -170,17 +174,36 @@ public class Main extends Application
     }
     
     
-    public boolean doImport(Node ref)
+    public void doImport(Node ref)
     {
         if (importDir == null || !importDir.exists())
         {
             logger.error(locale.getString("Import.Error.DoesNotExist"));
-            return false;
+            return;
         }
         
+        
+        loadPhotos(ref);
+        
+        
+        // unlock views
         guiManager.unlockFilters(ref);
         guiManager.unlockViews(ref);
-        return true;
+    }
+    
+    
+    private void loadPhotos(Node ref)
+    {
+        this.photos = new ArrayList<>();
+        File[] files = importDir.listFiles();
+        
+        for (File f : files)
+        {
+            Photo photo = new Photo(f);
+            photos.add(photo);
+        }
+        
+        guiManager.populateTable(ref, this.photos);
     }
     
     

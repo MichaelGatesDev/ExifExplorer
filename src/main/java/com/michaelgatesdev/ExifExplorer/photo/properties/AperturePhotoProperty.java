@@ -20,8 +20,9 @@ package com.michaelgatesdev.ExifExplorer.photo.properties;
 
 public class AperturePhotoProperty extends PhotoProperty<Float>
 {
-//    private static final float MIN_APERTURE = 1.0F;
+    //    private static final float MIN_APERTURE = 1.0F;
 //    private static final float MAX_APERTURE = 256.0F;
+    private float value;
     
     
     public AperturePhotoProperty(Float value)
@@ -30,8 +31,8 @@ public class AperturePhotoProperty extends PhotoProperty<Float>
 //        {
 //            return;
 //        }
-//        this.value = value;
         super(value);
+        this.value = value;
     }
     
     
@@ -46,5 +47,12 @@ public class AperturePhotoProperty extends PhotoProperty<Float>
     public String toString()
     {
         return "F" + value;
+    }
+    
+    
+    @Override
+    public String asString()
+    {
+        return this.toString();
     }
 }

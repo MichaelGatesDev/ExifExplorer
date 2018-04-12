@@ -19,12 +19,19 @@
 package com.michaelgatesdev.ExifExplorer.gui;
 
 import com.michaelgatesdev.ExifExplorer.Main;
+import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
+import com.michaelgatesdev.ExifExplorer.photo.Photo;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import org.apache.log4j.Logger;
+
+import java.util.List;
 
 public class GuiManager
 {
@@ -63,6 +70,24 @@ public class GuiManager
             Scene scene = n.getScene();
             TabPane pane = (TabPane) scene.lookup("#viewsTabPane");
             pane.setDisable(false);
+        });
+    }
+    
+    
+    public void populateTable(Node ref, List<Photo> photos)
+    {
+        Platform.runLater(() ->
+        {
+            Scene scene = ref.getScene();
+            TableView table = (TableView) scene.lookup("#table");
+            
+            ObservableList<PhotoRow> data = FXCollections.observableArrayList();
+            for (Photo p : photos)
+            {
+                PhotoRow row = new PhotoRow(p);
+                data.add(row);
+            }
+            table.setItems(data);
         });
     }
     

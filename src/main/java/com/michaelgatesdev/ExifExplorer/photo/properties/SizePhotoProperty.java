@@ -18,33 +18,28 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-import com.michaelgatesdev.ExifExplorer.util.math.ShutterSpeed;
-
-public class ShutterSpeedPhotoProperty extends PhotoProperty<ShutterSpeed>
+public class SizePhotoProperty extends PhotoProperty<Long>
 {
-//    private static final ShutterSpeed MAX_SS = new ShutterSpeed(1, 8000); // Sony A7S, could change later
+    private long sizeInBytes;
     
     
-    public ShutterSpeedPhotoProperty(int dividend, int divisor)
+    public SizePhotoProperty(Long sizeInBytes)
     {
-        super(new ShutterSpeed(dividend, divisor));
-//        if (value < 0 || value > MAX_ISO)
-//        {
-//            return;
-//        }
+        super(sizeInBytes);
+        this.sizeInBytes = sizeInBytes;
     }
     
     
     @Override
     public String asString()
     {
-        return toString();
+        return this.toString();
     }
     
     
     @Override
     public String toString()
     {
-        return this.getValue().getDividend() + "/" + this.getValue().getDivisor();
+        return sizeInBytes + " MB";
     }
 }

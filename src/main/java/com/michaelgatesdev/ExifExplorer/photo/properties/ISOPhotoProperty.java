@@ -21,7 +21,8 @@ package com.michaelgatesdev.ExifExplorer.photo.properties;
 
 public class ISOPhotoProperty extends PhotoProperty<Integer>
 {
-//    private static final int MAX_ISO = 409600; // Sony A7S, could change later
+    //    private static final int MAX_ISO = 409600; // Sony A7S, could change later
+    private int value;
     
     
     public ISOPhotoProperty(Integer value)
@@ -32,6 +33,7 @@ public class ISOPhotoProperty extends PhotoProperty<Integer>
 //        }
 //        this.value = value;
         super(value);
+        this.value = value;
     }
     
     
@@ -45,5 +47,12 @@ public class ISOPhotoProperty extends PhotoProperty<Integer>
     public String toString()
     {
         return "ISO-" + value;
+    }
+    
+    
+    @Override
+    public String asString()
+    {
+        return this.toString();
     }
 }

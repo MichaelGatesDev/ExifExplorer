@@ -27,6 +27,7 @@ import com.michaelgatesdev.ExifExplorer.photo.properties.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,11 +85,39 @@ public class Photo
 //                            System.out.println("Set shutter speed to " + this.getProperty(PhotoPropertyType.SHUTTER_SPEED));
                             break;
                         }
+                        case "Date/Time Original":
+                        {
+                            // 2008:09:20 09:01:07
+                            String s = tag.getDescription();
+                            String[] ss = s.split(" ");
+                            String[] rawDate = ss[0].split(":");
+                            String[] rawTime = ss[1].split(":");
+                            
+                            int year = Integer.parseInt(rawDate[0]);
+                            int month = Integer.parseInt(rawDate[1]);
+                            int day = Integer.parseInt(rawDate[2]);
+                            
+                            int hour = Integer.parseInt(rawTime[0]);
+                            int minute = Integer.parseInt(rawTime[1]);
+                            int second = Integer.parseInt(rawTime[2]);
+                            
+                            
+                            setDateTime(LocalDateTime.of(year, month, day, hour, minute, second));
+                            break;
+                        }
+                        case "Focal Length":
+                        {
+                            // 200 mm
+                            String s = tag.getDescription();
+                            String[] ss = s.split(" ");
+                            int length = Integer.parseInt(ss[0]);
+                            
+                            setFocalLength(length);
+                            break;
+                        }
                     }
-                    
                 }
             }
-            
         }
         catch (ImageProcessingException | IOException e)
         {
@@ -98,6 +127,41 @@ public class Photo
     }
     
     // ============================================================================================================================================ \\
+    
+    
+    private void setDateTime(LocalDateTime date)
+    {
+        this.properties.remove(PhotoPropertyType.DATE_TIME);
+        this.properties.put(PhotoPropertyType.DATE_TIME, new DateTimePhotoProperty(date));
+    }
+    
+    
+    private void setDimensions(int width, int height)
+    {
+        this.properties.remove(PhotoPropertyType.DIMENSIONS);
+        this.properties.put(PhotoPropertyType.DIMENSIONS, new DimensionsPhotoProperty(width, height));
+    }
+    
+    
+    private void setSize(long sizeInBytes)
+    {
+        this.properties.remove(PhotoPropertyType.SIZE);
+        this.properties.put(PhotoPropertyType.SIZE, new SizePhotoProperty(sizeInBytes));
+    }
+    
+    
+    private void setManufacturer(String s)
+    {
+        this.properties.remove(PhotoPropertyType.MANUFACTURER);
+        this.properties.put(PhotoPropertyType.MANUFACTURER, new ManufacturerPhotoProperty(s));
+    }
+    
+    
+    private void setModel(String s)
+    {
+        this.properties.remove(PhotoPropertyType.MODEL);
+        this.properties.put(PhotoPropertyType.MODEL, new ModelPhotoProperty(s));
+    }
     
     
     private void setISO(int n)
@@ -118,6 +182,13 @@ public class Photo
     {
         this.properties.remove(PhotoPropertyType.SHUTTER_SPEED);
         this.properties.put(PhotoPropertyType.SHUTTER_SPEED, new ShutterSpeedPhotoProperty(dividend, divisor));
+    }
+    
+    
+    private void setFocalLength(int mm)
+    {
+        this.properties.remove(PhotoPropertyType.FOCAL_LENGTH);
+        this.properties.put(PhotoPropertyType.FOCAL_LENGTH, new FocalLengthPhotoProperty(mm));
     }
     
     
