@@ -118,7 +118,6 @@ public class Photo
     {
         this.properties.remove(PhotoPropertyType.SHUTTER_SPEED);
         this.properties.put(PhotoPropertyType.SHUTTER_SPEED, new ShutterSpeedPhotoProperty(dividend, divisor));
-//        System.out.println("Put in SS " + dividend + "/" + divisor);
     }
     
     
