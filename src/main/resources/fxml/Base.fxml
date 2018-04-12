@@ -26,7 +26,6 @@
 
     <stylesheets>
         <URL value="@../css/jfxstrap.css"/>
-        <URL value="@../css/style.css"/>
     </stylesheets>
 
     <top>
