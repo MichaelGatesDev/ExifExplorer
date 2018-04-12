@@ -28,9 +28,11 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import org.apache.log4j.Logger;
 
+import java.io.File;
 import java.util.List;
 
 public class GuiManager
@@ -89,6 +91,25 @@ public class GuiManager
             }
             table.setItems(data);
         });
+    }
+    
+    
+    public void updateWorkspaceInfo(Node sacrifice, File importDir, File exportDir)
+    {
+        if (importDir != null)
+        {
+            Platform.runLater(() -> {
+                TextField box = (TextField) sacrifice.getScene().lookup("#importPathBox");
+                box.setText(importDir.getPath());
+            });
+        }
+        if (exportDir != null)
+        {
+            Platform.runLater(() -> {
+                TextField box = (TextField) sacrifice.getScene().lookup("#exportPathBox");
+                box.setText(exportDir.getPath());
+            });
+        }
     }
     
     // ============================================================================================================================================ \\

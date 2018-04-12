@@ -220,6 +220,7 @@ public class Main extends Application
         }
         
         guiManager.populateTable(sacrifice, this.photos);
+        guiManager.updateWorkspaceInfo(sacrifice, importDir, exportDir);
     }
     
     
