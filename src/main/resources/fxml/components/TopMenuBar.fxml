@@ -17,39 +17,37 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
-
-<MenuBar prefHeight="30.0" prefWidth="500.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="">
+<MenuBar prefHeight="30.0" prefWidth="500.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.TopMenuBarController">
     <menus>
         <Menu mnemonicParsing="false" text="File">
             <items>
-                <MenuItem mnemonicParsing="false" text="Import Photos..." />
-                <MenuItem mnemonicParsing="false" text="Export Photos..." />
-                <MenuItem mnemonicParsing="false" text="Quit" />
+                <MenuItem mnemonicParsing="false" text="Import Photos..." fx:id="menuItemImport"/>
+                <MenuItem mnemonicParsing="false" text="Export Photos..." fx:id="menuItemExport"/>
+                <MenuItem mnemonicParsing="false" text="Quit" fx:id="menuItemQuit"/>
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
             <items>
-                <MenuItem mnemonicParsing="false" text="Undo (CTRL+Z)" />
-            <MenuItem mnemonicParsing="false" text="Redo (CTRL+V)" />
-            <MenuItem mnemonicParsing="false" text="Copy (CTRL+C)" />
-            <MenuItem mnemonicParsing="false" text="Paste (CTRL+V)" />
-            <MenuItem mnemonicParsing="false" text="Cut (CTRL+X)" />
+                <MenuItem mnemonicParsing="false" text="Undo (CTRL+Z)" fx:id="menuItemUndo"/>
+                <MenuItem mnemonicParsing="false" text="Redo (CTRL+V)" fx:id="menuItemRedo"/>
+                <MenuItem mnemonicParsing="false" text="Cut (CTRL+X)" fx:id="menuItemCut"/>
+                <MenuItem mnemonicParsing="false" text="Copy (CTRL+C)" fx:id="menuItemCopy"/>
+                <MenuItem mnemonicParsing="false" text="Paste (CTRL+V)" fx:id="menuItemPaste"/>
             </items>
         </Menu>
-      <Menu mnemonicParsing="false" text="Settings">
-         <items>
-            <MenuItem mnemonicParsing="false" text="Edit Preferences" />
-            <MenuItem mnemonicParsing="false" text="Modify Style &amp; Colors" />
-         </items>
-      </Menu>
+        <Menu mnemonicParsing="false" text="Settings">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Edit Preferences" fx:id="menuItemPrefs"/>
+                <MenuItem mnemonicParsing="false" text="Modify Style &amp; Colors" fx:id="menuItemStyles"/>
+            </items>
+        </Menu>
         <Menu mnemonicParsing="false" text="Help">
             <items>
-                <MenuItem mnemonicParsing="false" text="About ExifExplorer" />
-            <MenuItem mnemonicParsing="false" text="Credits" />
+                <MenuItem mnemonicParsing="false" text="About ExifExplorer" fx:id="menuItemAbout"/>
+                <MenuItem mnemonicParsing="false" text="Credits" fx:id="menuItemCredits"/>
             </items>
         </Menu>
     </menus>

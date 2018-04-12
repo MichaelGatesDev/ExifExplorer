@@ -20,18 +20,17 @@ package com.michaelgatesdev.ExifExplorer;
 
 import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
 import com.michaelgatesdev.ExifExplorer.locale.UTF8Control;
-import com.michaelgatesdev.ExifExplorer.util.FileUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -54,6 +53,9 @@ public class Main extends Application
     private File imageResDir;
     private File textResDir;
     private File backupsDir;
+    
+    private File importDir;
+    private File exportDir;
     
     // ============================================================================================================================================ \\
     
@@ -94,22 +96,15 @@ public class Main extends Application
     
     private void initializeDirectories()
     {
-        try
-        {
-            rootDir = new File(System.getProperty("user.dir") + "/");
-            
-            resourcesDir = FileUtil.createDirectory(rootDir, "_resources", true);
-            FileUtils.copyDirectoryToDirectory(FileUtils.toFile(this.getResourceURL("text/")), resourcesDir);
-            textResDir = new File(resourcesDir, "/text/");
-            FileUtils.copyDirectoryToDirectory(FileUtils.toFile(this.getResourceURL("img/")), resourcesDir);
-            imageResDir = new File(resourcesDir, "/img/");
-            
-            backupsDir = FileUtil.createDirectory(rootDir, "_backups", true);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        rootDir = new File(System.getProperty("user.dir") + "/");
+//
+//            resourcesDir = FileUtil.createDirectory(rootDir, "_resources", true);
+//            FileUtils.copyDirectoryToDirectory(FileUtils.toFile(this.getResourceURL("text/")), resourcesDir);
+//            textResDir = new File(resourcesDir, "/text/");
+//            FileUtils.copyDirectoryToDirectory(FileUtils.toFile(this.getResourceURL("img/")), resourcesDir);
+//            imageResDir = new File(resourcesDir, "/img/");
+//
+//            backupsDir = FileUtil.createDirectory(rootDir, "_backups", true);
     }
     
     
@@ -137,6 +132,35 @@ public class Main extends Application
         stage.setMinWidth(MAIN_WINDOW_WIDTH);
         stage.setMinHeight(MAIN_WINDOW_HEIGHT);
         stage.show();
+    }
+    
+    
+    // ============================================================================================================================================ \\
+    
+    
+    public void doAskImport()
+    {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle(locale.getString("Importing.FileChooser.Info.WindowTitle"));
+        File defaultDirectory = new File("C:/");
+        chooser.setInitialDirectory(defaultDirectory);
+        
+        File selectedDirectory = chooser.showDialog(null);
+        if (selectedDirectory == null || !selectedDirectory.exists())
+        {
+            logger.warn(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content").replace("[%s]", selectedDirectory != null ? selectedDirectory.getPath() : "[null]"));
+            
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(locale.getString("Importing.FileChooser.Error.InvalidLocation.Title"));
+            alert.setHeaderText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Header"));
+            alert.setContentText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content"));
+            alert.showAndWait();
+        }
+        else
+        {
+            importDir = selectedDirectory;
+            logger.info(locale.getString("Importing.FileChooser.Info.ValidLocation").replace("[%s]", selectedDirectory.getPath()));
+        }
     }
     
     
