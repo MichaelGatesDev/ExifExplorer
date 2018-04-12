@@ -27,7 +27,7 @@
 
 <TabPane prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.ViewContainerController">
     <tabs>
-        <Tab text="Table View">
+        <Tab closable="false" text="Table View">
             <content>
                 <ScrollPane fitToHeight="true" fitToWidth="true">
                     <content>
@@ -88,7 +88,7 @@
                 </ScrollPane>
             </content>
         </Tab>
-        <Tab disable="true" text="Image View">
+        <Tab closable="false" disable="true" text="Image View">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
