@@ -18,12 +18,12 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-public class FocalLengthPhotoProperty extends PhotoProperty<Integer>
+public class FocalLengthPhotoProperty extends PhotoProperty<Float>
 {
-    private int length;
+    private float length;
     
     
-    public FocalLengthPhotoProperty(Integer length)
+    public FocalLengthPhotoProperty(float length)
     {
         super(length);
         this.length = length;

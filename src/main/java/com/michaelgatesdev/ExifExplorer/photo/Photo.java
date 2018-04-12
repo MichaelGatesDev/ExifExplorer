@@ -39,6 +39,9 @@ public class Photo
     private Metadata                              metadata;
     private Map<PhotoPropertyType, PhotoProperty> properties;
     
+    private int width;
+    private int height;
+    
     // ============================================================================================================================================ \\
     
     
@@ -71,7 +74,7 @@ public class Photo
 //                            System.out.println("Set aperture to " + this.getProperty(PhotoPropertyType.APERTURE));
                             break;
                         }
-                        case "Shutter Speed Value":
+                        case "Exposure Time" /*"Shutter Speed Value"*/:
                         {
                             String s = tag.getDescription().toLowerCase().replace("sec", "").trim();
                             String[] ss = s.split("/");
@@ -110,14 +113,47 @@ public class Photo
                             // 200 mm
                             String s = tag.getDescription();
                             String[] ss = s.split(" ");
-                            int length = Integer.parseInt(ss[0]);
+                            float length = Float.parseFloat(ss[0]);
                             
                             setFocalLength(length);
+                            break;
+                        }
+                        case "Image Width":
+                        {
+                            String s = tag.getDescription().replace(" pixels", "");
+                            this.width = Integer.parseInt(s);
+                            break;
+                        }
+                        case "Image Height":
+                        {
+                            String s = tag.getDescription().replace(" pixels", "");
+                            this.height = Integer.parseInt(s);
+                            break;
+                        }
+                        case "File Size":
+                        {
+                            String s = tag.getDescription().replace(" bytes", "");
+                            long size = Long.parseLong(s);
+                            setSize(size);
+                            break;
+                        }
+                        case "Make":
+                        {
+                            String s = tag.getDescription();
+                            setManufacturer(s);
+                            break;
+                        }
+                        case "Model":
+                        {
+                            String s = tag.getDescription();
+                            setModel(s);
                             break;
                         }
                     }
                 }
             }
+            
+            this.setDimensions(width, height);
         }
         catch (ImageProcessingException | IOException e)
         {
@@ -185,7 +221,7 @@ public class Photo
     }
     
     
-    private void setFocalLength(int mm)
+    private void setFocalLength(float mm)
     {
         this.properties.remove(PhotoPropertyType.FOCAL_LENGTH);
         this.properties.put(PhotoPropertyType.FOCAL_LENGTH, new FocalLengthPhotoProperty(mm));

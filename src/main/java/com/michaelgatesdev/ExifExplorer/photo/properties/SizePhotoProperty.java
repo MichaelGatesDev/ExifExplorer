@@ -40,6 +40,6 @@ public class SizePhotoProperty extends PhotoProperty<Long>
     @Override
     public String toString()
     {
-        return sizeInBytes + " MB";
+        return ((float) (sizeInBytes / 1024)) + " MB";
     }
 }
