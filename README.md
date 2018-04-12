@@ -36,13 +36,24 @@ jfx:jar -DskipTests=true
 
 ## Screenshots
 
-### Mockup
+#### Mockup
 
 ![Mockup Image](https://i.imgur.com/EkQkwnH.jpg)
 
-### Actual 
-
+#### Prototype A
 ![Prototype Image](https://i.imgur.com/pU37gOE.jpg)
+
+#### Prototype B
+![Prototype Image](https://i.imgur.com/1zGR6R9.jpg)
+
+#### Prototype C
+![Prototype Image](https://i.imgur.com/sAr5wkP.jpg)
+
+#### Prototype D
+![Prototype Image](https://i.imgur.com/AXCUAUM.jpg)
+
+
+[GIF of how importing works](https://i.imgur.com/hBhJQf5.gifv)
 
 ## TODO
 
