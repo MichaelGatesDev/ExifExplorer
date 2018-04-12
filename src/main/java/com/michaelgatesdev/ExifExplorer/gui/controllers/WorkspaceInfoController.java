@@ -37,7 +37,7 @@ public class WorkspaceInfoController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        importPathBox.setOnMouseClicked(event -> Main.getInstance().doAskImport());
-        exportPathBox.setOnMouseClicked(event -> Main.getInstance().doAskExport());
+        importPathBox.setOnMouseClicked(event -> Main.getInstance().doAskImport(importPathBox));
+        exportPathBox.setOnMouseClicked(event -> Main.getInstance().doAskExport(exportPathBox));
     }
 }

@@ -19,6 +19,11 @@
 package com.michaelgatesdev.ExifExplorer.gui;
 
 import com.michaelgatesdev.ExifExplorer.Main;
+import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.GridPane;
 import org.apache.log4j.Logger;
 
 public class GuiManager
@@ -39,6 +44,27 @@ public class GuiManager
     
     // ============================================================================================================================================ \\
     
+    
+    public void unlockFilters(Node n)
+    {
+        Platform.runLater(() ->
+        {
+            Scene scene = n.getScene();
+            GridPane pane = (GridPane) scene.lookup("#filtersPane");
+            pane.setDisable(false);
+        });
+    }
+    
+    
+    public void unlockViews(Node n)
+    {
+        Platform.runLater(() ->
+        {
+            Scene scene = n.getScene();
+            TabPane pane = (TabPane) scene.lookup("#viewsTabPane");
+            pane.setDisable(false);
+        });
+    }
     
     // ============================================================================================================================================ \\
 }
