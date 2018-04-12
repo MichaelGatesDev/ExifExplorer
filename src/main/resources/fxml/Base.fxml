@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import java.net.URL?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1">
+            xmlns:fx="http://javafx.com/fxml/1" fx:id="mainBase" fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.BaseController">
 
     <stylesheets>
         <URL value="@../css/jfxstrap.css"/>

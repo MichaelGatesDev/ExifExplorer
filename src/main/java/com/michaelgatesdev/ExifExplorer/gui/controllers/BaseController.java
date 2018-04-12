@@ -19,51 +19,25 @@
 package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
 import com.michaelgatesdev.ExifExplorer.Main;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TopMenuBarController implements Initializable
+public class BaseController implements Initializable
 {
     @FXML
-    MenuItem menuItemImport;
-    @FXML
-    MenuItem menuItemExport;
-    @FXML
-    MenuItem menuItemQuit;
-    
-    @FXML
-    MenuItem menuItemUndo;
-    @FXML
-    MenuItem menuItemRedo;
-    @FXML
-    MenuItem menuItemCut;
-    @FXML
-    MenuItem menuItemCopy;
-    @FXML
-    MenuItem menuItemPaste;
-    
-    @FXML
-    MenuItem menuItemPrefs;
-    @FXML
-    MenuItem menuItemStyles;
-    
-    @FXML
-    MenuItem menuItemAbout;
-    @FXML
-    MenuItem menuItemCredits;
+    BorderPane mainBase;
     
     
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        menuItemImport.setOnAction(event -> Main.getInstance().doAskImport());
-        menuItemExport.setOnAction(event -> Main.getInstance().doAskExport());
-        menuItemQuit.setOnAction(event -> Main.getInstance().doAskQuit());
-        
-        
+        Platform.runLater(() -> {
+            Main.getInstance().sacrifice(mainBase);
+        });
     }
 }

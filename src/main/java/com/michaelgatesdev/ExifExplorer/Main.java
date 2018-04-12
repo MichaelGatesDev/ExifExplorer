@@ -30,6 +30,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
@@ -61,9 +62,12 @@ public class Main extends Application
     private File textResDir;
     private File backupsDir;
     
-    private File        importDir;
-    private File        exportDir;
+    private File importDir;
+    private File exportDir;
+    
     private List<Photo> photos;
+    
+    private Node sacrifice;
     
     // ============================================================================================================================================ \\
     
@@ -146,7 +150,7 @@ public class Main extends Application
     // ============================================================================================================================================ \\
     
     
-    public void doAskImport(Node ref)
+    public void doAskImport()
     {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle(locale.getString("Importing.FileChooser.Info.WindowTitle"));
@@ -169,12 +173,12 @@ public class Main extends Application
             importDir = selectedDirectory;
             logger.info(String.format(locale.getString("Importing.FileChooser.Info.ValidLocation"), selectedDirectory.getPath()));
             
-            doImport(ref);
+            doImport();
         }
     }
     
     
-    public void doImport(Node ref)
+    public void doImport()
     {
         if (importDir == null || !importDir.exists())
         {
@@ -183,16 +187,22 @@ public class Main extends Application
         }
         
         
-        loadPhotos(ref);
+        loadPhotos();
         
+        
+        if (sacrifice == null)
+        {
+            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
+            return;
+        }
         
         // unlock views
-        guiManager.unlockFilters(ref);
-        guiManager.unlockViews(ref);
+        guiManager.unlockFilters(sacrifice);
+        guiManager.unlockViews(sacrifice);
     }
     
     
-    private void loadPhotos(Node ref)
+    private void loadPhotos()
     {
         this.photos = new ArrayList<>();
         File[] files = importDir.listFiles();
@@ -203,11 +213,17 @@ public class Main extends Application
             photos.add(photo);
         }
         
-        guiManager.populateTable(ref, this.photos);
+        if (sacrifice == null)
+        {
+            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
+            return;
+        }
+        
+        guiManager.populateTable(sacrifice, this.photos);
     }
     
     
-    public void doAskExport(Node n)
+    public void doAskExport()
     {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle(locale.getString("Exporting.FileChooser.Info.WindowTitle"));
@@ -276,6 +292,12 @@ public class Main extends Application
     public ResourceBundle getLocale()
     {
         return locale;
+    }
+    
+    
+    public void sacrifice(BorderPane basePane)
+    {
+        this.sacrifice = basePane;
     }
     
     // ============================================================================================================================================ \\
