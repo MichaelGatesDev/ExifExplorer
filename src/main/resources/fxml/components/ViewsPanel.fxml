@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2018
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" tabClosingPolicy="UNAVAILABLE"
+                 tabMaxWidth="100.0" tabMinWidth="100.0">
+            <tabs>
+                <Tab text="Table View">
+                    <content>
+                        <JFXTreeTableView tableMenuButtonVisible="true">
+                            <columns>
+                                <JFXTreeTableColumn minWidth="125.0" text="Date/Time">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="dateTaken"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="Dimensions">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="dimensions"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="Size">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="size"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="Camera Manufacturer">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="manufacturer"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="Camera Model">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="model"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="ISO">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="iso"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="Aperture">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="aperture"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="Shutter Speed">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="shutterSpeed"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                                <JFXTreeTableColumn minWidth="125.0" text="Focal Length">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="focalLength"/>
+                                    </cellValueFactory>
+                                </JFXTreeTableColumn>
+                            </columns>
+                        </JFXTreeTableView>
+                    </content>
+                </Tab>
+                <Tab text="Image View">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <JFXMasonryPane prefHeight="584.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Pane>
+                                            <children>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+                                            </children>
+                                        </Pane>
+                                        <Pane layoutX="15.0" layoutY="15.0">
+                                            <children>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+                                            </children>
+                                        </Pane>
+                                        <Pane layoutX="255.0" layoutY="15.0">
+                                            <children>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+                                            </children>
+                                        </Pane>
+                                    </children>
+                                </JFXMasonryPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </content>
+</ScrollPane>

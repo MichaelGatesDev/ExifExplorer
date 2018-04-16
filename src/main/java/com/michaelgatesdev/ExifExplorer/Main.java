@@ -48,8 +48,8 @@ public class Main extends Application
     
     private final static Logger logger = Logger.getLogger(Main.class.getSimpleName());
     
-    private static final int MAIN_WINDOW_WIDTH  = 1000;
-    private static final int MAIN_WINDOW_HEIGHT = 650;
+    private static final int MAIN_WINDOW_WIDTH  = 1200;
+    private static final int MAIN_WINDOW_HEIGHT = 700;
     
     private static Main       instance;
     private        GuiManager guiManager;
@@ -123,7 +123,7 @@ public class Main extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        URL res = Main.class.getClassLoader().getResource("fxml/Base.fxml");
+        URL res = Main.class.getClassLoader().getResource("fxml/TitleScreen.fxml");
         
         if (res == null)
         {

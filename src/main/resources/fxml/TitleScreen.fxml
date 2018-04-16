@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2018
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+
+    <stylesheets>
+        <URL value="@../css/style.css" />
+    </stylesheets>
+
+
+    <bottom>
+        <fx:include source="components/Footer.fxml" />
+    </bottom>
+    <top>
+        <fx:include source="components/Header.fxml" />
+    </top>
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+            <children>
+            <JFXButton fx:id="importButton" buttonType="RAISED" defaultButton="true" layoutX="411.0" layoutY="67.0" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db" style="-fx-background-color: #FFFFFF;" text="Import">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="settingsButton" buttonType="RAISED" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db" style="-fx-background-color: #FFFFFF;" text="Settings">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="aboutButton" buttonType="RAISED" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db" style="-fx-background-color: #FFFFFF;" text="About">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="exitButton" buttonType="RAISED" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db" style="-fx-background-color: #FFFFFF;" text="Exit">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </JFXButton>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
