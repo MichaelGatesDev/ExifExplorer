@@ -46,8 +46,6 @@ public class TitleScreenController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        logger.debug("Beginning initialize...");
-        
         importButton.setOnAction(event -> GuiManager.getInstance().showImportScreen());
     }
 }

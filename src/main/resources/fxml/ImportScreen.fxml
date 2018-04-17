@@ -17,14 +17,19 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.ImportScreenController">
+
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+
     <children>
         <GridPane prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -34,7 +39,7 @@
             <rowConstraints>
                 <RowConstraints maxHeight="200.0" minHeight="200.0" prefHeight="200.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" valignment="BOTTOM" vgrow="NEVER"/>
             </rowConstraints>
             <children>
                 <HBox alignment="CENTER" GridPane.columnSpan="2">
@@ -61,7 +66,7 @@
                         <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" valignment="TOP" vgrow="NEVER"/>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints fillHeight="false" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" valignment="BOTTOM" vgrow="ALWAYS"/>
                     </rowConstraints>
                     <children>
                         <VBox alignment="BOTTOM_LEFT" layoutX="535.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
@@ -87,8 +92,8 @@
                                 <Label text="Path to Import From"/>
                                 <HBox alignment="BOTTOM_LEFT">
                                     <children>
-                                        <TextField promptText="C:\Users\Example\Pictures\ExifExplorer\Exports" HBox.hgrow="ALWAYS"/>
-                                        <JFXButton text="Select"/>
+                                        <TextField fx:id="importPathField" promptText="C:\Users\Example\Pictures\ExifExplorer\Imports" HBox.hgrow="ALWAYS"/>
+                                        <JFXButton fx:id="importPathButton" style="-fx-background-color: #74B9FF;" text="Select"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -98,15 +103,10 @@
                                 <Label text="Path to Export To"/>
                                 <HBox alignment="BOTTOM_LEFT">
                                     <children>
-                                        <TextField promptText="C:\Users\Example\Pictures\ExifExplorer\Exports" HBox.hgrow="ALWAYS"/>
-                                        <JFXButton text="Select"/>
+                                        <TextField fx:id="exportPathField" promptText="C:\Users\Example\Pictures\ExifExplorer\Exports" HBox.hgrow="ALWAYS"/>
+                                        <JFXButton fx:id="exportPathButton" style="-fx-background-color: #74B9FF;" text="Select"/>
                                     </children>
                                 </HBox>
-                            </children>
-                        </VBox>
-                        <VBox alignment="BOTTOM_RIGHT" layoutX="103.0" layoutY="202.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                            <children>
-                                <JFXButton text="Return to Main Menu"/>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="4">
@@ -175,6 +175,23 @@
                                 </Label>
                             </children>
                         </VBox>
+                        <HBox prefHeight="40.0" prefWidth="382.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM"
+                              GridPane.vgrow="NEVER">
+                            <children>
+                                <JFXButton fx:id="continueButton" buttonType="RAISED" defaultButton="true" layoutX="411.0" layoutY="67.0" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db"
+                                           style="-fx-background-color: #74B9FF;" text="Continue">
+                                    <font>
+                                        <Font name="Roboto" size="14.0"/>
+                                    </font>
+                                </JFXButton>
+                                <JFXButton fx:id="titleButton" buttonType="RAISED" defaultButton="true" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db"
+                                           style="-fx-background-color: #FF7675;" text="Return to Main Menu">
+                                    <font>
+                                        <Font name="Roboto" size="14.0"/>
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
                     </children>
                     <opaqueInsets>
                         <Insets/>

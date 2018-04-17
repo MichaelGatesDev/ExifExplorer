@@ -180,6 +180,45 @@ public class GuiManager
         });
     }
     
+    
+    public void showMainScreen()
+    {
+        Platform.runLater(() ->
+        {
+            logger.debug("Switching to main screen...");
+            
+            URL res = Main.class.getClassLoader().getResource("fxml/MainScreen.fxml");
+            
+            if (res == null)
+            {
+                logger.error("MainScreen.fxml could not be found");
+                return;
+            }
+            
+            try
+            {
+                FXMLLoader loader = new FXMLLoader(res);
+                Parent root = loader.load();
+                
+                if (window.getScene() == null)
+                {
+                    this.mainScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                    window.setScene(mainScene);
+                }
+                else
+                {
+                    window.getScene().setRoot(root);
+                }
+                logger.debug("Showing main screen");
+            }
+            catch (IOException e)
+            {
+                logger.error("An error occurred while switching to the main screen");
+                e.printStackTrace();
+            }
+        });
+    }
+    
     // ============================================================================================================================================ \\
     
     

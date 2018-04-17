@@ -246,5 +246,17 @@ public class Main extends Application
     }
     
     
+    public void setImportPath(File f)
+    {
+        this.importDir = f;
+    }
+    
+    
+    public void setExportPath(File f)
+    {
+        this.exportDir = f;
+    }
+    
+    
     // ============================================================================================================================================ \\
 }
