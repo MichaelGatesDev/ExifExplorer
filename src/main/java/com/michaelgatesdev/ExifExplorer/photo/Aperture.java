@@ -16,28 +16,45 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.gui.controllers;
+package com.michaelgatesdev.ExifExplorer.photo;
 
-import com.michaelgatesdev.ExifExplorer.Main;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.BorderPane;
+import com.michaelgatesdev.ExifExplorer.util.SimpleComparable;
+import com.michaelgatesdev.ExifExplorer.util.math.MathUtil;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class BaseController implements Initializable
+public class Aperture implements SimpleComparable<Aperture>
 {
-    @FXML
-    BorderPane mainBase;
+    private double value;
+    
+    
+    public Aperture(double amt)
+    {
+        this.value = MathUtil.roundPrecise(amt, 1);
+    }
+    
+    
+    public double getValue()
+    {
+        return value;
+    }
     
     
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public boolean lessThan(Aperture o)
     {
-        Platform.runLater(() -> {
-            Main.getInstance().sacrifice(mainBase);
-        });
+        return value < o.getValue();
+    }
+    
+    
+    @Override
+    public boolean greaterThan(Aperture o)
+    {
+        return value > o.getValue();
+    }
+    
+    
+    @Override
+    public boolean equalTo(Aperture o)
+    {
+        return value == o.getValue();
     }
 }

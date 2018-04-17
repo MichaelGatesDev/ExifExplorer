@@ -18,7 +18,9 @@
 
 package com.michaelgatesdev.ExifExplorer.util.math;
 
-public class Fraction
+import com.michaelgatesdev.ExifExplorer.util.SimpleComparable;
+
+public class Fraction implements SimpleComparable<Fraction>
 {
     private int dividend;
     private int divisor;
@@ -27,18 +29,6 @@ public class Fraction
     public Fraction(int dividend, int divisor)
     {
         this.dividend = dividend;
-        this.divisor = divisor;
-    }
-    
-    
-    public void setDividend(int dividend)
-    {
-        this.dividend = dividend;
-    }
-    
-    
-    public void setDivisor(int divisor)
-    {
         this.divisor = divisor;
     }
     
@@ -55,19 +45,7 @@ public class Fraction
     }
     
     
-    public boolean lessThan(Fraction minSpeed)
-    {
-        return (float) (dividend / divisor) < (float) (minSpeed.dividend / minSpeed.divisor);
-    }
-    
-    
-    public boolean greaterThan(Fraction maxSpeed)
-    {
-        return (float) (dividend / divisor) > (float) (maxSpeed.dividend / maxSpeed.divisor);
-    }
-    
-    
-    float getQuotient()
+    public float getQuotient()
     {
         return (float) (dividend / divisor);
     }
@@ -77,5 +55,26 @@ public class Fraction
     public String toString()
     {
         return dividend + "/" + divisor;
+    }
+    
+    
+    @Override
+    public boolean lessThan(Fraction f)
+    {
+        return (float) (dividend / divisor) < (float) (f.dividend / f.divisor);
+    }
+    
+    
+    @Override
+    public boolean greaterThan(Fraction f)
+    {
+        return (float) (dividend / divisor) > (float) (f.dividend / f.divisor);
+    }
+    
+    
+    @Override
+    public boolean equalTo(Fraction f)
+    {
+        return (dividend == f.dividend) && (divisor == f.divisor) || getQuotient() == f.getQuotient();
     }
 }

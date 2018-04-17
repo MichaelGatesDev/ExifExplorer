@@ -16,18 +16,35 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.gui.controllers;
+package com.michaelgatesdev.ExifExplorer.exceptions;
 
-import javafx.fxml.Initializable;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class MainController implements Initializable
+public class InvalidApertureException extends Exception
 {
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public InvalidApertureException()
     {
+    }
     
+    
+    public InvalidApertureException(String message)
+    {
+        super(message);
+    }
+    
+    
+    public InvalidApertureException(String message, Throwable cause)
+    {
+        super(message, cause);
+    }
+    
+    
+    public InvalidApertureException(Throwable cause)
+    {
+        super(cause);
+    }
+    
+    
+    public InvalidApertureException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace)
+    {
+        super(message, cause, enableSuppression, writableStackTrace);
     }
 }

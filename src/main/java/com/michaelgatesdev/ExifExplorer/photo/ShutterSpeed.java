@@ -16,7 +16,9 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.util.math;
+package com.michaelgatesdev.ExifExplorer.photo;
+
+import com.michaelgatesdev.ExifExplorer.util.math.Fraction;
 
 public class ShutterSpeed extends Fraction
 {
@@ -184,8 +186,10 @@ public class ShutterSpeed extends Fraction
         if (obj instanceof ShutterSpeed)
         {
             ShutterSpeed ss = (ShutterSpeed) obj;
-            return ss.getDividend() == this.getDividend() && ss.getDivisor() == this.getDivisor();
+            return super.equalTo(ss);
         }
         return super.equals(obj);
     }
+    
+    
 }

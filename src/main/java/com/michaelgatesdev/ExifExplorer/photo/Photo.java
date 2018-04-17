@@ -23,6 +23,8 @@ import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
+import com.michaelgatesdev.ExifExplorer.exceptions.InvalidApertureException;
+import com.michaelgatesdev.ExifExplorer.exceptions.InvalidShutterSpeedException;
 import com.michaelgatesdev.ExifExplorer.photo.properties.*;
 
 import java.io.File;
@@ -45,7 +47,7 @@ public class Photo
     // ============================================================================================================================================ \\
     
     
-    public Photo(File f)
+    public Photo(File f) throws InvalidApertureException, InvalidShutterSpeedException
     {
         this.file = f;
         this.properties = new HashMap<>();
@@ -207,14 +209,14 @@ public class Photo
     }
     
     
-    private void setAperture(float f)
+    private void setAperture(float f) throws InvalidApertureException
     {
         this.properties.remove(PhotoPropertyType.APERTURE);
-        this.properties.put(PhotoPropertyType.APERTURE, new AperturePhotoProperty(f));
+        this.properties.put(PhotoPropertyType.APERTURE, new AperturePhotoProperty(new Aperture(f)));
     }
     
     
-    private void setShutterSpeed(int dividend, int divisor)
+    private void setShutterSpeed(int dividend, int divisor) throws InvalidShutterSpeedException
     {
         this.properties.remove(PhotoPropertyType.SHUTTER_SPEED);
         this.properties.put(PhotoPropertyType.SHUTTER_SPEED, new ShutterSpeedPhotoProperty(dividend, divisor));

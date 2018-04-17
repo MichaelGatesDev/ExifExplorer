@@ -18,35 +18,29 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-public class AperturePhotoProperty extends PhotoProperty<Float>
+import com.michaelgatesdev.ExifExplorer.exceptions.InvalidApertureException;
+import com.michaelgatesdev.ExifExplorer.photo.Aperture;
+
+public class AperturePhotoProperty extends PhotoProperty<Aperture>
 {
-    //    private static final float MIN_APERTURE = 1.0F;
-//    private static final float MAX_APERTURE = 256.0F;
-    private float value;
+    private static final Aperture MIN_APERTURE = new Aperture(1.0);
+    private static final Aperture MAX_APERTURE = new Aperture(256.0F);
     
     
-    public AperturePhotoProperty(Float value)
+    public AperturePhotoProperty(Aperture value) throws InvalidApertureException
     {
-//        if (value < MIN_APERTURE || value > MAX_APERTURE)
-//        {
-//            return;
-//        }
         super(value);
-        this.value = value;
-    }
-    
-    
-    @Override
-    public Float getValue()
-    {
-        return value;
+        if (getValue().lessThan(MIN_APERTURE) || getValue().greaterThan(MAX_APERTURE))
+        {
+            throw new InvalidApertureException(String.format("Invalid aperture specified (%f). Must be between %f and %f!", value.getValue(), MIN_APERTURE.getValue(), MAX_APERTURE.getValue()));
+        }
     }
     
     
     @Override
     public String toString()
     {
-        return "F" + value;
+        return "F" + getValue();
     }
     
     

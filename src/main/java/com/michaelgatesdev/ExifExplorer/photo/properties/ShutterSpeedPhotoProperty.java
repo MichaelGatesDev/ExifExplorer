@@ -18,20 +18,22 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-import com.michaelgatesdev.ExifExplorer.util.math.ShutterSpeed;
+import com.michaelgatesdev.ExifExplorer.exceptions.InvalidShutterSpeedException;
+import com.michaelgatesdev.ExifExplorer.photo.ShutterSpeed;
 
 public class ShutterSpeedPhotoProperty extends PhotoProperty<ShutterSpeed>
 {
-//    private static final ShutterSpeed MAX_SS = new ShutterSpeed(1, 8000); // Sony A7S, could change later
+    private static final ShutterSpeed MIN_SS = new ShutterSpeed(0, 1); // Sony A7S, could change later
+    private static final ShutterSpeed MAX_SS = new ShutterSpeed(1, 8000); // Sony A7S, could change later
     
     
-    public ShutterSpeedPhotoProperty(int dividend, int divisor)
+    public ShutterSpeedPhotoProperty(int dividend, int divisor) throws InvalidShutterSpeedException
     {
         super(new ShutterSpeed(dividend, divisor));
-//        if (value < 0 || value > MAX_ISO)
-//        {
-//            return;
-//        }
+        if (getValue().lessThan(MIN_SS) || getValue().greaterThan(MAX_SS))
+        {
+            throw new InvalidShutterSpeedException(String.format("Invalid shutter speed specified (%d/%d). Must be between %d/%d and %d/%d!", dividend, divisor, MIN_SS.getDividend(), MIN_SS.getDivisor(), MAX_SS.getDividend(), MAX_SS.getDivisor()));
+        }
     }
     
     
