@@ -19,25 +19,35 @@
 package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import org.apache.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TitleScreenController implements Initializable
 {
+    private final static Logger logger = Logger.getLogger(TitleScreenController.class.getSimpleName());
+    
     @FXML
     JFXButton importButton;
+    @FXML
+    JFXButton settingsButton;
+    @FXML
+    JFXButton aboutButton;
+    @FXML
+    JFXButton helpButton;
+    @FXML
+    JFXButton exitButton;
     
     
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        logger.debug("Beginning initialize...");
         
-        importButton.setOnAction(event -> {
-            
-        });
-        
+        importButton.setOnAction(event -> GuiManager.getInstance().showImportScreen());
     }
 }

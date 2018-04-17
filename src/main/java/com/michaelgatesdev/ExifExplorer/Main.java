@@ -22,24 +22,11 @@ import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
 import com.michaelgatesdev.ExifExplorer.locale.UTF8Control;
 import com.michaelgatesdev.ExifExplorer.photo.Photo;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
 import java.io.File;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Main extends Application
@@ -48,11 +35,7 @@ public class Main extends Application
     
     private final static Logger logger = Logger.getLogger(Main.class.getSimpleName());
     
-    private static final int MAIN_WINDOW_WIDTH  = 1200;
-    private static final int MAIN_WINDOW_HEIGHT = 700;
-    
-    private static Main       instance;
-    private        GuiManager guiManager;
+    private static Main instance;
     
     private ResourceBundle locale; // TODO
     
@@ -67,7 +50,6 @@ public class Main extends Application
     
     private List<Photo> photos;
     
-    private Node sacrifice;
     
     // ============================================================================================================================================ \\
     
@@ -93,13 +75,11 @@ public class Main extends Application
      */
     private void initialize()
     {
-        this.guiManager = new GuiManager(this);
+        // Create/Initialize all the directories */
+        initializeDirectories();
         
         // Grab locale bundle
         locale = ResourceBundle.getBundle("Locale", /*Locale.JAPAN,*/ new UTF8Control());
-        
-        // Create/Initialize all the directories */
-        initializeDirectories();
         
         // Init GUI
         launch();
@@ -121,161 +101,137 @@ public class Main extends Application
     
     
     @Override
-    public void start(Stage stage) throws Exception
+    public void start(Stage stage)
     {
-        URL res = Main.class.getClassLoader().getResource("fxml/TitleScreen.fxml");
-        
-        if (res == null)
-        {
-            logger.error("Main resource path does not exist");
-            return;
-        }
-        
-        FXMLLoader loader = new FXMLLoader(res);
-        Parent root = loader.load();
-        
-        
-        Scene scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
-        
-        // Package window
-        stage.getIcons().add(new Image("img/logo.png"));
-        stage.setTitle("ExifExplorer");
-        stage.setScene(scene);
-        stage.setMinWidth(MAIN_WINDOW_WIDTH);
-        stage.setMinHeight(MAIN_WINDOW_HEIGHT);
-        stage.show();
+        GuiManager.getInstance().setWindow(stage);
+        GuiManager.getInstance().setupWindow();
+        GuiManager.getInstance().showTitleScreen();
     }
     
     
     // ============================================================================================================================================ \\
-    
-    
-    public void doAskImport()
-    {
-        DirectoryChooser chooser = new DirectoryChooser();
-        chooser.setTitle(locale.getString("Importing.FileChooser.Info.WindowTitle"));
-        File defaultDirectory = new File("C:/");
-        chooser.setInitialDirectory(defaultDirectory);
-        
-        File selectedDirectory = chooser.showDialog(null);
-        if (selectedDirectory == null || !selectedDirectory.exists())
-        {
-            logger.warn(String.format(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content"), selectedDirectory != null ? selectedDirectory.getPath() : "[null]"));
-            
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle(locale.getString("Importing.FileChooser.Error.InvalidLocation.Title"));
-            alert.setHeaderText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Header"));
-            alert.setContentText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content"));
-            alert.showAndWait();
-        }
-        else
-        {
-            importDir = selectedDirectory;
-            logger.info(String.format(locale.getString("Importing.FileChooser.Info.ValidLocation"), selectedDirectory.getPath()));
-            
-            doImport();
-        }
-    }
-    
-    
-    public void doImport()
-    {
-        if (importDir == null || !importDir.exists())
-        {
-            logger.error(locale.getString("Import.Error.DoesNotExist"));
-            return;
-        }
-        
-        
-        loadPhotos();
-        
-        
-        if (sacrifice == null)
-        {
-            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
-            return;
-        }
-        
-        // unlock views
-        guiManager.unlockFilters(sacrifice);
-        guiManager.unlockViews(sacrifice);
-    }
-    
-    
-    private void loadPhotos()
-    {
-        this.photos = new ArrayList<>();
-        File[] files = importDir.listFiles();
-        
-        for (File f : files)
-        {
-            Photo photo = new Photo(f);
-            photos.add(photo);
-        }
-        
-        if (sacrifice == null)
-        {
-            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
-            return;
-        }
-        
-        guiManager.populateTable(sacrifice, this.photos);
-        guiManager.updateWorkspaceInfo(sacrifice, importDir, exportDir);
-    }
-    
-    
-    public void doAskExport()
-    {
-        DirectoryChooser chooser = new DirectoryChooser();
-        chooser.setTitle(locale.getString("Exporting.FileChooser.Info.WindowTitle"));
-        File defaultDirectory = new File(importDir.toURI());
-        chooser.setInitialDirectory(defaultDirectory);
-        
-        File selectedDirectory = chooser.showDialog(null);
-        if (selectedDirectory == null || !selectedDirectory.exists())
-        {
-            logger.warn(String.format(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Content"), selectedDirectory != null ? selectedDirectory.getPath() : "[null]"));
-            
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Title"));
-            alert.setHeaderText(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Header"));
-            alert.setContentText(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Content"));
-            alert.showAndWait();
-        }
-        else
-        {
-            //TODO see if they selected the import dir and ask if they want to create a new folder there
-            exportDir = selectedDirectory;
-            logger.info(locale.getString("Exporting.FileChooser.Info.ValidLocation").replace("[%s]", selectedDirectory.getPath()));
-        }
-    }
-    
-    
-    public void doAskQuit()
-    {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(locale.getString("Main.AskQuit"));
-        alert.setHeaderText(locale.getString("Main.AskQuit"));
-        alert.setContentText(locale.getString("Main.AskQuitLong"));
-        Optional<ButtonType> result = alert.showAndWait();
-        result.ifPresent(buttonType ->
-        {
-            if (ButtonType.OK.equals(result.get()))
-            {
-                Platform.exit();
-                System.exit(0);
-            }
-        });
-    }
+
+
+//    public void doAskImport()
+//    {
+//        DirectoryChooser chooser = new DirectoryChooser();
+//        chooser.setTitle(locale.getString("Importing.FileChooser.Info.WindowTitle"));
+//        File defaultDirectory = new File("C:/");
+//        chooser.setInitialDirectory(defaultDirectory);
+//
+//        File selectedDirectory = chooser.showDialog(null);
+//        if (selectedDirectory == null || !selectedDirectory.exists())
+//        {
+//            logger.warn(String.format(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content"), selectedDirectory != null ? selectedDirectory.getPath() : "[null]"));
+//
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle(locale.getString("Importing.FileChooser.Error.InvalidLocation.Title"));
+//            alert.setHeaderText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Header"));
+//            alert.setContentText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content"));
+//            alert.showAndWait();
+//        }
+//        else
+//        {
+//            importDir = selectedDirectory;
+//            logger.info(String.format(locale.getString("Importing.FileChooser.Info.ValidLocation"), selectedDirectory.getPath()));
+//
+//            doImport();
+//        }
+//    }
+//
+//
+//    public void doImport()
+//    {
+//        if (importDir == null || !importDir.exists())
+//        {
+//            logger.error(locale.getString("Import.Error.DoesNotExist"));
+//            return;
+//        }
+//
+//
+//        loadPhotos();
+//
+//
+//        if (sacrifice == null)
+//        {
+//            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
+//            return;
+//        }
+//
+//        // unlock views
+//        guiManager.unlockFilters(sacrifice);
+//        guiManager.unlockViews(sacrifice);
+//    }
+//
+//
+//    private void loadPhotos()
+//    {
+//        this.photos = new ArrayList<>();
+//        File[] files = importDir.listFiles();
+//
+//        for (File f : files)
+//        {
+//            Photo photo = new Photo(f);
+//            photos.add(photo);
+//        }
+//
+//        if (sacrifice == null)
+//        {
+//            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
+//            return;
+//        }
+//
+//        guiManager.populateTable(sacrifice, this.photos);
+//        guiManager.updateWorkspaceInfo(sacrifice, importDir, exportDir);
+//    }
+//
+//
+//    public void doAskExport()
+//    {
+//        DirectoryChooser chooser = new DirectoryChooser();
+//        chooser.setTitle(locale.getString("Exporting.FileChooser.Info.WindowTitle"));
+//        File defaultDirectory = new File(importDir.toURI());
+//        chooser.setInitialDirectory(defaultDirectory);
+//
+//        File selectedDirectory = chooser.showDialog(null);
+//        if (selectedDirectory == null || !selectedDirectory.exists())
+//        {
+//            logger.warn(String.format(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Content"), selectedDirectory != null ? selectedDirectory.getPath() : "[null]"));
+//
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Title"));
+//            alert.setHeaderText(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Header"));
+//            alert.setContentText(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Content"));
+//            alert.showAndWait();
+//        }
+//        else
+//        {
+//            //TODO see if they selected the import dir and ask if they want to create a new folder there
+//            exportDir = selectedDirectory;
+//            logger.info(locale.getString("Exporting.FileChooser.Info.ValidLocation").replace("[%s]", selectedDirectory.getPath()));
+//        }
+//    }
+//
+//
+//    public void doAskQuit()
+//    {
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle(locale.getString("Main.AskQuit"));
+//        alert.setHeaderText(locale.getString("Main.AskQuit"));
+//        alert.setContentText(locale.getString("Main.AskQuitLong"));
+//        Optional<ButtonType> result = alert.showAndWait();
+//        result.ifPresent(buttonType ->
+//        {
+//            if (ButtonType.OK.equals(result.get()))
+//            {
+//                Platform.exit();
+//                System.exit(0);
+//            }
+//        });
+//    }
     
     
     // ============================================================================================================================================ \\
-    
-    
-    public URL getResourceURL(String path)
-    {
-        return Main.class.getClassLoader().getResource(path);
-    }
     
     
     public static Main getInstance()
@@ -284,22 +240,11 @@ public class Main extends Application
     }
     
     
-    public static Logger getLogger()
-    {
-        return logger;
-    }
-    
-    
     public ResourceBundle getLocale()
     {
         return locale;
     }
     
-    
-    public void sacrifice(BorderPane basePane)
-    {
-        this.sacrifice = basePane;
-    }
     
     // ============================================================================================================================================ \\
 }
