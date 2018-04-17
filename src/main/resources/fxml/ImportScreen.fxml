@@ -93,7 +93,7 @@
                                 <HBox alignment="BOTTOM_LEFT">
                                     <children>
                                         <TextField fx:id="importPathField" promptText="C:\Users\Example\Pictures\ExifExplorer\Imports" HBox.hgrow="ALWAYS"/>
-                                        <JFXButton fx:id="importPathButton" style="-fx-background-color: #74B9FF;" text="Select"/>
+                                        <JFXButton fx:id="importPathButton" text="Select"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -104,7 +104,7 @@
                                 <HBox alignment="BOTTOM_LEFT">
                                     <children>
                                         <TextField fx:id="exportPathField" promptText="C:\Users\Example\Pictures\ExifExplorer\Exports" HBox.hgrow="ALWAYS"/>
-                                        <JFXButton fx:id="exportPathButton" style="-fx-background-color: #74B9FF;" text="Select"/>
+                                        <JFXButton fx:id="exportPathButton" text="Select"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -179,13 +179,13 @@
                               GridPane.vgrow="NEVER">
                             <children>
                                 <JFXButton fx:id="continueButton" buttonType="RAISED" defaultButton="true" layoutX="411.0" layoutY="67.0" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db"
-                                           style="-fx-background-color: #74B9FF;" text="Continue">
+                                           text="Continue">
                                     <font>
                                         <Font name="Roboto" size="14.0"/>
                                     </font>
                                 </JFXButton>
                                 <JFXButton fx:id="titleButton" buttonType="RAISED" defaultButton="true" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="198.0" ripplerFill="#3498db"
-                                           style="-fx-background-color: #FF7675;" text="Return to Main Menu">
+                                           text="Return to Main Menu">
                                     <font>
                                         <Font name="Roboto" size="14.0"/>
                                     </font>
