@@ -51,7 +51,7 @@ public class GuiManager
     
     private static GuiManager instance = new GuiManager();
     
-    private static final int MAIN_WINDOW_WIDTH  = 900;
+    private static final int MAIN_WINDOW_WIDTH  = 1100;
     private static final int MAIN_WINDOW_HEIGHT = 600;
     
     private static final String WINDOW_TITLE = "ExifExplorer";
