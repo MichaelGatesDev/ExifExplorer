@@ -15,19 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.michaelgatesdev.ExifExplorer.photo.Photo;
-import com.michaelgatesdev.ExifExplorer.photo.properties.ISOPhotoProperty;
-import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoPropertyType;
-import com.michaelgatesdev.ExifExplorer.photo.properties.ShutterSpeedPhotoProperty;
-import com.michaelgatesdev.ExifExplorer.util.math.ShutterSpeed;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.File;
-import java.net.URISyntaxException;
-import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PhotoDataTest
@@ -35,113 +22,113 @@ public class PhotoDataTest
     private static final Pattern ISO_FILENAME_PATTERN = Pattern.compile("ISO_(\\d+)_.+");
     private static final Pattern SS_FILENAME_PATTERN  = Pattern.compile("SS_(\\d+)-(\\d+)_.+");
     
-    private File testDirISO;
-    private File testDirSS;
-    
-    
-    @Before
-    public void init()
-    {
-        try
-        {
-            testDirISO = new File(Objects.requireNonNull(PhotoDataTest.class.getClassLoader().getResource("img/test/iso/")).toURI());
-            testDirSS = new File(Objects.requireNonNull(PhotoDataTest.class.getClassLoader().getResource("img/test/ss/")).toURI());
-        }
-        catch (URISyntaxException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    
-    @Test
-    public void testFoldersExist()
-    {
-        Assert.assertTrue(testDirISO.exists());
-        Assert.assertTrue(testDirSS.exists());
-    }
-    
-    
-    @Test
-    public void testISO()
-    {
-        for (File f : Objects.requireNonNull(testDirISO.listFiles()))
-        {
-            Photo photo = new Photo(f);
-            String name = f.getName();
-            
-            if (!name.matches(ISO_FILENAME_PATTERN.pattern()))
-            {
-                continue;
-            }
-            
-            Matcher m = ISO_FILENAME_PATTERN.matcher(name);
-            if (!m.find())
-            {
-                continue;
-            }
-            
-            if (!photo.hasProperty(PhotoPropertyType.ISO))
-            {
-                continue;
-            }
-            
-            ISOPhotoProperty prop = (ISOPhotoProperty) photo.getProperty(PhotoPropertyType.ISO);
-            
-            String raw = m.group(1);
-            int expectedISO = Integer.parseInt(raw);
-            int actualISO = prop.getValue();
-            
-            System.out.println("[" + name + "] Expected ISO = " + expectedISO + ", actual is " + actualISO);
-            Assert.assertEquals(expectedISO, actualISO);
-        }
-    }
-    
-    
-    @Test
-    public void testSS()
-    {
-        for (File f : Objects.requireNonNull(testDirSS.listFiles()))
-        {
-            Photo photo = new Photo(f);
-            String name = f.getName();
-            
-            if (!name.matches(SS_FILENAME_PATTERN.pattern()))
-            {
-                continue;
-            }
-            
-            Matcher m = SS_FILENAME_PATTERN.matcher(name);
-            if (!m.find())
-            {
-                continue;
-            }
-            
-            if (!photo.hasProperty(PhotoPropertyType.SHUTTER_SPEED))
-            {
-                continue;
-            }
-            
-            
-            ShutterSpeedPhotoProperty prop = (ShutterSpeedPhotoProperty) photo.getProperty(PhotoPropertyType.SHUTTER_SPEED);
-
-//            if (prop == null)
+//    private File testDirISO;
+//    private File testDirSS;
+//
+//
+//    @Before
+//    public void init()
+//    {
+//        try
+//        {
+//            testDirISO = new File(Objects.requireNonNull(PhotoDataTest.class.getClassLoader().getResource("img/test/iso/")).toURI());
+//            testDirSS = new File(Objects.requireNonNull(PhotoDataTest.class.getClassLoader().getResource("img/test/ss/")).toURI());
+//        }
+//        catch (URISyntaxException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//    @Test
+//    public void testFoldersExist()
+//    {
+//        Assert.assertTrue(testDirISO.exists());
+//        Assert.assertTrue(testDirSS.exists());
+//    }
+//
+//
+//    @Test
+//    public void testISO()
+//    {
+//        for (File f : Objects.requireNonNull(testDirISO.listFiles()))
+//        {
+//            Photo photo = new Photo(f);
+//            String name = f.getName();
+//
+//            if (!name.matches(ISO_FILENAME_PATTERN.pattern()))
 //            {
 //                continue;
 //            }
-            
-            String rawDividend = m.group(1);
-            int expectedDividend = Integer.parseInt(rawDividend);
-            String rawDivisor = m.group(2);
-            int expectedDivisor = Integer.parseInt(rawDivisor);
-            
-            ShutterSpeed speed = prop.getValue();
-            int actualDividend = speed.getDividend();
-            int actualDivisor = speed.getDivisor();
-            
-            System.out.println("[" + name + "] Expected SS = " + expectedDividend + "/" + expectedDivisor + ", actual is " + actualDividend + "/" + actualDivisor);
-            Assert.assertEquals(new ShutterSpeed(expectedDividend, expectedDivisor), new ShutterSpeed(actualDividend, actualDivisor));
-        }
-    }
-    
+//
+//            Matcher m = ISO_FILENAME_PATTERN.matcher(name);
+//            if (!m.find())
+//            {
+//                continue;
+//            }
+//
+//            if (!photo.hasProperty(PhotoPropertyType.ISO))
+//            {
+//                continue;
+//            }
+//
+//            ISOPhotoProperty prop = (ISOPhotoProperty) photo.getProperty(PhotoPropertyType.ISO);
+//
+//            String raw = m.group(1);
+//            int expectedISO = Integer.parseInt(raw);
+//            int actualISO = prop.getValue();
+//
+//            System.out.println("[" + name + "] Expected ISO = " + expectedISO + ", actual is " + actualISO);
+//            Assert.assertEquals(expectedISO, actualISO);
+//        }
+//    }
+//
+//
+//    @Test
+//    public void testSS()
+//    {
+//        for (File f : Objects.requireNonNull(testDirSS.listFiles()))
+//        {
+//            Photo photo = new Photo(f);
+//            String name = f.getName();
+//
+//            if (!name.matches(SS_FILENAME_PATTERN.pattern()))
+//            {
+//                continue;
+//            }
+//
+//            Matcher m = SS_FILENAME_PATTERN.matcher(name);
+//            if (!m.find())
+//            {
+//                continue;
+//            }
+//
+//            if (!photo.hasProperty(PhotoPropertyType.SHUTTER_SPEED))
+//            {
+//                continue;
+//            }
+//
+//
+//            ShutterSpeedPhotoProperty prop = (ShutterSpeedPhotoProperty) photo.getProperty(PhotoPropertyType.SHUTTER_SPEED);
+//
+////            if (prop == null)
+////            {
+////                continue;
+////            }
+//
+//            String rawDividend = m.group(1);
+//            int expectedDividend = Integer.parseInt(rawDividend);
+//            String rawDivisor = m.group(2);
+//            int expectedDivisor = Integer.parseInt(rawDivisor);
+//
+//            ShutterSpeed speed = prop.getValue();
+//            int actualDividend = speed.getDividend();
+//            int actualDivisor = speed.getDivisor();
+//
+//            System.out.println("[" + name + "] Expected SS = " + expectedDividend + "/" + expectedDivisor + ", actual is " + actualDividend + "/" + actualDivisor);
+//            Assert.assertEquals(new ShutterSpeed(expectedDividend, expectedDivisor), new ShutterSpeed(actualDividend, actualDivisor));
+//        }
+//    }
+
 }
