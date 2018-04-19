@@ -29,19 +29,18 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 
 public class GuiManager
 {
@@ -61,6 +60,8 @@ public class GuiManager
     private Scene titleScene;
     private Scene importScene;
     private Scene settingsScene;
+    private Scene aboutScene;
+    private Scene helpScene;
     private Scene mainScene;
     private Node  sacrifice;
     
@@ -219,29 +220,142 @@ public class GuiManager
         });
     }
     
+    
+    public void showSettingsScreen()
+    {
+        Platform.runLater(() ->
+        {
+            logger.debug("Switching to settings screen...");
+            
+            URL res = Main.class.getClassLoader().getResource("fxml/SettingsScreen.fxml");
+            
+            if (res == null)
+            {
+                logger.error("SettingsScreen.fxml could not be found");
+                return;
+            }
+            
+            try
+            {
+                FXMLLoader loader = new FXMLLoader(res);
+                Parent root = loader.load();
+                
+                if (window.getScene() == null)
+                {
+                    this.settingsScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                    window.setScene(settingsScene);
+                }
+                else
+                {
+                    window.getScene().setRoot(root);
+                }
+                logger.debug("Showing settings screen");
+            }
+            catch (IOException e)
+            {
+                logger.error("An error occurred while switching to the settings screen");
+                e.printStackTrace();
+            }
+        });
+    }
+    
+    
+    public void showAboutScreen()
+    {
+        Platform.runLater(() ->
+        {
+            logger.debug("Switching to about screen...");
+            
+            URL res = Main.class.getClassLoader().getResource("fxml/AboutScreen.fxml");
+            
+            if (res == null)
+            {
+                logger.error("AboutScreen.fxml could not be found");
+                return;
+            }
+            
+            try
+            {
+                FXMLLoader loader = new FXMLLoader(res);
+                Parent root = loader.load();
+                
+                if (window.getScene() == null)
+                {
+                    this.aboutScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                    window.setScene(aboutScene);
+                }
+                else
+                {
+                    window.getScene().setRoot(root);
+                }
+                logger.debug("Showing about screen");
+            }
+            catch (IOException e)
+            {
+                logger.error("An error occurred while switching to the about screen");
+                e.printStackTrace();
+            }
+        });
+    }
+    
+    
+    public void showHelpScreen()
+    {
+        Platform.runLater(() ->
+        {
+            logger.debug("Switching to help screen...");
+            
+            URL res = Main.class.getClassLoader().getResource("fxml/HelpScreen.fxml");
+            
+            if (res == null)
+            {
+                logger.error("HelpScreen.fxml could not be found");
+                return;
+            }
+            
+            try
+            {
+                FXMLLoader loader = new FXMLLoader(res);
+                Parent root = loader.load();
+                
+                if (window.getScene() == null)
+                {
+                    this.helpScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                    window.setScene(helpScene);
+                }
+                else
+                {
+                    window.getScene().setRoot(root);
+                }
+                logger.debug("Showing help screen");
+            }
+            catch (IOException e)
+            {
+                logger.error("An error occurred while switching to the help screen");
+                e.printStackTrace();
+            }
+        });
+    }
+    
+    
+    public void showQuitDialog()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Application");
+        alert.setHeaderText("Are you sure you want to exit?");
+        alert.setContentText("Any unsaved work/changes will be discarded.");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        result.ifPresent(buttonType ->
+        {
+            if (ButtonType.OK.equals(result.get()))
+            {
+                Main.getInstance().quit();
+            }
+        });
+    }
+    
     // ============================================================================================================================================ \\
-    
-    
-    public void unlockFilters(Node n)
-    {
-        Platform.runLater(() ->
-        {
-            Scene scene = n.getScene();
-            GridPane pane = (GridPane) scene.lookup("#filtersPane");
-            pane.setDisable(false);
-        });
-    }
-    
-    
-    public void unlockViews(Node n)
-    {
-        Platform.runLater(() ->
-        {
-            Scene scene = n.getScene();
-            TabPane pane = (TabPane) scene.lookup("#viewsTabPane");
-            pane.setDisable(false);
-        });
-    }
     
     
     public void populateTable(Node ref, List<Photo> photos)
@@ -261,24 +375,6 @@ public class GuiManager
         });
     }
     
-    
-    public void updateWorkspaceInfo(Node sacrifice, File importDir, File exportDir)
-    {
-        if (importDir != null)
-        {
-            Platform.runLater(() -> {
-                TextField box = (TextField) sacrifice.getScene().lookup("#importPathBox");
-                box.setText(importDir.getPath());
-            });
-        }
-        if (exportDir != null)
-        {
-            Platform.runLater(() -> {
-                TextField box = (TextField) sacrifice.getScene().lookup("#exportPathBox");
-                box.setText(exportDir.getPath());
-            });
-        }
-    }
     
     // ============================================================================================================================================ \\
     

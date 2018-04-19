@@ -19,6 +19,7 @@
 package com.michaelgatesdev.ExifExplorer.util;
 
 import com.michaelgatesdev.ExifExplorer.Main;
+import javafx.stage.DirectoryChooser;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -72,6 +73,16 @@ public class FileUtil
             }
         }
         return folder;
+    }
+    
+    
+    public static File showDirectoryChooser(String title)
+    {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle(title);
+        File defaultDirectory = new File("C:/");
+        chooser.setInitialDirectory(defaultDirectory);
+        return chooser.showDialog(null);
     }
     
     

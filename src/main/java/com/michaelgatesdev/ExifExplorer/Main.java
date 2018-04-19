@@ -22,6 +22,7 @@ import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
 import com.michaelgatesdev.ExifExplorer.locale.UTF8Control;
 import com.michaelgatesdev.ExifExplorer.photo.Photo;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
@@ -229,6 +230,16 @@ public class Main extends Application
 //            }
 //        });
 //    }
+    
+    
+    public void quit()
+    {
+        logger.info("Exiting the application..");
+        logger.debug("Performing platform exit");
+        Platform.exit();
+        logger.debug("Performing system exit");
+        System.exit(0);
+    }
     
     
     // ============================================================================================================================================ \\

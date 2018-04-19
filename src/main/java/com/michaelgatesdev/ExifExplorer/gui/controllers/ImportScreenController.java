@@ -21,6 +21,8 @@ package com.michaelgatesdev.ExifExplorer.gui.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.michaelgatesdev.ExifExplorer.Main;
 import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
+import com.michaelgatesdev.ExifExplorer.util.FileUtil;
+import com.michaelgatesdev.ExifExplorer.util.JFXUtil;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -73,9 +75,33 @@ public class ImportScreenController implements Initializable
             }
         });
         
-        importPathButton.setOnAction(event -> {
+        importPathButton.setOnAction(event ->
+        {
+            logger.debug("Selecting import path...");
+            File f = FileUtil.showDirectoryChooser("Select a folder to set as the workspace import path");
+            if (f == null || !f.exists())
+            {
+                JFXUtil.showErrorDialog("Error", "Invalid import path!", "The path you selected is either invalid or non-existent.");
+                logger.error("Selected an invalid or non-existent directory for the import path");
+                return;
+            }
+            importPathField.setText(f.getPath());
+            logger.info(String.format("Workspace import path was set to %s", f.getPath()));
+            JFXUtil.showInfoDialog("Success", "Set workspace import path!", String.format("Workspace import path was set to %s", f.getPath()));
         });
-        exportPathButton.setOnAction(event -> {
+        exportPathButton.setOnAction(event ->
+        {
+            logger.debug("Selecting export path...");
+            File f = FileUtil.showDirectoryChooser("Select a folder to set as the workspace export path");
+            if (f == null || !f.exists())
+            {
+                JFXUtil.showErrorDialog("Error", "Invalid export path!", "The path you selected is either invalid or non-existent.");
+                logger.error("Selected an invalid or non-existent directory for the export path");
+                return;
+            }
+            exportPathField.setText(f.getPath());
+            logger.info(String.format("Workspace export path was set to %s", f.getPath()));
+            JFXUtil.showInfoDialog("Success", "Set workspace export path!", String.format("Workspace export path was set to %s", f.getPath()));
         });
     }
     

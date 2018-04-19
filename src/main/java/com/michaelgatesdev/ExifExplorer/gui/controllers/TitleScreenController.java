@@ -47,5 +47,9 @@ public class TitleScreenController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         importButton.setOnAction(event -> GuiManager.getInstance().showImportScreen());
+        settingsButton.setOnAction(event -> GuiManager.getInstance().showSettingsScreen());
+        aboutButton.setOnAction(event -> GuiManager.getInstance().showAboutScreen());
+        helpButton.setOnAction(event -> GuiManager.getInstance().showHelpScreen());
+        exitButton.setOnAction(event -> GuiManager.getInstance().showQuitDialog());
     }
 }

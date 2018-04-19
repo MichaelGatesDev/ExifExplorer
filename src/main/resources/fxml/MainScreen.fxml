@@ -29,16 +29,16 @@
     <center>
         <GridPane prefWidth="696.0" BorderPane.alignment="TOP_LEFT">
             <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="300.0" minWidth="200.0" prefWidth="242.0"/>
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="450.0" minWidth="-Infinity" prefWidth="300.0"/>
                 <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <fx:include source="components/FiltersPanel.fxml" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="0"
+            <fx:include source="components/FiltersPanel.fxml" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="TOP"
                         GridPane.vgrow="ALWAYS"/>
-            <fx:include source="components/ViewsPanel.fxml" GridPane.columnIndex="1" GridPane.halignment="LEFT"
-                        GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS"/>
+            <fx:include source="components/ViewsPanel.fxml" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="TOP"
+                        GridPane.vgrow="ALWAYS"/>
         </GridPane>
     </center>
 
