@@ -72,6 +72,7 @@ public class ImportScreenController implements Initializable
             if (pathsGood)
             {
                 GuiManager.getInstance().showMainScreen();
+                //TODO import code
             }
         });
         
