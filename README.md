@@ -36,21 +36,22 @@ jfx:jar -DskipTests=true
 
 ## Screenshots
 
-#### Mockup
 
-![Mockup Image](https://i.imgur.com/EkQkwnH.jpg)
+#### Title Screen
+![Title Screen](https://i.imgur.com/JTHy8AJ.jpg)
 
-#### Prototype A
-![Prototype Image](https://i.imgur.com/pU37gOE.jpg)
+#### Import Screen
+![Import Screen](https://i.imgur.com/1dBm1Rs.jpg)
 
-#### Prototype B
-![Prototype Image](https://i.imgur.com/1zGR6R9.jpg)
+#### Settings Screen
+![Settings Screen](https://i.imgur.com/aAM3gb4.jpg)
 
-#### Prototype C
-![Prototype Image](https://i.imgur.com/sAr5wkP.jpg)
+#### AboutScreen
+![AboutScreen](https://i.imgur.com/XxgfQbp.jpg)
 
-#### Prototype D
-![Prototype Image](https://i.imgur.com/AXCUAUM.jpg)
+#### Main (Table View)
+![AboutScreen](https://i.imgur.com/oGYkweR.jpg)
+
 
 
 [GIF of how importing works](https://i.imgur.com/hBhJQf5.gifv)
