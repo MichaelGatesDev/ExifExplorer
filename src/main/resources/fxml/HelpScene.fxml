@@ -33,7 +33,7 @@
     <top>
         <HBox alignment="CENTER" BorderPane.alignment="CENTER">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="About" textAlignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Help" textAlignment="CENTER">
                     <font>
                         <Font name="Noto Sans" size="96.0"/>
                     </font>
