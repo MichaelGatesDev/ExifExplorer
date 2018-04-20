@@ -18,15 +18,14 @@
   -->
 
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
 <?import javafx.scene.control.cell.*?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.michaelgatesdev.ExifExplorer.gui.controllers.ViewsPanelController">
 
     <stylesheets>
         <URL value="@../../css/style.css"/>
@@ -38,55 +37,55 @@
             <tabs>
                 <Tab text="Table View">
                     <content>
-                        <JFXTreeTableView tableMenuButtonVisible="true">
+                        <TableView tableMenuButtonVisible="true" fx:id="table">
                             <columns>
-                                <JFXTreeTableColumn minWidth="125.0" text="Date/Time">
+                                <TableColumn minWidth="125.0" text="Date/Time">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="dateTaken"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="Dimensions">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="Dimensions">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="dimensions"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="Size">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="Size">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="size"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="Camera Manufacturer">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="Camera Manufacturer">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="manufacturer"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="Camera Model">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="Camera Model">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="model"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="ISO">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="ISO">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="iso"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="Aperture">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="Aperture">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="aperture"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="Shutter Speed">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="Shutter Speed">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="shutterSpeed"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
-                                <JFXTreeTableColumn minWidth="125.0" text="Focal Length">
+                                </TableColumn>
+                                <TableColumn minWidth="125.0" text="Focal Length">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="focalLength"/>
                                     </cellValueFactory>
-                                </JFXTreeTableColumn>
+                                </TableColumn>
                             </columns>
-                        </JFXTreeTableView>
+                        </TableView>
                     </content>
                 </Tab>
                 <Tab text="Image View">

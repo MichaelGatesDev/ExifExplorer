@@ -26,7 +26,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -55,7 +54,6 @@ public class GuiManager
     
     private static final String WINDOW_TITLE = "ExifExplorer";
     
-    private Main  main;
     private Stage window;
     private Scene titleScene;
     private Scene importScene;
@@ -63,7 +61,6 @@ public class GuiManager
     private Scene aboutScene;
     private Scene helpScene;
     private Scene mainScene;
-    private Node  sacrifice;
     
     // ============================================================================================================================================ \\
     
@@ -106,235 +103,230 @@ public class GuiManager
     
     public void showTitleScreen()
     {
-        Platform.runLater(() ->
+        logger.debug("Switching to title screen...");
+        
+        URL res = Main.class.getClassLoader().getResource("fxml/TitleScreen.fxml");
+        
+        if (res == null)
         {
-            logger.debug("Switching to title screen...");
+            logger.error("TitleScreen.fxml could not be found");
+            return;
+        }
+        
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(res);
+            Parent root = loader.load();
             
-            URL res = Main.class.getClassLoader().getResource("fxml/TitleScreen.fxml");
-            
-            if (res == null)
+            if (window.getScene() == null)
             {
-                logger.error("TitleScreen.fxml could not be found");
-                return;
+                this.titleScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                Platform.runLater(() -> window.setScene(titleScene));
+                logger.debug("Creating title scene for the first time");
             }
-            
-            try
+            else
             {
-                FXMLLoader loader = new FXMLLoader(res);
-                Parent root = loader.load();
-                
-                if (window.getScene() == null)
-                {
-                    this.titleScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
-                    window.setScene(titleScene);
-                }
-                else
-                {
-                    window.getScene().setRoot(root);
-                }
-                logger.debug("Showing title screen");
+                Platform.runLater(() -> window.getScene().setRoot(root));
+                logger.debug("Showing title scene again");
             }
-            catch (IOException e)
-            {
-                logger.error("An error occurred while switching to the title screen");
-                e.printStackTrace();
-            }
-        });
+            logger.debug("Showing title screen");
+        }
+        catch (IOException e)
+        {
+            logger.error("An error occurred while switching to the title screen");
+            e.printStackTrace();
+        }
     }
     
     
     public void showImportScreen()
     {
-        Platform.runLater(() ->
+        logger.debug("Switching to import screen...");
+        
+        URL res = Main.class.getClassLoader().getResource("fxml/ImportScreen.fxml");
+        
+        if (res == null)
         {
-            logger.debug("Switching to import screen...");
+            logger.error("ImportScreen.fxml could not be found");
+            return;
+        }
+        
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(res);
+            Parent root = loader.load();
             
-            URL res = Main.class.getClassLoader().getResource("fxml/ImportScreen.fxml");
-            
-            if (res == null)
+            if (window.getScene() == null)
             {
-                logger.error("ImportScreen.fxml could not be found");
-                return;
+                this.importScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                Platform.runLater(() -> window.setScene(importScene));
+                logger.debug("Creating import scene for the first time");
             }
-            
-            try
+            else
             {
-                FXMLLoader loader = new FXMLLoader(res);
-                Parent root = loader.load();
-                
-                if (window.getScene() == null)
-                {
-                    this.importScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
-                    window.setScene(importScene);
-                }
-                else
-                {
-                    window.getScene().setRoot(root);
-                }
-                logger.debug("Showing import screen");
+                Platform.runLater(() -> window.getScene().setRoot(root));
+                logger.debug("Showing import scene again");
             }
-            catch (IOException e)
-            {
-                logger.error("An error occurred while switching to the import screen");
-                e.printStackTrace();
-            }
-        });
+            logger.debug("Showing import screen");
+        }
+        catch (IOException e)
+        {
+            logger.error("An error occurred while switching to the import screen");
+            e.printStackTrace();
+        }
     }
     
     
     public void showMainScreen()
     {
-        Platform.runLater(() ->
+        logger.debug("Switching to main screen...");
+        
+        URL res = Main.class.getClassLoader().getResource("fxml/MainScreen.fxml");
+        
+        if (res == null)
         {
-            logger.debug("Switching to main screen...");
+            logger.error("MainScreen.fxml could not be found");
+            return;
+        }
+        
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(res);
+            Parent root = loader.load();
             
-            URL res = Main.class.getClassLoader().getResource("fxml/MainScreen.fxml");
-            
-            if (res == null)
+            if (window.getScene() == null)
             {
-                logger.error("MainScreen.fxml could not be found");
-                return;
+                this.mainScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                Platform.runLater(() -> window.setScene(mainScene));
+                logger.debug("Creating main scene for the first time");
             }
-            
-            try
+            else
             {
-                FXMLLoader loader = new FXMLLoader(res);
-                Parent root = loader.load();
-                
-                if (window.getScene() == null)
-                {
-                    this.mainScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
-                    window.setScene(mainScene);
-                }
-                else
-                {
-                    window.getScene().setRoot(root);
-                }
-                logger.debug("Showing main screen");
+                Platform.runLater(() -> window.getScene().setRoot(root));
+                logger.debug("Showing main screen again");
             }
-            catch (IOException e)
-            {
-                logger.error("An error occurred while switching to the main screen");
-                e.printStackTrace();
-            }
-        });
+            logger.debug("Showing main screen");
+//            Main.getInstance().doImport();
+        }
+        catch (IOException e)
+        {
+            logger.error("An error occurred while switching to the main screen");
+            e.printStackTrace();
+        }
     }
     
     
     public void showSettingsScreen()
     {
-        Platform.runLater(() ->
+        logger.debug("Switching to settings screen...");
+        
+        URL res = Main.class.getClassLoader().getResource("fxml/SettingsScreen.fxml");
+        
+        if (res == null)
         {
-            logger.debug("Switching to settings screen...");
+            logger.error("SettingsScreen.fxml could not be found");
+            return;
+        }
+        
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(res);
+            Parent root = loader.load();
             
-            URL res = Main.class.getClassLoader().getResource("fxml/SettingsScreen.fxml");
-            
-            if (res == null)
+            if (window.getScene() == null)
             {
-                logger.error("SettingsScreen.fxml could not be found");
-                return;
+                this.settingsScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                Platform.runLater(() -> window.setScene(settingsScene));
+                logger.debug("Creating settings scene for the first time");
             }
-            
-            try
+            else
             {
-                FXMLLoader loader = new FXMLLoader(res);
-                Parent root = loader.load();
-                
-                if (window.getScene() == null)
-                {
-                    this.settingsScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
-                    window.setScene(settingsScene);
-                }
-                else
-                {
-                    window.getScene().setRoot(root);
-                }
-                logger.debug("Showing settings screen");
+                Platform.runLater(() -> window.getScene().setRoot(root));
+                logger.debug("Showing settings scene again");
             }
-            catch (IOException e)
-            {
-                logger.error("An error occurred while switching to the settings screen");
-                e.printStackTrace();
-            }
-        });
+            logger.debug("Showing settings screen");
+        }
+        catch (IOException e)
+        {
+            logger.error("An error occurred while switching to the settings screen");
+            e.printStackTrace();
+        }
     }
     
     
     public void showAboutScreen()
     {
-        Platform.runLater(() ->
+        logger.debug("Switching to about screen...");
+        
+        URL res = Main.class.getClassLoader().getResource("fxml/AboutScreen.fxml");
+        
+        if (res == null)
         {
-            logger.debug("Switching to about screen...");
+            logger.error("AboutScreen.fxml could not be found");
+            return;
+        }
+        
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(res);
+            Parent root = loader.load();
             
-            URL res = Main.class.getClassLoader().getResource("fxml/AboutScreen.fxml");
-            
-            if (res == null)
+            if (window.getScene() == null)
             {
-                logger.error("AboutScreen.fxml could not be found");
-                return;
+                this.aboutScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                Platform.runLater(() -> window.setScene(aboutScene));
+                logger.debug("Creating about scene for the first time");
             }
-            
-            try
+            else
             {
-                FXMLLoader loader = new FXMLLoader(res);
-                Parent root = loader.load();
-                
-                if (window.getScene() == null)
-                {
-                    this.aboutScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
-                    window.setScene(aboutScene);
-                }
-                else
-                {
-                    window.getScene().setRoot(root);
-                }
-                logger.debug("Showing about screen");
+                Platform.runLater(() -> window.getScene().setRoot(root));
+                logger.debug("Showing about scene again");
             }
-            catch (IOException e)
-            {
-                logger.error("An error occurred while switching to the about screen");
-                e.printStackTrace();
-            }
-        });
+            logger.debug("Showing about screen");
+        }
+        catch (IOException e)
+        {
+            logger.error("An error occurred while switching to the about screen");
+            e.printStackTrace();
+        }
     }
     
     
     public void showHelpScreen()
     {
-        Platform.runLater(() ->
+        logger.debug("Switching to help screen...");
+        
+        URL res = Main.class.getClassLoader().getResource("fxml/HelpScreen.fxml");
+        
+        if (res == null)
         {
-            logger.debug("Switching to help screen...");
+            logger.error("HelpScreen.fxml could not be found");
+            return;
+        }
+        
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(res);
+            Parent root = loader.load();
             
-            URL res = Main.class.getClassLoader().getResource("fxml/HelpScreen.fxml");
-            
-            if (res == null)
+            if (window.getScene() == null)
             {
-                logger.error("HelpScreen.fxml could not be found");
-                return;
+                this.helpScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
+                Platform.runLater(() -> window.setScene(helpScene));
+                logger.debug("Creating help scene for the first time");
             }
-            
-            try
+            else
             {
-                FXMLLoader loader = new FXMLLoader(res);
-                Parent root = loader.load();
-                
-                if (window.getScene() == null)
-                {
-                    this.helpScene = new Scene(root, MAIN_WINDOW_WIDTH + 5.0, MAIN_WINDOW_HEIGHT + 5.0);
-                    window.setScene(helpScene);
-                }
-                else
-                {
-                    window.getScene().setRoot(root);
-                }
-                logger.debug("Showing help screen");
+                Platform.runLater(() -> window.getScene().setRoot(root));
+                logger.debug("Showing help scene again");
             }
-            catch (IOException e)
-            {
-                logger.error("An error occurred while switching to the help screen");
-                e.printStackTrace();
-            }
-        });
+            logger.debug("Showing help screen");
+        }
+        catch (IOException e)
+        {
+            logger.error("An error occurred while switching to the help screen");
+            e.printStackTrace();
+        }
     }
     
     
@@ -355,27 +347,18 @@ public class GuiManager
         });
     }
     
-    // ============================================================================================================================================ \\
     
-    
-    public void populateTable(Node ref, List<Photo> photos)
+    public void populateTable(TableView<PhotoRow> table, List<Photo> photos)
     {
-        Platform.runLater(() ->
+        ObservableList<PhotoRow> data = FXCollections.observableArrayList();
+        for (Photo p : photos)
         {
-            Scene scene = ref.getScene();
-            TableView table = (TableView) scene.lookup("#table");
-            
-            ObservableList<PhotoRow> data = FXCollections.observableArrayList();
-            for (Photo p : photos)
-            {
-                PhotoRow row = new PhotoRow(p);
-                data.add(row);
-            }
-            table.setItems(data);
-        });
+            PhotoRow row = new PhotoRow(p);
+            data.add(row);
+            logger.debug("Added row to table: " + row.toString());
+        }
+        table.setItems(data);
     }
-    
-    
     // ============================================================================================================================================ \\
     
     
@@ -383,6 +366,8 @@ public class GuiManager
     {
         this.window = window;
     }
+    
+    // ============================================================================================================================================ \\
     
     
     public static GuiManager getInstance()

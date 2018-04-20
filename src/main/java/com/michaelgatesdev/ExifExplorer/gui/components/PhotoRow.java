@@ -268,4 +268,24 @@ public class PhotoRow
     }
     
     // ============================================================================================================================================ \\
+    
+    
+    @Override
+    public String toString()
+    {
+        return "PhotoRow{" +
+                "dateTaken=" + dateTaken +
+                ", dimensions=" + dimensions +
+                ", size=" + size +
+                ", manufacturer=" + manufacturer +
+                ", model=" + model +
+                ", iso=" + iso +
+                ", aperture=" + aperture +
+                ", shutterSpeed=" + shutterSpeed +
+                ", focalLength=" + focalLength +
+                '}';
+    }
+    
+    
+    // ============================================================================================================================================ \\
 }

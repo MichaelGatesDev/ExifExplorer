@@ -18,7 +18,10 @@
 
 package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
+import com.michaelgatesdev.ExifExplorer.Main;
+import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
 import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
@@ -26,7 +29,7 @@ import javafx.scene.control.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewContainerController implements Initializable
+public class ViewsPanelController implements Initializable
 {
     @FXML
     private TableView<PhotoRow> table;
@@ -51,6 +54,18 @@ public class ViewContainerController implements Initializable
 //                new PhotoRow("04/02/1984", "1920 x 1080", "50.0 MB", "Canon", "Canon 6D", "iso-100", "F2.8", "1/125", "50 MM")
 //        );
 //
-//        Platform.runLater(() -> table.setItems(data));
+        
+        this.refreshTable();
     }
+    
+    
+    void refreshTable()
+    {
+        Platform.runLater(() ->
+        {
+            Main.getInstance().doImport();
+            GuiManager.getInstance().populateTable(table, Main.getInstance().getPhotos());
+        });
+    }
+    
 }

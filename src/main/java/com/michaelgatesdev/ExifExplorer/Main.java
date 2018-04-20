@@ -18,6 +18,8 @@
 
 package com.michaelgatesdev.ExifExplorer;
 
+import com.michaelgatesdev.ExifExplorer.exceptions.InvalidApertureException;
+import com.michaelgatesdev.ExifExplorer.exceptions.InvalidShutterSpeedException;
 import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
 import com.michaelgatesdev.ExifExplorer.locale.UTF8Control;
 import com.michaelgatesdev.ExifExplorer.photo.Photo;
@@ -27,6 +29,7 @@ import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -111,9 +114,9 @@ public class Main extends Application
     
     
     // ============================================================================================================================================ \\
-
-
-//    public void doAskImport()
+    
+    
+    //    public void doAskImport()
 //    {
 //        DirectoryChooser chooser = new DirectoryChooser();
 //        chooser.setTitle(locale.getString("Importing.FileChooser.Info.WindowTitle"));
@@ -140,51 +143,46 @@ public class Main extends Application
 //        }
 //    }
 //
-//
-//    public void doImport()
-//    {
-//        if (importDir == null || !importDir.exists())
-//        {
-//            logger.error(locale.getString("Import.Error.DoesNotExist"));
-//            return;
-//        }
-//
-//
-//        loadPhotos();
-//
-//
-//        if (sacrifice == null)
-//        {
-//            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
-//            return;
-//        }
-//
-//        // unlock views
-//        guiManager.unlockFilters(sacrifice);
-//        guiManager.unlockViews(sacrifice);
-//    }
-//
-//
-//    private void loadPhotos()
-//    {
-//        this.photos = new ArrayList<>();
-//        File[] files = importDir.listFiles();
-//
-//        for (File f : files)
-//        {
-//            Photo photo = new Photo(f);
-//            photos.add(photo);
-//        }
-//
-//        if (sacrifice == null)
-//        {
-//            logger.error("Can not do mess with UI because the sacrifice is not sufficient.");
-//            return;
-//        }
-//
-//        guiManager.populateTable(sacrifice, this.photos);
-//        guiManager.updateWorkspaceInfo(sacrifice, importDir, exportDir);
-//    }
+    public void doImport()
+    {
+        if (importDir == null || !importDir.exists())
+        {
+            logger.error(locale.getString("Import.Error.DoesNotExist"));
+            return;
+        }
+        
+        loadPhotos();
+    }
+    
+    
+    private void loadPhotos()
+    {
+        this.photos = new ArrayList<>();
+        File[] files = importDir.listFiles();
+        
+        
+        if (files == null || files.length == 0)
+        {
+            logger.error("There are no photos to load.");
+            return;
+        }
+        
+        for (File f : files)
+        {
+            Photo photo;
+            try
+            {
+                photo = new Photo(f);
+                photos.add(photo);
+                logger.debug("Loaded " + f.getName());
+            }
+            catch (InvalidApertureException | InvalidShutterSpeedException e)
+            {
+                logger.error("There was an error loading " + f.getName());
+                e.printStackTrace();
+            }
+        }
+    }
 //
 //
 //    public void doAskExport()
@@ -213,23 +211,6 @@ public class Main extends Application
 //        }
 //    }
 //
-//
-//    public void doAskQuit()
-//    {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle(locale.getString("Main.AskQuit"));
-//        alert.setHeaderText(locale.getString("Main.AskQuit"));
-//        alert.setContentText(locale.getString("Main.AskQuitLong"));
-//        Optional<ButtonType> result = alert.showAndWait();
-//        result.ifPresent(buttonType ->
-//        {
-//            if (ButtonType.OK.equals(result.get()))
-//            {
-//                Platform.exit();
-//                System.exit(0);
-//            }
-//        });
-//    }
     
     
     public void quit()
@@ -266,6 +247,12 @@ public class Main extends Application
     public void setExportPath(File f)
     {
         this.exportDir = f;
+    }
+    
+    
+    public List<Photo> getPhotos()
+    {
+        return photos;
     }
     
     
