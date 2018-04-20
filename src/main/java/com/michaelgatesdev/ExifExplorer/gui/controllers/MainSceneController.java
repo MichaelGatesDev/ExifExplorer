@@ -18,38 +18,42 @@
 
 package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
+import com.michaelgatesdev.ExifExplorer.Main;
+import com.michaelgatesdev.ExifExplorer.gui.StageManager;
+import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
 import org.apache.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TitleScreenController implements Initializable
+public class MainSceneController implements Initializable
 {
-    private final static Logger logger = Logger.getLogger(TitleScreenController.class.getSimpleName());
+    private final static Logger logger = Logger.getLogger(MainSceneController.class.getSimpleName());
+    
+    private final StageManager stageManager;
     
     @FXML
-    JFXButton importButton;
-    @FXML
-    JFXButton settingsButton;
-    @FXML
-    JFXButton aboutButton;
-    @FXML
-    JFXButton helpButton;
-    @FXML
-    JFXButton exitButton;
+    private TableView<PhotoRow> table;
+    
+    
+    public MainSceneController(StageManager stageManager)
+    {
+        this.stageManager = stageManager;
+    }
     
     
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        importButton.setOnAction(event -> GuiManager.getInstance().showImportScreen());
-        settingsButton.setOnAction(event -> GuiManager.getInstance().showSettingsScreen());
-        aboutButton.setOnAction(event -> GuiManager.getInstance().showAboutScreen());
-        helpButton.setOnAction(event -> GuiManager.getInstance().showHelpScreen());
-        exitButton.setOnAction(event -> GuiManager.getInstance().showQuitDialog());
+        this.refreshTable();
+    }
+    
+    
+    void refreshTable()
+    {
+        stageManager.populateTable(table, Main.getInstance().getPhotos());
     }
 }

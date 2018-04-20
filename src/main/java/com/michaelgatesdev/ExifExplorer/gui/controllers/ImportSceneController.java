@@ -20,7 +20,7 @@ package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.michaelgatesdev.ExifExplorer.Main;
-import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
+import com.michaelgatesdev.ExifExplorer.gui.StageManager;
 import com.michaelgatesdev.ExifExplorer.util.FileUtil;
 import com.michaelgatesdev.ExifExplorer.util.JFXUtil;
 import javafx.application.Platform;
@@ -35,14 +35,16 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ImportScreenController implements Initializable
+public class ImportSceneController implements Initializable
 {
-    private final static Logger logger = Logger.getLogger(ImportScreenController.class.getSimpleName());
+    private final static Logger logger = Logger.getLogger(ImportSceneController.class.getSimpleName());
+    
+    private final StageManager stageManager;
     
     @FXML
-    JFXButton continueButton;
-    @FXML
     JFXButton titleButton;
+    @FXML
+    JFXButton continueButton;
     @FXML
     JFXButton importPathButton;
     @FXML
@@ -53,10 +55,16 @@ public class ImportScreenController implements Initializable
     TextField exportPathField;
     
     
+    public ImportSceneController(StageManager stageManager)
+    {
+        this.stageManager = stageManager;
+    }
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        titleButton.setOnAction(event -> GuiManager.getInstance().showTitleScreen());
+        titleButton.setOnAction(event -> this.stageManager.switchToScene("fxml/TitleScene.fxml", new TitleSceneController(stageManager)));
         continueButton.setOnAction(event ->
         {
             boolean pathsGood = true;
@@ -71,7 +79,8 @@ public class ImportScreenController implements Initializable
             
             if (pathsGood)
             {
-                GuiManager.getInstance().showMainScreen();
+                Main.getInstance().loadImportedPhotos();
+                this.stageManager.switchToScene("fxml/MainScene.fxml", new MainSceneController(stageManager));
             }
         });
         

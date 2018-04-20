@@ -20,7 +20,8 @@ package com.michaelgatesdev.ExifExplorer;
 
 import com.michaelgatesdev.ExifExplorer.exceptions.InvalidApertureException;
 import com.michaelgatesdev.ExifExplorer.exceptions.InvalidShutterSpeedException;
-import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
+import com.michaelgatesdev.ExifExplorer.gui.StageManager;
+import com.michaelgatesdev.ExifExplorer.gui.controllers.TitleSceneController;
 import com.michaelgatesdev.ExifExplorer.locale.UTF8Control;
 import com.michaelgatesdev.ExifExplorer.photo.Photo;
 import javafx.application.Application;
@@ -41,7 +42,9 @@ public class Main extends Application
     
     private static Main instance;
     
-    private ResourceBundle locale; // TODO
+    private StageManager stageManager;
+    
+    private ResourceBundle locale;
     
     private File rootDir;
     private File resourcesDir;
@@ -107,43 +110,15 @@ public class Main extends Application
     @Override
     public void start(Stage stage)
     {
-        GuiManager.getInstance().setWindow(stage);
-        GuiManager.getInstance().setupWindow();
-        GuiManager.getInstance().showTitleScreen();
+        this.stageManager = new StageManager(stage);
+        this.stageManager.switchToScene("fxml/TitleScene.fxml", new TitleSceneController(stageManager));
     }
     
     
     // ============================================================================================================================================ \\
     
     
-    //    public void doAskImport()
-//    {
-//        DirectoryChooser chooser = new DirectoryChooser();
-//        chooser.setTitle(locale.getString("Importing.FileChooser.Info.WindowTitle"));
-//        File defaultDirectory = new File("C:/");
-//        chooser.setInitialDirectory(defaultDirectory);
-//
-//        File selectedDirectory = chooser.showDialog(null);
-//        if (selectedDirectory == null || !selectedDirectory.exists())
-//        {
-//            logger.warn(String.format(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content"), selectedDirectory != null ? selectedDirectory.getPath() : "[null]"));
-//
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle(locale.getString("Importing.FileChooser.Error.InvalidLocation.Title"));
-//            alert.setHeaderText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Header"));
-//            alert.setContentText(locale.getString("Importing.FileChooser.Error.InvalidLocation.Content"));
-//            alert.showAndWait();
-//        }
-//        else
-//        {
-//            importDir = selectedDirectory;
-//            logger.info(String.format(locale.getString("Importing.FileChooser.Info.ValidLocation"), selectedDirectory.getPath()));
-//
-//            doImport();
-//        }
-//    }
-//
-    public void doImport()
+    public void loadImportedPhotos()
     {
         if (importDir == null || !importDir.exists())
         {
@@ -151,12 +126,6 @@ public class Main extends Application
             return;
         }
         
-        loadPhotos();
-    }
-    
-    
-    private void loadPhotos()
-    {
         this.photos = new ArrayList<>();
         File[] files = importDir.listFiles();
         
@@ -183,34 +152,6 @@ public class Main extends Application
             }
         }
     }
-//
-//
-//    public void doAskExport()
-//    {
-//        DirectoryChooser chooser = new DirectoryChooser();
-//        chooser.setTitle(locale.getString("Exporting.FileChooser.Info.WindowTitle"));
-//        File defaultDirectory = new File(importDir.toURI());
-//        chooser.setInitialDirectory(defaultDirectory);
-//
-//        File selectedDirectory = chooser.showDialog(null);
-//        if (selectedDirectory == null || !selectedDirectory.exists())
-//        {
-//            logger.warn(String.format(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Content"), selectedDirectory != null ? selectedDirectory.getPath() : "[null]"));
-//
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Title"));
-//            alert.setHeaderText(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Header"));
-//            alert.setContentText(locale.getString("Exporting.FileChooser.Error.InvalidLocation.Content"));
-//            alert.showAndWait();
-//        }
-//        else
-//        {
-//            //TODO see if they selected the import dir and ask if they want to create a new folder there
-//            exportDir = selectedDirectory;
-//            logger.info(locale.getString("Exporting.FileChooser.Info.ValidLocation").replace("[%s]", selectedDirectory.getPath()));
-//        }
-//    }
-//
     
     
     public void quit()

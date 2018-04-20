@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2018
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+
+    <top>
+        <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="About" textAlignment="CENTER">
+                    <font>
+                        <Font name="Noto Sans" size="96.0"/>
+                    </font>
+                </Text>
+            </children>
+            <padding>
+                <Insets bottom="40.0" left="80.0" right="80.0" top="40.0"/>
+            </padding>
+        </HBox>
+    </top>
+    <bottom>
+        <fx:include source="components/Footer.fxml"/>
+    </bottom>
+    <center>
+        <GridPane alignment="BOTTOM_LEFT" hgap="50.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0"/>
+                <ColumnConstraints maxWidth="1.7976931348623157E308" percentWidth="45.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="45.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="300.0" valignment="TOP" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <TextArea editable="false" focusTraversable="false"
+                          text="&#9;ExifExplorer is a multiplatform open-source desktop application which allows photographers to enter criteria such as focal length, aperture, and camera model to filter their photos and view images which meet the criteria. &#10;&#9;As a photographer who is interested more in the technical aspect of photography, I find myself performing many tests to better understand the principles of photography such as how the amount of light received by the lens correlates to the amount of bokeh in the final image. I perform the tests on two camera bodies of different brands, Panasonic and Canon, and found myself spending a lot of time sorting through the results and placing them in organized folders with specific labels. Much more time than I had anticipated. As a solution, ExifExplorer would allow me to have all of the folders in any accessible location (could be the same folder, or different folders, or different drives altogether), and still allow me to browse through them. I could then say “filter the results to show me only camera models of Panasonic where the ISO is exactly 6400”. This would proceed to read through the exif data of all of the photos and show only those which met the criteria. Photos without valid exif data would not be usable. The user can then copy the results into organized folder automatically.&#10;&#9;The software will allow a user to customize their software preferences, including colors, fonts and font sizes, shortcuts, and much more. It will also remember a user’s previous searches and allow the user to create ‘Profiles’ to easily store and access commonly used parameters."
+                          wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
+                <VBox alignment="BOTTOM_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <JFXButton fx:id="titleButton" text="Return to Main Menu"/>
+                    </children>
+                </VBox>
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </GridPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2018
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+
+    <top>
+        <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="About" textAlignment="CENTER">
+                    <font>
+                        <Font name="Noto Sans" size="96.0"/>
+                    </font>
+                </Text>
+            </children>
+            <padding>
+                <Insets bottom="40.0" left="80.0" right="80.0" top="40.0"/>
+            </padding>
+        </HBox>
+    </top>
+    <bottom>
+        <fx:include source="components/Footer.fxml"/>
+    </bottom>
+    <center>
+        <GridPane alignment="BOTTOM_LEFT" hgap="50.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0"/>
+                <ColumnConstraints maxWidth="1.7976931348623157E308" percentWidth="45.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="45.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="300.0" valignment="TOP" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <VBox alignment="BOTTOM_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <JFXButton fx:id="titleButton" text="Return to Main Menu"/>
+                    </children>
+                </VBox>
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </GridPane>
+    </center>
+</BorderPane>

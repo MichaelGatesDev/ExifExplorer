@@ -19,7 +19,7 @@
 package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.michaelgatesdev.ExifExplorer.gui.GuiManager;
+import com.michaelgatesdev.ExifExplorer.gui.StageManager;
 import com.michaelgatesdev.ExifExplorer.util.FileUtil;
 import com.michaelgatesdev.ExifExplorer.util.JFXUtil;
 import javafx.fxml.FXML;
@@ -31,9 +31,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SettingsScreenController implements Initializable
+public class SettingsSceneController implements Initializable
 {
-    private final static Logger logger = Logger.getLogger(SettingsScreenController.class.getSimpleName());
+    private final static Logger logger = Logger.getLogger(SettingsSceneController.class.getSimpleName());
+    
+    private final StageManager stageManager;
     
     @FXML
     TextField defaultWorkspaceName;
@@ -56,11 +58,15 @@ public class SettingsScreenController implements Initializable
     JFXButton titleButton;
     
     
+    public SettingsSceneController(StageManager stageManager)
+    {
+        this.stageManager = stageManager;
+    }
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        titleButton.setOnAction(event -> GuiManager.getInstance().showTitleScreen());
-        
         importPathButton.setOnAction(event ->
         {
             logger.debug("Selecting import path...");
@@ -89,6 +95,7 @@ public class SettingsScreenController implements Initializable
             logger.info(String.format("Default export path was set to %s", f.getPath()));
             JFXUtil.showInfoDialog("Success", "Set default export path!", String.format("Default export path was set to %s", f.getPath()));
         });
+        titleButton.setOnAction(event -> this.stageManager.switchToScene("fxml/TitleScene.fxml", new TitleSceneController(stageManager)));
     }
     
 }
