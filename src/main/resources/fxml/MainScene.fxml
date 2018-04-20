@@ -74,9 +74,9 @@
                                                                 </HBox>
                                                                 <VBox alignment="CENTER_LEFT" spacing="10.0">
                                                                     <children>
-                                                                        <JFXRadioButton text="Before.."/>
-                                                                        <JFXRadioButton text="After.."/>
-                                                                        <JFXRadioButton text="Between.."/>
+                                                                        <JFXRadioButton fx:id="beforeDateTimeRadioBtn" text="Before.."/>
+                                                                        <JFXRadioButton fx:id="afterDateTimeRadioBtn" text="After.."/>
+                                                                        <JFXRadioButton fx:id="betweenDateTimeRadioBtn" text="Between.."/>
                                                                     </children>
                                                                 </VBox>
                                                                 <HBox alignment="CENTER" spacing="15.0">
@@ -84,14 +84,14 @@
                                                                         <Insets/>
                                                                     </VBox.margin>
                                                                     <children>
-                                                                        <JFXDatePicker/>
-                                                                        <JFXTimePicker/>
+                                                                        <JFXDatePicker fx:id="datePickerA"/>
+                                                                        <JFXTimePicker fx:id="timePickerA"/>
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox alignment="CENTER" disable="true" layoutX="10.0" layoutY="142.0" spacing="15.0">
+                                                                <HBox alignment="CENTER" spacing="15.0">
                                                                     <children>
-                                                                        <JFXDatePicker/>
-                                                                        <JFXTimePicker/>
+                                                                        <JFXDatePicker fx:id="datePickerB" disable="true"/>
+                                                                        <JFXTimePicker fx:id="timePickerB" disable="true"/>
                                                                     </children>
                                                                 </HBox>
                                                             </children>

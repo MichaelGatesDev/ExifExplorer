@@ -50,8 +50,8 @@ public class StageManager
     
     private static final String WINDOW_TITLE = "ExifExplorer";
     
-    private static final int MAIN_WINDOW_WIDTH  = 1100;
-    private static final int MAIN_WINDOW_HEIGHT = 600;
+    private static final int MAIN_WINDOW_WIDTH  = 1000;
+    private static final int MAIN_WINDOW_HEIGHT = 700;
     
     
     private Stage primaryStage;
@@ -124,7 +124,7 @@ public class StageManager
                 logger.debug("Set scene controller to " + controller.getClass().getName());
             }
             Parent newView = loader.load();
-            Scene newScene = new Scene(newView);
+            Scene newScene = new Scene(newView, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
             primaryStage.setScene(newScene);
             logger.debug("Finished switching scenes!");
         }

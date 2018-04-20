@@ -18,6 +18,9 @@
 
 package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTimePicker;
 import com.michaelgatesdev.ExifExplorer.Main;
 import com.michaelgatesdev.ExifExplorer.gui.StageManager;
 import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
@@ -38,6 +41,13 @@ public class MainSceneController implements Initializable
     @FXML
     private TableView<PhotoRow> table;
     
+    @FXML
+    JFXRadioButton beforeDateTimeRadioBtn, afterDateTimeRadioBtn, betweenDateTimeRadioBtn;
+    @FXML
+    JFXDatePicker datePickerA, datePickerB;
+    @FXML
+    JFXTimePicker timePickerA, timePickerB;
+    
     
     public MainSceneController(StageManager stageManager)
     {
@@ -48,6 +58,38 @@ public class MainSceneController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        beforeDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (newValue)
+            {
+                afterDateTimeRadioBtn.setSelected(false);
+                betweenDateTimeRadioBtn.setSelected(false);
+            }
+            datePickerB.setDisable(true);
+            timePickerB.setDisable(true);
+        });
+        afterDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (newValue)
+            {
+                beforeDateTimeRadioBtn.setSelected(false);
+                betweenDateTimeRadioBtn.setSelected(false);
+            }
+            datePickerB.setDisable(true);
+            timePickerB.setDisable(true);
+        });
+        betweenDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (newValue)
+            {
+                beforeDateTimeRadioBtn.setSelected(false);
+                afterDateTimeRadioBtn.setSelected(false);
+                datePickerB.setDisable(false);
+                timePickerB.setDisable(false);
+            }
+        });
+        
+        
         this.refreshTable();
     }
     
