@@ -201,16 +201,16 @@
                                                                     <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
                                                                 </columnConstraints>
                                                                 <rowConstraints>
-                                                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-                                                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-                                                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-                                                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                                                                    <RowConstraints prefHeight="50.0" valignment="TOP" vgrow="NEVER" />
+                                                                    <RowConstraints prefHeight="50.0" valignment="TOP" vgrow="NEVER" />
+                                                                    <RowConstraints prefHeight="50.0" valignment="TOP" vgrow="NEVER" />
+                                                                    <RowConstraints prefHeight="50.0" valignment="TOP" vgrow="NEVER" />
                                                                 </rowConstraints>
                                                                 <children>
                                                                     <Label text="ISO" />
-                                                                    <TextField promptText="100" GridPane.columnIndex="1" />
+                                                                    <TextField fx:id="isoField" promptText="100" GridPane.columnIndex="1" />
                                                                     <Label text="Shutter Speed" GridPane.rowIndex="1" />
-                                                                    <TextField prefHeight="26.0" prefWidth="71.0" promptText="1/125" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                    <JFXTextField fx:id="shutterSpeedField" prefHeight="26.0" prefWidth="71.0" promptText="1/125" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                     <HBox GridPane.rowIndex="2">
                                                                         <children>
                                                                             <Label text="Aperture" />
@@ -221,9 +221,9 @@
                                                                             </Label>
                                                                         </children>
                                                                     </HBox>
-                                                                    <TextField prefHeight="26.0" prefWidth="70.0" promptText="2.8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                    <JFXTextField fx:id="apertureField" prefHeight="26.0" prefWidth="70.0" promptText="2.8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                     <Label text="Focal Length" GridPane.rowIndex="3" />
-                                                                    <TextField promptText="50 MM" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                    <JFXTextField fx:id="focalLengthField" promptText="50 MM" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                                 </children>
                                                             </GridPane>
                                                         </children>

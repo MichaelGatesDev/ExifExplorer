@@ -59,6 +59,9 @@ public class MainSceneController implements Initializable
     private JFXTextField widthFieldA, heightFieldA, sizeFieldA, widthFieldB, heightFieldB, sizeFieldB;
     
     
+    
+    
+    
     public MainSceneController(StageManager stageManager)
     {
         this.stageManager = stageManager;
