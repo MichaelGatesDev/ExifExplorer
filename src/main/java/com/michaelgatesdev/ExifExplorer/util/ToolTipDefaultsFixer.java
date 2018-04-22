@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
  * {@link ToolTipDefaultsFixer}
  *
  * @author <a href="mailto:daniel.armbrust.list@gmail.com">Dan Armbrust</a>
+ * https://gist.github.com/darmbrust/9559744d1b1dada434a3
  */
 public class ToolTipDefaultsFixer
 {
