@@ -28,6 +28,7 @@ import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Control;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableView;
 import org.apache.log4j.Logger;
 
@@ -59,7 +60,12 @@ public class MainSceneController implements Initializable
     private JFXTextField widthFieldA, heightFieldA, sizeFieldA, widthFieldB, heightFieldB, sizeFieldB;
     
     
+    @FXML
+    private JFXTextField isoField, shutterSpeedField, apertureField, focalLengthField;
     
+    
+    @FXML
+    private Hyperlink resetFiltersButton;
     
     
     public MainSceneController(StageManager stageManager)
