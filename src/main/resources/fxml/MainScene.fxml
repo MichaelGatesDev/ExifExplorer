@@ -113,9 +113,9 @@
                                                                     </HBox>
                                                                     <VBox alignment="CENTER_LEFT" spacing="10.0">
                                                                         <children>
-                                                                            <JFXRadioButton text="Less than.."/>
-                                                                            <JFXRadioButton text="Greater than.."/>
-                                                                            <JFXRadioButton text="Between.."/>
+                                                                            <JFXRadioButton fx:id="lessThanSizeBtn" text="Less than.."/>
+                                                                            <JFXRadioButton fx:id="greaterThanSizeBtn" text="Greater than.."/>
+                                                                            <JFXRadioButton fx:id="betweenSizeBtn" text="Between.."/>
                                                                         </children>
                                                                     </VBox>
                                                                     <HBox alignment="CENTER_LEFT" spacing="15.0">
@@ -123,18 +123,22 @@
                                                                             <Insets/>
                                                                         </VBox.margin>
                                                                         <children>
-                                                                            <JFXTextField minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="1234 px"/>
+                                                                            <JFXTextField fx:id="widthFieldA" minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="1234 px"/>
                                                                             <Label text="X"/>
-                                                                            <JFXTextField layoutX="121.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="4321 px"/>
-                                                                            <JFXTextField layoutX="201.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="50.0 MB"/>
+                                                                            <JFXTextField fx:id="heightFieldA" layoutX="121.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0"
+                                                                                          promptText="4321 px"/>
+                                                                            <JFXTextField fx:id="sizeFieldA" layoutX="201.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0"
+                                                                                          promptText="50.0 MB"/>
                                                                         </children>
                                                                     </HBox>
-                                                                    <HBox alignment="CENTER_LEFT" disable="true" layoutX="10.0" layoutY="142.0" spacing="15.0">
+                                                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="142.0" spacing="15.0">
                                                                         <children>
-                                                                            <JFXTextField minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="1234 px"/>
+                                                                            <JFXTextField fx:id="widthFieldB" minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="1234 px" disable="true"/>
                                                                             <Label text="X"/>
-                                                                            <JFXTextField layoutX="121.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="4321 px"/>
-                                                                            <JFXTextField layoutX="201.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0" promptText="50.0 MB"/>
+                                                                            <JFXTextField fx:id="heightFieldB" layoutX="121.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0"
+                                                                                          promptText="4321 px" disable="true"/>
+                                                                            <JFXTextField fx:id="sizeFieldB" layoutX="201.0" layoutY="10.0" minWidth="75.0" prefHeight="26.0" prefWidth="75.0"
+                                                                                          promptText="50.0 MB" disable="true"/>
                                                                         </children>
                                                                     </HBox>
                                                                 </children>

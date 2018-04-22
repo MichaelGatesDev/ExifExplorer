@@ -20,12 +20,14 @@ package com.michaelgatesdev.ExifExplorer.gui.controllers;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import com.michaelgatesdev.ExifExplorer.Main;
 import com.michaelgatesdev.ExifExplorer.gui.StageManager;
 import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Control;
 import javafx.scene.control.TableView;
 import org.apache.log4j.Logger;
 
@@ -42,13 +44,24 @@ public class MainSceneController implements Initializable
     private TableView<PhotoRow> table;
     
     @FXML
+    private
     JFXRadioButton beforeDateTimeRadioBtn, afterDateTimeRadioBtn, betweenDateTimeRadioBtn;
     @FXML
+    private
     JFXDatePicker datePickerA, datePickerB;
     @FXML
+    private
     JFXTimePicker timePickerA, timePickerB;
     
+    @FXML
+    private JFXRadioButton lessThanSizeBtn, greaterThanSizeBtn, betweenSizeBtn;
+    @FXML
+    private JFXTextField widthFieldA, heightFieldA, sizeFieldA, widthFieldB, heightFieldB, sizeFieldB;
     
+    
+    /**
+     * @param stageManager
+     */
     public MainSceneController(StageManager stageManager)
     {
         this.stageManager = stageManager;
@@ -58,43 +71,47 @@ public class MainSceneController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        beforeDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) ->
-        {
-            if (newValue)
-            {
-                afterDateTimeRadioBtn.setSelected(false);
-                betweenDateTimeRadioBtn.setSelected(false);
-            }
-            datePickerB.setDisable(true);
-            timePickerB.setDisable(true);
-        });
-        afterDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) ->
-        {
-            if (newValue)
-            {
-                beforeDateTimeRadioBtn.setSelected(false);
-                betweenDateTimeRadioBtn.setSelected(false);
-            }
-            datePickerB.setDisable(true);
-            timePickerB.setDisable(true);
-        });
-        betweenDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) ->
-        {
-            if (newValue)
-            {
-                beforeDateTimeRadioBtn.setSelected(false);
-                afterDateTimeRadioBtn.setSelected(false);
-                datePickerB.setDisable(false);
-                timePickerB.setDisable(false);
-            }
-        });
+        // DATE & TIME
+        beforeDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(beforeDateTimeRadioBtn, newValue, afterDateTimeRadioBtn, false, betweenDateTimeRadioBtn, false, datePickerB, timePickerB));
+        afterDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(beforeDateTimeRadioBtn, false, afterDateTimeRadioBtn, newValue, betweenDateTimeRadioBtn, false, datePickerB, timePickerB));
+        betweenDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(beforeDateTimeRadioBtn, false, afterDateTimeRadioBtn, false, betweenDateTimeRadioBtn, newValue, datePickerB, timePickerB));
+        
+        // SIZE & DIMENSIONS
+        lessThanSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(lessThanSizeBtn, newValue, greaterThanSizeBtn, false, betweenSizeBtn, false, widthFieldB, heightFieldB, sizeFieldB));
+        greaterThanSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(lessThanSizeBtn, false, greaterThanSizeBtn, newValue, betweenSizeBtn, false, widthFieldB, heightFieldB, sizeFieldB));
+        betweenSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(lessThanSizeBtn, false, greaterThanSizeBtn, false, betweenSizeBtn, newValue, widthFieldB, heightFieldB, sizeFieldB));
         
         
+        // Update table with imported photo data
         this.refreshTable();
     }
     
     
-    void refreshTable()
+    private void toggleTrifectaRadioButtons(JFXRadioButton buttonA, boolean a, JFXRadioButton buttonB, boolean b, JFXRadioButton buttonC, boolean c, Control... controlsToEnableDisable)
+    {
+        if (a)
+        {
+            buttonB.setSelected(false);
+            buttonC.setSelected(false);
+        }
+        if (b)
+        {
+            buttonA.setSelected(false);
+            buttonC.setSelected(false);
+        }
+        if (c)
+        {
+            buttonA.setSelected(false);
+            buttonB.setSelected(false);
+        }
+        for (Control control : controlsToEnableDisable)
+        {
+            control.setDisable(!c);
+        }
+    }
+    
+    
+    private void refreshTable()
     {
         stageManager.populateTable(table, Main.getInstance().getPhotos());
     }
