@@ -32,7 +32,7 @@ public class ISOPhotoProperty extends PhotoProperty<Integer>
 //            return;
 //        }
 //        this.value = value;
-        super(value);
+        super(PhotoPropertyType.ISO, value);
         this.value = value;
     }
     

@@ -30,16 +30,18 @@ import com.michaelgatesdev.ExifExplorer.photo.properties.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class Photo
 {
     // ============================================================================================================================================ \\
     
-    private File                                  file;
-    private Metadata                              metadata;
-    private Map<PhotoPropertyType, PhotoProperty> properties;
+    private File               file;
+    private Metadata           metadata;
+    private Set<PhotoProperty> properties;
     
     private int width;
     private int height;
@@ -47,10 +49,20 @@ public class Photo
     // ============================================================================================================================================ \\
     
     
+    /**
+     * Constructor should only be used for testing
+     */
+    public Photo()
+    {
+        this.properties = new HashSet<>();
+        this.file = new File(System.getProperty("user.dir") + "/" + UUID.randomUUID().toString().substring(0, 8)); // assign random file names for testing
+    }
+    
+    
     public Photo(File f) throws InvalidApertureException, InvalidShutterSpeedException
     {
         this.file = f;
-        this.properties = new HashMap<>();
+        this.properties = new HashSet<>();
         try
         {
             metadata = ImageMetadataReader.readMetadata(f);
@@ -167,82 +179,141 @@ public class Photo
     // ============================================================================================================================================ \\
     
     
+    public boolean hasProperty(PhotoPropertyType ppt)
+    {
+        for (PhotoProperty property : new ArrayList<>(properties))
+        {
+            if (property.getType() == ppt)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    public void addProperty(PhotoProperty prop)
+    {
+        this.properties.add(prop);
+    }
+    
+    
+    private void removeProperty(PhotoPropertyType ppt)
+    {
+        for (PhotoProperty property : new ArrayList<>(properties))
+        {
+            if (property.getType() == ppt)
+            {
+                this.properties.remove(property);
+            }
+        }
+    }
+    
+    
+    public PhotoProperty getProperty(PhotoPropertyType ppt)
+    {
+        for (PhotoProperty property : new ArrayList<>(properties))
+        {
+            if (property.getType() == ppt)
+            {
+                return property;
+            }
+        }
+        return null;
+    }
+    
+    
     private void setDateTime(LocalDateTime date)
     {
-        this.properties.remove(PhotoPropertyType.DATE_TIME);
-        this.properties.put(PhotoPropertyType.DATE_TIME, new DateTimePhotoProperty(date));
+        if (this.hasProperty(PhotoPropertyType.DATE_TIME))
+        {
+            this.removeProperty(PhotoPropertyType.DATE_TIME);
+        }
+        this.addProperty(new DateTimePhotoProperty(date));
     }
     
     
     private void setDimensions(int width, int height)
     {
-        this.properties.remove(PhotoPropertyType.DIMENSIONS);
-        this.properties.put(PhotoPropertyType.DIMENSIONS, new DimensionsPhotoProperty(width, height));
+        if (this.hasProperty(PhotoPropertyType.DIMENSIONS))
+        {
+            this.removeProperty(PhotoPropertyType.DIMENSIONS);
+        }
+        this.addProperty(new DimensionsPhotoProperty(width, height));
     }
     
     
     private void setSize(long sizeInBytes)
     {
-        this.properties.remove(PhotoPropertyType.SIZE);
-        this.properties.put(PhotoPropertyType.SIZE, new SizePhotoProperty(sizeInBytes));
+        if (this.hasProperty(PhotoPropertyType.SIZE))
+        {
+            this.removeProperty(PhotoPropertyType.SIZE);
+        }
+        this.addProperty(new SizePhotoProperty(sizeInBytes));
     }
     
     
     private void setManufacturer(String s)
     {
-        this.properties.remove(PhotoPropertyType.MANUFACTURER);
-        this.properties.put(PhotoPropertyType.MANUFACTURER, new ManufacturerPhotoProperty(s));
+        if (this.hasProperty(PhotoPropertyType.MANUFACTURER))
+        {
+            this.removeProperty(PhotoPropertyType.MANUFACTURER);
+        }
+        this.addProperty(new ManufacturerPhotoProperty(s));
     }
     
     
     private void setModel(String s)
     {
-        this.properties.remove(PhotoPropertyType.MODEL);
-        this.properties.put(PhotoPropertyType.MODEL, new ModelPhotoProperty(s));
+        if (this.hasProperty(PhotoPropertyType.MODEL))
+        {
+            this.removeProperty(PhotoPropertyType.MODEL);
+        }
+        this.addProperty(new ModelPhotoProperty(s));
     }
     
     
     private void setISO(int n)
     {
-        this.properties.remove(PhotoPropertyType.ISO);
-        this.properties.put(PhotoPropertyType.ISO, new ISOPhotoProperty(n));
+        if (this.hasProperty(PhotoPropertyType.ISO))
+        {
+            this.removeProperty(PhotoPropertyType.ISO);
+        }
+        this.addProperty(new ISOPhotoProperty(n));
     }
     
     
     private void setAperture(float f) throws InvalidApertureException
     {
-        this.properties.remove(PhotoPropertyType.APERTURE);
-        this.properties.put(PhotoPropertyType.APERTURE, new AperturePhotoProperty(new Aperture(f)));
+        if (this.hasProperty(PhotoPropertyType.APERTURE))
+        {
+            this.removeProperty(PhotoPropertyType.APERTURE);
+        }
+        this.addProperty(new AperturePhotoProperty(new Aperture(f)));
     }
     
     
     private void setShutterSpeed(int dividend, int divisor) throws InvalidShutterSpeedException
     {
-        this.properties.remove(PhotoPropertyType.SHUTTER_SPEED);
-        this.properties.put(PhotoPropertyType.SHUTTER_SPEED, new ShutterSpeedPhotoProperty(dividend, divisor));
+        if (this.hasProperty(PhotoPropertyType.SHUTTER_SPEED))
+        {
+            this.removeProperty(PhotoPropertyType.SHUTTER_SPEED);
+        }
+        this.addProperty(new ShutterSpeedPhotoProperty(dividend, divisor));
     }
     
     
     private void setFocalLength(float mm)
     {
-        this.properties.remove(PhotoPropertyType.FOCAL_LENGTH);
-        this.properties.put(PhotoPropertyType.FOCAL_LENGTH, new FocalLengthPhotoProperty(mm));
+        if (this.hasProperty(PhotoPropertyType.FOCAL_LENGTH))
+        {
+            this.removeProperty(PhotoPropertyType.FOCAL_LENGTH);
+        }
+        this.addProperty(new FocalLengthPhotoProperty(mm));
     }
     
     
     // ============================================================================================================================================ \\
-    
-    
-    public boolean hasProperty(PhotoPropertyType prop)
-    {
-        return properties.containsKey(prop);
-    }
-    
-    
-    public PhotoProperty getProperty(PhotoPropertyType type)
-    {
-        return properties.get(type);
-    }
     
     
     public File getFile()

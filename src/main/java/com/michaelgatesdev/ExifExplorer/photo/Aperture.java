@@ -57,4 +57,27 @@ public class Aperture implements SimpleComparable<Aperture>
     {
         return value == o.getValue();
     }
+    
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof Aperture)
+        {
+            return equalTo((Aperture) obj);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    
+    @Override
+    public String toString()
+    {
+        return "Aperture{" +
+                "value=" + value +
+                '}';
+    }
 }

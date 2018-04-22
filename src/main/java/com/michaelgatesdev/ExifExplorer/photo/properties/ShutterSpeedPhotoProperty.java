@@ -29,7 +29,7 @@ public class ShutterSpeedPhotoProperty extends PhotoProperty<ShutterSpeed>
     
     public ShutterSpeedPhotoProperty(int dividend, int divisor) throws InvalidShutterSpeedException
     {
-        super(new ShutterSpeed(dividend, divisor));
+        super(PhotoPropertyType.SHUTTER_SPEED, new ShutterSpeed(dividend, divisor));
         if (getValue().lessThan(MIN_SS) || getValue().greaterThan(MAX_SS))
         {
             throw new InvalidShutterSpeedException(String.format("Invalid shutter speed specified (%d/%d). Must be between %d/%d and %d/%d!", dividend, divisor, MIN_SS.getDividend(), MIN_SS.getDivisor(), MAX_SS.getDividend(), MAX_SS.getDivisor()));

@@ -29,7 +29,7 @@ public class AperturePhotoProperty extends PhotoProperty<Aperture>
     
     public AperturePhotoProperty(Aperture value) throws InvalidApertureException
     {
-        super(value);
+        super(PhotoPropertyType.APERTURE, value);
         if (getValue().lessThan(MIN_APERTURE) || getValue().greaterThan(MAX_APERTURE))
         {
             throw new InvalidApertureException(String.format("Invalid aperture specified (%f). Must be between %f and %f!", value.getValue(), MIN_APERTURE.getValue(), MAX_APERTURE.getValue()));

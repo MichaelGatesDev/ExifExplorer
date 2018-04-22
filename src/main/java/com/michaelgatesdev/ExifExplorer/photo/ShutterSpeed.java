@@ -191,5 +191,4 @@ public class ShutterSpeed extends Fraction
         return super.equals(obj);
     }
     
-    
 }

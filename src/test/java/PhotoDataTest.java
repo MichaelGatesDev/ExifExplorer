@@ -15,13 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.regex.Pattern;
-
 public class PhotoDataTest
 {
-    private static final Pattern ISO_FILENAME_PATTERN = Pattern.compile("ISO_(\\d+)_.+");
-    private static final Pattern SS_FILENAME_PATTERN  = Pattern.compile("SS_(\\d+)-(\\d+)_.+");
-    
+
+//    private static final Pattern ISO_FILENAME_PATTERN = Pattern.compile("ISO_(\\d+)_.+");
+//    private static final Pattern SS_FILENAME_PATTERN  = Pattern.compile("SS_(\\d+)-(\\d+)_.+");
+//
 //    private File testDirISO;
 //    private File testDirSS;
 //

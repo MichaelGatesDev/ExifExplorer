@@ -26,7 +26,7 @@ public class DimensionsPhotoProperty extends PhotoProperty<Integer[]>
     
     public DimensionsPhotoProperty(int width, int height)
     {
-        super(new Integer[]{ width, height });
+        super(PhotoPropertyType.DIMENSIONS, new Integer[]{ width, height });
         this.width = width;
         this.height = height;
     }

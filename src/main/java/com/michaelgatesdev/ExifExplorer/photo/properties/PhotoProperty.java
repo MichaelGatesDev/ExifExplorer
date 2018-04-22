@@ -20,11 +20,13 @@ package com.michaelgatesdev.ExifExplorer.photo.properties;
 
 public abstract class PhotoProperty<T>
 {
-    private T value;
+    private PhotoPropertyType type;
+    private T                 value;
     
     
-    public PhotoProperty(T value)
+    public PhotoProperty(PhotoPropertyType type, T value)
     {
+        this.type = type;
         this.value = value;
     }
     
@@ -32,6 +34,12 @@ public abstract class PhotoProperty<T>
     public T getValue()
     {
         return value;
+    }
+    
+    
+    public PhotoPropertyType getType()
+    {
+        return type;
     }
     
     

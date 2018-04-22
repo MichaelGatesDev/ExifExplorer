@@ -28,5 +28,5 @@ public enum PhotoPropertyType
     ISO,
     APERTURE,
     SHUTTER_SPEED,
-    FOCAL_LENGTH,
+    FOCAL_LENGTH
 }

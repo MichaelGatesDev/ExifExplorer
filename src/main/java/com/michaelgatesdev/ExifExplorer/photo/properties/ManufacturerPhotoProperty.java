@@ -25,7 +25,7 @@ public class ManufacturerPhotoProperty extends PhotoProperty<String>
     
     public ManufacturerPhotoProperty(String manufacturer)
     {
-        super(manufacturer);
+        super(PhotoPropertyType.MANUFACTURER, manufacturer);
         this.manufacturer = manufacturer;
     }
     

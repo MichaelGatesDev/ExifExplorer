@@ -27,7 +27,7 @@ public class DateTimePhotoProperty extends PhotoProperty<LocalDateTime>
     
     public DateTimePhotoProperty(LocalDateTime date)
     {
-        super(date);
+        super(PhotoPropertyType.DATE_TIME, date);
         this.date = date;
     }
     

@@ -25,7 +25,7 @@ public class FocalLengthPhotoProperty extends PhotoProperty<Float>
     
     public FocalLengthPhotoProperty(float length)
     {
-        super(length);
+        super(PhotoPropertyType.FOCAL_LENGTH, length);
         this.length = length;
     }
     

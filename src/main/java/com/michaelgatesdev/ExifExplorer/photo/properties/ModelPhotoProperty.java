@@ -23,10 +23,10 @@ public class ModelPhotoProperty extends PhotoProperty<String>
     private String model;
     
     
-    public ModelPhotoProperty(String manufacturer)
+    public ModelPhotoProperty(String model)
     {
-        super(manufacturer);
-        this.model = manufacturer;
+        super(PhotoPropertyType.MODEL, model);
+        this.model = model;
     }
     
     

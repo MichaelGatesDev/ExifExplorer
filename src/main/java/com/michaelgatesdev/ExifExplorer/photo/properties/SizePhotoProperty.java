@@ -25,7 +25,7 @@ public class SizePhotoProperty extends PhotoProperty<Long>
     
     public SizePhotoProperty(Long sizeInBytes)
     {
-        super(sizeInBytes);
+        super(PhotoPropertyType.SIZE, sizeInBytes);
         this.sizeInBytes = sizeInBytes;
     }
     
