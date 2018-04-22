@@ -59,9 +59,6 @@ public class MainSceneController implements Initializable
     private JFXTextField widthFieldA, heightFieldA, sizeFieldA, widthFieldB, heightFieldB, sizeFieldB;
     
     
-    /**
-     * @param stageManager
-     */
     public MainSceneController(StageManager stageManager)
     {
         this.stageManager = stageManager;
@@ -87,6 +84,15 @@ public class MainSceneController implements Initializable
     }
     
     
+    /**
+     * @param buttonA                 The first button in the trifecta
+     * @param a                       If the first button is selected
+     * @param buttonB                 The second button in the trifecta
+     * @param b                       If the second button is selected
+     * @param buttonC                 The third button in the trifecta, which has added behavior of enabling/disabling the specified controls
+     * @param c                       If the third button is selected
+     * @param controlsToEnableDisable Controls which should be enabled/disabled based on 'c'
+     */
     private void toggleTrifectaRadioButtons(JFXRadioButton buttonA, boolean a, JFXRadioButton buttonB, boolean b, JFXRadioButton buttonC, boolean c, Control... controlsToEnableDisable)
     {
         if (a)
