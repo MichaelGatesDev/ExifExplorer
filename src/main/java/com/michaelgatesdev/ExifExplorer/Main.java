@@ -24,6 +24,7 @@ import com.michaelgatesdev.ExifExplorer.gui.StageManager;
 import com.michaelgatesdev.ExifExplorer.gui.controllers.TitleSceneController;
 import com.michaelgatesdev.ExifExplorer.locale.UTF8Control;
 import com.michaelgatesdev.ExifExplorer.photo.Photo;
+import com.michaelgatesdev.ExifExplorer.util.ToolTipDefaultsFixer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -110,6 +111,8 @@ public class Main extends Application
     @Override
     public void start(Stage stage)
     {
+        ToolTipDefaultsFixer.setTooltipTimers(250, 2500, 50);
+        
         this.stageManager = new StageManager(stage);
         this.stageManager.switchToScene("fxml/TitleScene.fxml", new TitleSceneController(stageManager));
     }

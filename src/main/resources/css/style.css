@@ -18,6 +18,7 @@
 .root
 {
     -fx-background-color : #FAFAFA;
+    -fx-font-family      : Roboto, sans-serif;
 }
 
 
@@ -64,4 +65,11 @@
     -fx-padding          : 10px;
     -fx-background-color : #F5F5F5;
     -fx-border-style     : dotted;
+}
+
+
+.tooltip
+{
+    -fx-padding   : 5px 8px;
+    -fx-font-size : 1.25em;
 }
