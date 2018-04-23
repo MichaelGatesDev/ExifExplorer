@@ -24,10 +24,16 @@ import com.michaelgatesdev.ExifExplorer.photo.criteria.aperture.BetweenApertureC
 import com.michaelgatesdev.ExifExplorer.photo.criteria.aperture.ExactApertureCriteria;
 import com.michaelgatesdev.ExifExplorer.photo.criteria.aperture.LargerThanApertureCriteria;
 import com.michaelgatesdev.ExifExplorer.photo.criteria.aperture.SmallerThanApertureCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.criteria.datetime.AfterDateTimeCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.criteria.datetime.BeforeDateTimeCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.criteria.datetime.BetweenDateTimeCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.criteria.datetime.ExactDateTimeCriteria;
 import com.michaelgatesdev.ExifExplorer.photo.properties.AperturePhotoProperty;
+import com.michaelgatesdev.ExifExplorer.photo.properties.DateTimePhotoProperty;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -36,80 +42,6 @@ import java.util.stream.Stream;
 
 public class PhotoFilterTest
 {
-//    @Test
-//    public void testFilteredPhotosList() throws InvalidApertureException
-//    {
-//        Photo photoA = new Photo();
-//        Photo photoB = new Photo();
-//        Photo photoC = new Photo();
-//        Photo photoD = new Photo();
-//        Photo photoE = new Photo();
-//        Photo photoF = new Photo();
-//        Photo photoG = new Photo();
-//        Photo photoH = new Photo();
-//
-//
-//        // Apertures
-//        photoA.addProperty(new AperturePhotoProperty(new Aperture(2.8)));
-//        photoB.addProperty(new AperturePhotoProperty(new Aperture(2.8)));
-//        photoC.addProperty(new AperturePhotoProperty(new Aperture(2.8)));
-//        photoD.addProperty(new AperturePhotoProperty(new Aperture(5.6)));
-//
-//        // Dates and Times
-//        photoA.addProperty(new DateTimePhotoProperty(LocalDateTime.of(2018, 1, 1, 12, 30, 0))); // 01/01/2018 12:30:00
-//        photoB.addProperty(new DateTimePhotoProperty(LocalDateTime.of(2018, 1, 1, 12, 30, 0))); // 01/01/2018 12:30:00
-//        photoC.addProperty(new DateTimePhotoProperty(LocalDateTime.of(2012, 12, 31, 11, 59, 59))); // 12/31/2012 11:59:59
-//        photoD.addProperty(new DateTimePhotoProperty(LocalDateTime.of(2012, 12, 31, 11, 59, 59))); // 12/31/2012 11:59:59
-//
-//        // Sizes & Dimensions
-//        photoA.addProperty(new SizeDimensionsPhotoProperty(new SizeDimensions(100, 100, 35000)));
-//        photoB.addProperty(new SizeDimensionsPhotoProperty(new SizeDimensions(100, 100, 35000)));
-//        photoC.addProperty(new SizeDimensionsPhotoProperty(new SizeDimensions(100, 100, 35000)));
-//        photoD.addProperty(new SizeDimensionsPhotoProperty(new SizeDimensions(100, 100, 35000)));
-//
-//
-//        List<Photo> photos = Arrays.asList(photoA, photoB, photoC, photoD, photoE, photoF, photoG, photoH);
-//        Set<Criteria> betweenCriteria = Stream.of(
-//                new BetweenDateTimeCriteria(LocalDateTime.MIN, LocalDateTime.MAX)
-//        ).collect(Collectors.toSet());
-//
-//        FilteredPhotosList filteredPhotosList = new FilteredPhotosList(photos, betweenCriteria);
-//
-//        Assert.assertEquals(filteredPhotosList.getResult().size(), 4);
-//        Assert.assertTrue(filteredPhotosList.getResult().contains(photoA));
-//        Assert.assertTrue(filteredPhotosList.getResult().contains(photoB));
-//    }
-//
-//
-//    @Test
-//    public void testMissingProperties() throws InvalidApertureException
-//    {
-//        Photo photoA = new Photo();
-//        Photo photoB = new Photo();
-//        Photo photoC = new Photo();
-//        Photo photoD = new Photo();
-//
-//
-//        // Apertures
-//        photoA.addProperty(new AperturePhotoProperty(new Aperture(2.8)));
-////        photoB.addProperty(new AperturePhotoProperty(new Aperture(2.8)));
-//        photoC.addProperty(new AperturePhotoProperty(new Aperture(2.8)));
-////        photoD.addProperty(new AperturePhotoProperty(new Aperture(5.6)));
-//
-//        List<Photo> photos = Arrays.asList(photoA, photoB, photoC, photoD);
-//        Set<Criteria> betweenCriteria = Stream.of(
-//                new BetweenDateTimeCriteria(LocalDateTime.MIN, LocalDateTime.MAX),
-//                new BetweenSizeDimensionsCriteria(new SizeDimensions(0, 0, 0), new SizeDimensions(Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE))
-//        ).collect(Collectors.toSet());
-//
-//        FilteredPhotosList filteredPhotosList = new FilteredPhotosList(photos, betweenCriteria);
-//
-//        Assert.assertEquals(filteredPhotosList.getResult().size(), 4);
-//        Assert.assertTrue(filteredPhotosList.getResult().contains(photoA));
-//        Assert.assertTrue(filteredPhotosList.getResult().contains(photoB));
-//    }
-    
-    
     @Test
     public void testApertureFilters() throws InvalidApertureException
     {
@@ -127,7 +59,7 @@ public class PhotoFilterTest
         
         // Exact aperture
         Set<Criteria> exactCriteria = Stream.of(
-                new ExactApertureCriteria(new Aperture[]{ new Aperture(2.8) })
+                new ExactApertureCriteria(new Aperture(2.8))
         ).collect(Collectors.toSet());
         FilteredPhotosList fplExact = new FilteredPhotosList(photos, exactCriteria);
         
@@ -140,7 +72,7 @@ public class PhotoFilterTest
         
         // Aperture is less than X
         Set<Criteria> smallerThanCriteria = Stream.of(
-                new SmallerThanApertureCriteria(new Aperture[]{ new Aperture(8.0) })
+                new SmallerThanApertureCriteria(new Aperture(8.0))
         ).collect(Collectors.toSet());
         FilteredPhotosList fplSmallerThan = new FilteredPhotosList(photos, smallerThanCriteria);
         
@@ -153,7 +85,7 @@ public class PhotoFilterTest
         
         // Aperture is greater than X
         Set<Criteria> greaterThanCriteria = Stream.of(
-                new LargerThanApertureCriteria(new Aperture[]{ new Aperture(2.8) })
+                new LargerThanApertureCriteria(new Aperture(2.8))
         ).collect(Collectors.toSet());
         FilteredPhotosList fplGreaterThan = new FilteredPhotosList(photos, greaterThanCriteria);
         
@@ -175,7 +107,75 @@ public class PhotoFilterTest
         Assert.assertTrue(fplBetween.getResult().contains(photoB));
         Assert.assertTrue(fplBetween.getResult().contains(photoC));
         Assert.assertFalse(fplBetween.getResult().contains(photoD));
-        
-        
     }
+    
+    
+    @Test
+    public void testDateTimeFilters()
+    {
+        Photo photoA = new Photo();
+        photoA.addProperty(new DateTimePhotoProperty(LocalDateTime.of(2018, 4, 23, 12, 0)));
+        Photo photoB = new Photo();
+        photoB.addProperty(new DateTimePhotoProperty(LocalDateTime.of(2018, 4, 23, 12, 0)));
+        Photo photoC = new Photo();
+        photoC.addProperty(new DateTimePhotoProperty(LocalDateTime.of(1999, 11, 15, 1, 45)));
+        Photo photoD = new Photo();
+        photoD.addProperty(new DateTimePhotoProperty(LocalDateTime.of(1999, 11, 15, 1, 45)));
+        
+        List<Photo> photos = Arrays.asList(photoA, photoB, photoC, photoD);
+        
+        
+        // Exact date time
+        Set<Criteria> exactCriteria = Stream.of(
+                new ExactDateTimeCriteria(LocalDateTime.of(2018, 4, 23, 12, 0))
+        ).collect(Collectors.toSet());
+        FilteredPhotosList fplExact = new FilteredPhotosList(photos, exactCriteria);
+        
+        Assert.assertEquals(fplExact.getResult().size(), 2);
+        Assert.assertTrue(fplExact.getResult().contains(photoA));
+        Assert.assertTrue(fplExact.getResult().contains(photoB));
+        Assert.assertFalse(fplExact.getResult().contains(photoC));
+        Assert.assertFalse(fplExact.getResult().contains(photoD));
+        
+        
+        // Date is before X
+        Set<Criteria> beforeCriteria = Stream.of(
+                new BeforeDateTimeCriteria(LocalDateTime.of(2020, 5, 5, 12, 30))
+        ).collect(Collectors.toSet());
+        FilteredPhotosList fplBefore = new FilteredPhotosList(photos, beforeCriteria);
+        
+        Assert.assertEquals(fplBefore.getResult().size(), 4);
+        Assert.assertTrue(fplBefore.getResult().contains(photoA));
+        Assert.assertTrue(fplBefore.getResult().contains(photoB));
+        Assert.assertTrue(fplBefore.getResult().contains(photoC));
+        Assert.assertTrue(fplBefore.getResult().contains(photoD));
+        
+        
+        // Date is after X
+        Set<Criteria> afterCriteria = Stream.of(
+                new AfterDateTimeCriteria(LocalDateTime.of(2008, 8, 11, 12, 0))
+        ).collect(Collectors.toSet());
+        FilteredPhotosList fplGreaterThan = new FilteredPhotosList(photos, afterCriteria);
+        
+        Assert.assertEquals(fplGreaterThan.getResult().size(), 2);
+        Assert.assertTrue(fplGreaterThan.getResult().contains(photoA));
+        Assert.assertTrue(fplGreaterThan.getResult().contains(photoB));
+        Assert.assertFalse(fplGreaterThan.getResult().contains(photoC));
+        Assert.assertFalse(fplGreaterThan.getResult().contains(photoD));
+        
+        
+        // Date is between X and Y
+        Set<Criteria> betweenCriteria = Stream.of(
+                new BetweenDateTimeCriteria(LocalDateTime.of(1999, 1, 1, 12, 0), LocalDateTime.of(2020, 1, 1, 12, 0))
+        ).collect(Collectors.toSet());
+        FilteredPhotosList fplBetween = new FilteredPhotosList(photos, betweenCriteria);
+        
+        Assert.assertEquals(fplBetween.getResult().size(), 4);
+        Assert.assertTrue(fplBetween.getResult().contains(photoA));
+        Assert.assertTrue(fplBetween.getResult().contains(photoB));
+        Assert.assertTrue(fplBetween.getResult().contains(photoC));
+        Assert.assertTrue(fplBetween.getResult().contains(photoD));
+    }
+    
+    
 }
