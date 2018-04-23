@@ -43,12 +43,6 @@ public abstract class SizeDimensionsCriteria extends Criteria
     }
     
     
-    public SizeDimensions[] getSizeDimensions()
-    {
-        return sizeDimensions;
-    }
-    
-    
     @Override
     public boolean compare(Object o)
     {
@@ -68,4 +62,12 @@ public abstract class SizeDimensionsCriteria extends Criteria
     {
         return PhotoPropertyType.SIZE_DIMENSIONS;
     }
+    
+    
+    @Override
+    public SizeDimensions[] getObjects()
+    {
+        return sizeDimensions;
+    }
+    
 }

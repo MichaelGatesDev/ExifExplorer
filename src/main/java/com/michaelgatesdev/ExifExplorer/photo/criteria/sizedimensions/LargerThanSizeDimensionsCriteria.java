@@ -31,7 +31,7 @@ public class LargerThanSizeDimensionsCriteria extends SizeDimensionsCriteria
     @Override
     boolean compare(SizeDimensions d)
     {
-        SizeDimensions sd = this.getSizeDimensions()[0];
+        SizeDimensions sd = this.getObjects()[0];
         
         return (sd.getWidth() > d.getWidth()) &&
                 (sd.getHeight() > d.getHeight()) &&

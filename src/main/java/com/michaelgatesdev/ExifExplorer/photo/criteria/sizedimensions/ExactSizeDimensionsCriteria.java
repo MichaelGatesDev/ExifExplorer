@@ -31,7 +31,7 @@ public class ExactSizeDimensionsCriteria extends SizeDimensionsCriteria
     @Override
     boolean compare(SizeDimensions d)
     {
-        SizeDimensions sda = this.getSizeDimensions()[0];
+        SizeDimensions sda = this.getObjects()[0];
         
         return (d.getWidth() == sda.getWidth()) &&
                 (d.getHeight() == sda.getHeight()) &&

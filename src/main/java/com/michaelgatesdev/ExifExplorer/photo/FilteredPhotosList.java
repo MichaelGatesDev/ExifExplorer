@@ -19,12 +19,13 @@
 package com.michaelgatesdev.ExifExplorer.photo;
 
 
-import com.michaelgatesdev.ExifExplorer.photo.filters.Criteria;
+import com.michaelgatesdev.ExifExplorer.photo.criteria.Criteria;
 import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoProperty;
 import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoPropertyType;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -62,7 +63,7 @@ public class FilteredPhotosList
                 PhotoProperty pp = p.getProperty(c.getPropertyType());
                 if (!c.compare(pp.getValue()))
                 {
-                    logger.debug(String.format("%s property %s has value of %s but does not meet requirements for %s", p.getFile().getName(), PhotoPropertyType.DATE_TIME.toString(), pp.getValue().toString(), c.getClass().getName()));
+                    logger.debug(String.format("%s property %s has value of %s but does not meet requirements for %s (%s)", p.getFile().getName(), ppt.toString(), pp.getValue().toString(), c.getClass().getName(), Arrays.toString(c.getObjects())));
                     meetsReqs = false;
                     break;
                 }

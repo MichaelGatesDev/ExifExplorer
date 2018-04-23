@@ -22,7 +22,11 @@ import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoPropertyType;
 
 public abstract class Criteria
 {
+    public abstract Object[] getObjects();
+    
+    
     public abstract boolean compare(Object o);
+    
     
     public abstract PhotoPropertyType getPropertyType();
 }

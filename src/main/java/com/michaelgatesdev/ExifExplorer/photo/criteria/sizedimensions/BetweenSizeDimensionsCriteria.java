@@ -31,8 +31,8 @@ public class BetweenSizeDimensionsCriteria extends SizeDimensionsCriteria
     @Override
     boolean compare(SizeDimensions d)
     {
-        SizeDimensions min = this.getSizeDimensions()[0];
-        SizeDimensions max = this.getSizeDimensions()[1];
+        SizeDimensions min = this.getObjects()[0];
+        SizeDimensions max = this.getObjects()[1];
         
         return (d.getWidth() >= min.getWidth()) &&
                 (d.getHeight() >= min.getHeight()) &&

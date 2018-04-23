@@ -31,6 +31,6 @@ public class BeforeDateTimeCriteria extends DateTimeCriteria
     @Override
     public boolean compare(LocalDateTime ldt)
     {
-        return ldt.isBefore(this.getDates()[0]);
+        return ldt.isBefore(this.getObjects()[0]);
     }
 }

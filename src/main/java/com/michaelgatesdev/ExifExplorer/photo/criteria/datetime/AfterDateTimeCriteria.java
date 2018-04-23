@@ -31,6 +31,6 @@ public class AfterDateTimeCriteria extends DateTimeCriteria
     @Override
     public boolean compare(LocalDateTime ldt)
     {
-        return ldt.isAfter(this.getDates()[0]);
+        return ldt.isAfter(this.getObjects()[0]);
     }
 }

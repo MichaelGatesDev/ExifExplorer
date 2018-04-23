@@ -56,7 +56,7 @@ public class Photo
     public Photo()
     {
         this.properties = new HashSet<>();
-        this.file = new File(System.getProperty("user.dir") + "/" + UUID.randomUUID().toString().substring(0, 8)); // assign random file names for testing
+        this.file = new File(System.getProperty("user.dir") + "/" + UUID.randomUUID().toString().substring(0, 8) + ".jpg"); // assign random file names for testing
     }
     
     

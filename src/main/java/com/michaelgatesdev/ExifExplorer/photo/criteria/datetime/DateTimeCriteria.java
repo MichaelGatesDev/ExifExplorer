@@ -34,19 +34,13 @@ public abstract class DateTimeCriteria extends Criteria
     }
     
     private DateTimeCriteriaCondition condition;
-    private LocalDateTime[]           dates;
+    private LocalDateTime[]           dateTimes;
     
     
     public DateTimeCriteria(DateTimeCriteriaCondition condition, LocalDateTime[] dates)
     {
         this.condition = condition;
-        this.dates = dates;
-    }
-    
-    
-    public LocalDateTime[] getDates()
-    {
-        return dates;
+        this.dateTimes = dates;
     }
     
     
@@ -68,5 +62,12 @@ public abstract class DateTimeCriteria extends Criteria
     public PhotoPropertyType getPropertyType()
     {
         return PhotoPropertyType.DATE_TIME;
+    }
+    
+    
+    @Override
+    public LocalDateTime[] getObjects()
+    {
+        return dateTimes;
     }
 }

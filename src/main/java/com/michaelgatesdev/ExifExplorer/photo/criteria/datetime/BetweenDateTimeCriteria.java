@@ -31,6 +31,6 @@ public class BetweenDateTimeCriteria extends DateTimeCriteria
     @Override
     public boolean compare(LocalDateTime ldt)
     {
-        return ldt.isAfter(this.getDates()[0]) && ldt.isBefore(this.getDates()[1]);
+        return ldt.isAfter(this.getObjects()[0]) && ldt.isBefore(this.getObjects()[1]);
     }
 }

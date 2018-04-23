@@ -31,6 +31,6 @@ public class ExactDateTimeCriteria extends DateTimeCriteria
     @Override
     public boolean compare(LocalDateTime ldt)
     {
-        return ldt.isEqual(this.getDates()[0]);
+        return ldt.isEqual(this.getObjects()[0]);
     }
 }

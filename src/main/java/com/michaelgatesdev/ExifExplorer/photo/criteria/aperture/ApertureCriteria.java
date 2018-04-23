@@ -43,12 +43,6 @@ public abstract class ApertureCriteria extends Criteria
     }
     
     
-    public Aperture[] getApertures()
-    {
-        return apertures;
-    }
-    
-    
     @Override
     public boolean compare(Object o)
     {
@@ -67,5 +61,12 @@ public abstract class ApertureCriteria extends Criteria
     public PhotoPropertyType getPropertyType()
     {
         return PhotoPropertyType.APERTURE;
+    }
+    
+    
+    @Override
+    public Aperture[] getObjects()
+    {
+        return apertures;
     }
 }

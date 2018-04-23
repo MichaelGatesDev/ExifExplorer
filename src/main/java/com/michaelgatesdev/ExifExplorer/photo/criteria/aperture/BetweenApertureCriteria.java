@@ -31,6 +31,6 @@ public class BetweenApertureCriteria extends ApertureCriteria
     @Override
     boolean compare(Aperture dtc)
     {
-        return dtc.getValue() >= this.getApertures()[0].getValue() && dtc.getValue() <= this.getApertures()[1].getValue();
+        return dtc.getValue() >= this.getObjects()[0].getValue() && dtc.getValue() <= this.getObjects()[1].getValue();
     }
 }
