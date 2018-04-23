@@ -22,9 +22,9 @@ import com.michaelgatesdev.ExifExplorer.photo.Aperture;
 
 public class LargerThanApertureCriteria extends ApertureCriteria
 {
-    public LargerThanApertureCriteria(Aperture[] apertures)
+    public LargerThanApertureCriteria(Aperture aperture)
     {
-        super(ApertureCriteriaCondition.LARGER_THAN, apertures);
+        super(ApertureCriteriaCondition.LARGER_THAN, new Aperture[]{ aperture });
     }
     
     

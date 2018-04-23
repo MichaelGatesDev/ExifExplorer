@@ -22,9 +22,9 @@ import com.michaelgatesdev.ExifExplorer.photo.Aperture;
 
 public class ExactApertureCriteria extends ApertureCriteria
 {
-    public ExactApertureCriteria(Aperture[] apertures)
+    public ExactApertureCriteria(Aperture aperture)
     {
-        super(ApertureCriteriaCondition.EQUAL_TO, apertures);
+        super(ApertureCriteriaCondition.EQUAL_TO, new Aperture[]{ aperture });
     }
     
     
