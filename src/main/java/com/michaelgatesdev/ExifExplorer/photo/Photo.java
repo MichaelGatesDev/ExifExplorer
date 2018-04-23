@@ -117,7 +117,8 @@ public class Photo
                             
                             int hour = Integer.parseInt(rawTime[0]);
                             int minute = Integer.parseInt(rawTime[1]);
-                            int second = Integer.parseInt(rawTime[2]);
+//                            int second = Integer.parseInt(rawTime[2]);
+                            int second = 0; // TODO implement timepicker with seconds
                             
                             
                             setDateTime(LocalDateTime.of(year, month, day, hour, minute, second));
