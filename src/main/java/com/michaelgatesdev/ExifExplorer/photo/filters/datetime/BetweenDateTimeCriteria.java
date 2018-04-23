@@ -22,9 +22,9 @@ import java.time.LocalDateTime;
 
 public class BetweenDateTimeCriteria extends DateTimeCriteria
 {
-    public BetweenDateTimeCriteria(LocalDateTime start, LocalDateTime end)
+    public BetweenDateTimeCriteria(LocalDateTime earliest, LocalDateTime latest)
     {
-        super(DateTimeCriteriaCondition.BETWEEN, new LocalDateTime[]{ start, end });
+        super(DateTimeCriteriaCondition.BETWEEN, new LocalDateTime[]{ earliest, latest });
     }
     
     

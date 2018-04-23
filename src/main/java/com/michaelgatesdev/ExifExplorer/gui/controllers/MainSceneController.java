@@ -30,6 +30,7 @@ import com.michaelgatesdev.ExifExplorer.photo.SizeDimensions;
 import com.michaelgatesdev.ExifExplorer.photo.filters.Criteria;
 import com.michaelgatesdev.ExifExplorer.photo.filters.datetime.*;
 import com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Control;
@@ -41,9 +42,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 public class MainSceneController implements Initializable
 {
@@ -103,15 +102,27 @@ public class MainSceneController implements Initializable
         betweenSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleGroupRadioButtons(smallerThanSizeBtn, false, largerThanSizeBtn, false, equalSizeBtn, false, betweenSizeBtn, newValue, widthFieldB, heightFieldB, sizeFieldB));
         
         
-        // Update table with imported photo data
-        stageManager.repopulateTable(table, Main.getInstance().getPhotos());
+        new Timer().schedule(new TimerTask()
+        {
+            
+            @Override
+            public void run()
+            {
+                Platform.runLater(() ->
+                {
+                    // Update table with imported photo data
+                    filterAndUpdate();
+                });
+                
+            }
+        }, 100, 1000);
     }
     
     
-    void checkFilters()
+    void filterAndUpdate()
     {
         //TODO user property change listeners instead
-        
+        activeFilters.clear();
         
         // datetime and time
         DateTimeCriteria dtCrit = null;
@@ -173,7 +184,6 @@ public class MainSceneController implements Initializable
         {
             activeFilters.add(sdCrit);
         }
-        
         
         // repopulate table
         FilteredPhotosList fpl = new FilteredPhotosList(Main.getInstance().getPhotos(), activeFilters);
