@@ -80,7 +80,7 @@ public class FileUtil
     {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle(title);
-        File defaultDirectory = new File("C:/");
+        File defaultDirectory = new File(System.getProperty("user.dir"));
         chooser.setInitialDirectory(defaultDirectory);
         return chooser.showDialog(null);
     }
