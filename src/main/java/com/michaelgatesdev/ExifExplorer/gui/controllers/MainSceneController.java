@@ -115,7 +115,7 @@ public class MainSceneController implements Initializable
                 });
                 
             }
-        }, 100, 1000);
+        }, 100, 100);
     }
     
     
