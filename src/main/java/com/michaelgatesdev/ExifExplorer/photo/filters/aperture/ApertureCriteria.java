@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2018
+ * Copyright (C) Michael Gates (MichaelGatesDev@gmail.com) 2015
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,57 +16,56 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.photo.filters.datetime;
+package com.michaelgatesdev.ExifExplorer.photo.filters.aperture;
 
+import com.michaelgatesdev.ExifExplorer.photo.Aperture;
 import com.michaelgatesdev.ExifExplorer.photo.filters.Criteria;
 import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoPropertyType;
 
-import java.time.LocalDateTime;
-
-public abstract class DateTimeCriteria extends Criteria
+public abstract class ApertureCriteria extends Criteria
 {
-    public enum DateTimeCriteriaCondition
+    public enum ApertureCriteriaCondition
     {
-        BEFORE,
-        AFTER,
-        BETWEEN,
-        ON
+        SMALLER_THAN,
+        LARGER_THAN,
+        EQUAL_TO,
+        BETWEEN
     }
     
-    private DateTimeCriteriaCondition condition;
-    private LocalDateTime[]           dates;
+    private ApertureCriteriaCondition condition;
+    private Aperture[]                apertures;
     
     
-    public DateTimeCriteria(DateTimeCriteriaCondition condition, LocalDateTime[] dates)
+    public ApertureCriteria(ApertureCriteriaCondition condition, Aperture[] apertures)
     {
         this.condition = condition;
-        this.dates = dates;
+        this.apertures = apertures;
     }
     
     
-    public LocalDateTime[] getDates()
+    public Aperture[] getApertures()
     {
-        return dates;
+        return apertures;
     }
     
     
     @Override
     public boolean compare(Object o)
     {
-        if (!(o instanceof LocalDateTime))
+        if (!(o instanceof Aperture))
         {
             return false;
         }
-        return this.compare((LocalDateTime) o);
+        return this.compare((Aperture) o);
     }
     
     
-    abstract boolean compare(LocalDateTime dtc);
+    abstract boolean compare(Aperture dtc);
     
     
     @Override
     public PhotoPropertyType getPropertyType()
     {
-        return PhotoPropertyType.DATE_TIME;
+        return PhotoPropertyType.APERTURE;
     }
 }

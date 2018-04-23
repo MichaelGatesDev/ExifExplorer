@@ -20,6 +20,7 @@ package com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions;
 
 import com.michaelgatesdev.ExifExplorer.photo.SizeDimensions;
 import com.michaelgatesdev.ExifExplorer.photo.filters.Criteria;
+import com.michaelgatesdev.ExifExplorer.photo.properties.PhotoPropertyType;
 
 public abstract class SizeDimensionsCriteria extends Criteria
 {
@@ -60,4 +61,11 @@ public abstract class SizeDimensionsCriteria extends Criteria
     
     
     abstract boolean compare(SizeDimensions d);
+    
+    
+    @Override
+    public PhotoPropertyType getPropertyType()
+    {
+        return PhotoPropertyType.SIZE_DIMENSIONS;
+    }
 }
