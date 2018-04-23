@@ -40,7 +40,7 @@ public class AperturePhotoProperty extends PhotoProperty<Aperture>
     @Override
     public String toString()
     {
-        return "F" + getValue();
+        return this.getValue().toString();
     }
     
     

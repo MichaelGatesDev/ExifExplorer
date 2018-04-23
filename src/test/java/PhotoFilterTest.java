@@ -32,6 +32,9 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PhotoFilterTest
 {
@@ -68,13 +71,13 @@ public class PhotoFilterTest
         
         
         List<Photo> photos = Arrays.asList(photoA, photoB, photoC, photoD, photoE, photoF, photoG, photoH);
-        List<Criteria> betweenCriteria = Arrays.asList(
+        Set<Criteria> betweenCriteria = Stream.of(
                 new BetweenDateTimeCriteria(LocalDateTime.MIN, LocalDateTime.MAX),
                 new BetweenSizeDimensionsCriteria(new SizeDimensions(0, 0, 0), new SizeDimensions(Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE))
-        );
+        ).collect(Collectors.toSet());
         
         FilteredPhotosList filteredPhotosList = new FilteredPhotosList(photos, betweenCriteria);
-    
+        
         Assert.assertEquals(filteredPhotosList.getResult().size(), 4);
         Assert.assertTrue(filteredPhotosList.getResult().contains(photoA));
         Assert.assertTrue(filteredPhotosList.getResult().contains(photoB));

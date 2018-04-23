@@ -76,8 +76,6 @@ public class Aperture implements SimpleComparable<Aperture>
     @Override
     public String toString()
     {
-        return "Aperture{" +
-                "value=" + value +
-                '}';
+        return "F" + getValue();
     }
 }

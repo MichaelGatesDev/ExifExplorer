@@ -62,4 +62,11 @@ public class SizeDimensions
     {
         return size;
     }
+    
+    
+    @Override
+    public String toString()
+    {
+        return String.format("%d x %d %f MB", width, height, ((float) size / 1000.0));
+    }
 }

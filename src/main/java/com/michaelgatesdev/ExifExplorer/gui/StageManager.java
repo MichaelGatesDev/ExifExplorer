@@ -158,7 +158,7 @@ public class StageManager
     }
     
     
-    public void populateTable(TableView<PhotoRow> table, List<Photo> photos)
+    public void repopulateTable(TableView<PhotoRow> table, List<Photo> photos)
     {
         ObservableList<PhotoRow> data = FXCollections.observableArrayList();
         for (Photo p : photos)
