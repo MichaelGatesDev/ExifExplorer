@@ -16,32 +16,25 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.photo.properties;
+package com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions;
 
-public class DimensionsPhotoProperty extends PhotoProperty<Integer[]>
+import com.michaelgatesdev.ExifExplorer.photo.SizeDimensions;
+
+public class ExactSizeDimensionsCriteria extends SizeDimensionsCriteria
 {
-    private int width;
-    private int height;
-    
-    
-    public DimensionsPhotoProperty(int width, int height)
+    public ExactSizeDimensionsCriteria(SizeDimensions sd)
     {
-        super(PhotoPropertyType.DIMENSIONS, new Integer[]{ width, height });
-        this.width = width;
-        this.height = height;
+        super(SizeDimensionsCriteriaCondition.EQUAL_TO, new SizeDimensions[]{ sd });
     }
     
     
     @Override
-    public String asString()
+    boolean compare(SizeDimensions d)
     {
-        return this.toString();
-    }
-    
-    
-    @Override
-    public String toString()
-    {
-        return width + " x " + height;
+        SizeDimensions sda = this.getSizeDimensions()[0];
+        
+        return (d.getWidth() == sda.getWidth()) &&
+                (d.getHeight() == sda.getHeight()) &&
+                (d.getSize() == sda.getHeight());
     }
 }

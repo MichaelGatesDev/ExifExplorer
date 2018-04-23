@@ -18,14 +18,26 @@
 
 package com.michaelgatesdev.ExifExplorer.photo.properties;
 
-public enum PhotoPropertyType
+import com.michaelgatesdev.ExifExplorer.photo.SizeDimensions;
+
+public class SizeDimensionsPhotoProperty extends PhotoProperty<SizeDimensions>
 {
-    DATE_TIME,
-    SIZE_DIMENSIONS,
-    MANUFACTURER,
-    MODEL,
-    ISO,
-    APERTURE,
-    SHUTTER_SPEED,
-    FOCAL_LENGTH
+    public SizeDimensionsPhotoProperty(SizeDimensions sd)
+    {
+        super(PhotoPropertyType.SIZE_DIMENSIONS, sd);
+    }
+    
+    
+    @Override
+    public String asString()
+    {
+        return this.toString();
+    }
+    
+    
+    @Override
+    public String toString()
+    {
+        return this.getValue().getWidth() + " x " + this.getValue().getHeight() + " " + ((float) (this.getValue().getSize() / 1000.0)) + " MB";
+    }
 }

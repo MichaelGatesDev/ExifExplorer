@@ -16,16 +16,9 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.photo.properties;
+package com.michaelgatesdev.ExifExplorer.photo.filters;
 
-public enum PhotoPropertyType
+public abstract class Criteria
 {
-    DATE_TIME,
-    SIZE_DIMENSIONS,
-    MANUFACTURER,
-    MODEL,
-    ISO,
-    APERTURE,
-    SHUTTER_SPEED,
-    FOCAL_LENGTH
+    public abstract boolean compare(Object o);
 }

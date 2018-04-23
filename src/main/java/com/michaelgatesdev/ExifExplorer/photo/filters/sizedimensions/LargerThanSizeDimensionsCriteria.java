@@ -16,16 +16,25 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.photo.properties;
+package com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions;
 
-public enum PhotoPropertyType
+import com.michaelgatesdev.ExifExplorer.photo.SizeDimensions;
+
+public class LargerThanSizeDimensionsCriteria extends SizeDimensionsCriteria
 {
-    DATE_TIME,
-    SIZE_DIMENSIONS,
-    MANUFACTURER,
-    MODEL,
-    ISO,
-    APERTURE,
-    SHUTTER_SPEED,
-    FOCAL_LENGTH
+    public LargerThanSizeDimensionsCriteria(SizeDimensions dimensions)
+    {
+        super(SizeDimensionsCriteriaCondition.LARGER_THAN, new SizeDimensions[]{ dimensions });
+    }
+    
+    
+    @Override
+    boolean compare(SizeDimensions d)
+    {
+        SizeDimensions sd = this.getSizeDimensions()[0];
+        
+        return (sd.getWidth() > d.getWidth()) &&
+                (sd.getHeight() > d.getHeight()) &&
+                (sd.getSize() > d.getHeight());
+    }
 }

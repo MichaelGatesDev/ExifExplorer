@@ -43,8 +43,9 @@ public class Photo
     private Metadata           metadata;
     private Set<PhotoProperty> properties;
     
-    private int width;
-    private int height;
+    private long size;
+    private long width;
+    private long height;
     
     // ============================================================================================================================================ \\
     
@@ -147,8 +148,7 @@ public class Photo
                         case "File Size":
                         {
                             String s = tag.getDescription().replace(" bytes", "");
-                            long size = Long.parseLong(s);
-                            setSize(size);
+                            this.size = Long.parseLong(s);
                             break;
                         }
                         case "Make":
@@ -167,7 +167,7 @@ public class Photo
                 }
             }
             
-            this.setDimensions(width, height);
+            this.setSizeDimensions(width, height, size);
         }
         catch (ImageProcessingException | IOException e)
         {
@@ -233,23 +233,13 @@ public class Photo
     }
     
     
-    private void setDimensions(int width, int height)
+    private void setSizeDimensions(long width, long height, long sizeInBytes)
     {
-        if (this.hasProperty(PhotoPropertyType.DIMENSIONS))
+        if (this.hasProperty(PhotoPropertyType.SIZE_DIMENSIONS))
         {
-            this.removeProperty(PhotoPropertyType.DIMENSIONS);
+            this.removeProperty(PhotoPropertyType.SIZE_DIMENSIONS);
         }
-        this.addProperty(new DimensionsPhotoProperty(width, height));
-    }
-    
-    
-    private void setSize(long sizeInBytes)
-    {
-        if (this.hasProperty(PhotoPropertyType.SIZE))
-        {
-            this.removeProperty(PhotoPropertyType.SIZE);
-        }
-        this.addProperty(new SizePhotoProperty(sizeInBytes));
+        this.addProperty(new SizeDimensionsPhotoProperty(new SizeDimensions(width, height, sizeInBytes)));
     }
     
     

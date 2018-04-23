@@ -26,15 +26,14 @@ public class PhotoRow
 {
     // ============================================================================================================================================ \\
     
-    private final SimpleStringProperty dateTaken    = new SimpleStringProperty("");
-    private final SimpleStringProperty dimensions   = new SimpleStringProperty("");
-    private final SimpleStringProperty size         = new SimpleStringProperty("");
-    private final SimpleStringProperty manufacturer = new SimpleStringProperty("");
-    private final SimpleStringProperty model        = new SimpleStringProperty("");
-    private final SimpleStringProperty iso          = new SimpleStringProperty("");
-    private final SimpleStringProperty aperture     = new SimpleStringProperty("");
-    private final SimpleStringProperty shutterSpeed = new SimpleStringProperty("");
-    private final SimpleStringProperty focalLength  = new SimpleStringProperty("");
+    private final SimpleStringProperty dateTaken      = new SimpleStringProperty("");
+    private final SimpleStringProperty sizeDimensions = new SimpleStringProperty("");
+    private final SimpleStringProperty manufacturer   = new SimpleStringProperty("");
+    private final SimpleStringProperty model          = new SimpleStringProperty("");
+    private final SimpleStringProperty iso            = new SimpleStringProperty("");
+    private final SimpleStringProperty aperture       = new SimpleStringProperty("");
+    private final SimpleStringProperty shutterSpeed   = new SimpleStringProperty("");
+    private final SimpleStringProperty focalLength    = new SimpleStringProperty("");
     
     // ============================================================================================================================================ \\
     
@@ -50,13 +49,9 @@ public class PhotoRow
         {
             setDateTaken(p.getProperty(PhotoPropertyType.DATE_TIME).asString());
         }
-        if (p.hasProperty(PhotoPropertyType.DIMENSIONS))
+        if (p.hasProperty(PhotoPropertyType.SIZE_DIMENSIONS))
         {
-            setDimensions(p.getProperty(PhotoPropertyType.DIMENSIONS).asString());
-        }
-        if (p.hasProperty(PhotoPropertyType.SIZE))
-        {
-            setSize(p.getProperty(PhotoPropertyType.SIZE).asString());
+            setSizeDimensions(p.getProperty(PhotoPropertyType.SIZE_DIMENSIONS).asString());
         }
         if (p.hasProperty(PhotoPropertyType.MANUFACTURER))
         {
@@ -88,11 +83,10 @@ public class PhotoRow
     // ============================================================================================================================================ \\
     
     
-    public PhotoRow(String dateTaken, String dimensions, String size, String manufacturer, String model, String iso, String aperture, String shutterSpeed, String focalLength)
+    public PhotoRow(String dateTaken, String sizeDimensions, String manufacturer, String model, String iso, String aperture, String shutterSpeed, String focalLength)
     {
         setDateTaken(dateTaken);
-        setDimensions(dimensions);
-        setSize(size);
+        setSizeDimensions(sizeDimensions);
         setManufacturer(manufacturer);
         setModel(model);
         setIso(iso);
@@ -110,15 +104,9 @@ public class PhotoRow
     }
     
     
-    public void setDimensions(String dimensions)
+    public void setSizeDimensions(String sizeDimensions)
     {
-        this.dimensions.set(dimensions);
-    }
-    
-    
-    public void setSize(String size)
-    {
-        this.size.set(size);
+        this.sizeDimensions.set(sizeDimensions);
     }
     
     
@@ -172,27 +160,15 @@ public class PhotoRow
     }
     
     
-    public String getDimensions()
+    public String getSizeDimensions()
     {
-        return dimensions.get();
+        return sizeDimensions.get();
     }
     
     
-    public SimpleStringProperty dimensionsProperty()
+    public SimpleStringProperty sizeDimensionsProperty()
     {
-        return dimensions;
-    }
-    
-    
-    public String getSize()
-    {
-        return size.get();
-    }
-    
-    
-    public SimpleStringProperty sizeProperty()
-    {
-        return size;
+        return sizeDimensions;
     }
     
     
@@ -275,8 +251,7 @@ public class PhotoRow
     {
         return "PhotoRow{" +
                 "dateTaken=" + dateTaken +
-                ", dimensions=" + dimensions +
-                ", size=" + size +
+                ", size/dimensions=" + sizeDimensions +
                 ", manufacturer=" + manufacturer +
                 ", model=" + model +
                 ", iso=" + iso +

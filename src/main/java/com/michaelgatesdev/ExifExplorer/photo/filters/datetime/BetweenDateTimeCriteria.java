@@ -16,30 +16,21 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.photo.properties;
+package com.michaelgatesdev.ExifExplorer.photo.filters.datetime;
 
-public class SizePhotoProperty extends PhotoProperty<Long>
+import java.time.LocalDateTime;
+
+public class BetweenDateTimeCriteria extends DateTimeCriteria
 {
-    private long sizeInBytes;
-    
-    
-    public SizePhotoProperty(Long sizeInBytes)
+    public BetweenDateTimeCriteria(LocalDateTime start, LocalDateTime end)
     {
-        super(PhotoPropertyType.SIZE, sizeInBytes);
-        this.sizeInBytes = sizeInBytes;
+        super(DateTimeCriteriaCondition.BETWEEN, new LocalDateTime[]{ start, end });
     }
     
     
     @Override
-    public String asString()
+    public boolean compare(LocalDateTime ldt)
     {
-        return this.toString();
-    }
-    
-    
-    @Override
-    public String toString()
-    {
-        return ((float) (sizeInBytes / 1024)) + " MB";
+        return ldt.isAfter(this.getDates()[0]) && ldt.isBefore(this.getDates()[1]);
     }
 }

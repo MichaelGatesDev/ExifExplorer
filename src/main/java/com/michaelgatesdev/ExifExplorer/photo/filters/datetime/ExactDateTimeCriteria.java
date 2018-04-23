@@ -16,16 +16,21 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.photo.properties;
+package com.michaelgatesdev.ExifExplorer.photo.filters.datetime;
 
-public enum PhotoPropertyType
+import java.time.LocalDateTime;
+
+public class ExactDateTimeCriteria extends DateTimeCriteria
 {
-    DATE_TIME,
-    SIZE_DIMENSIONS,
-    MANUFACTURER,
-    MODEL,
-    ISO,
-    APERTURE,
-    SHUTTER_SPEED,
-    FOCAL_LENGTH
+    public ExactDateTimeCriteria(LocalDateTime ldt)
+    {
+        super(DateTimeCriteriaCondition.ON, new LocalDateTime[]{ ldt });
+    }
+    
+    
+    @Override
+    public boolean compare(LocalDateTime ldt)
+    {
+        return ldt.isEqual(this.getDates()[0]);
+    }
 }

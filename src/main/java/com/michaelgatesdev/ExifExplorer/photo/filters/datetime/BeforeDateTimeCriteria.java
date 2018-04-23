@@ -16,16 +16,21 @@
  */
 
 
-package com.michaelgatesdev.ExifExplorer.photo.properties;
+package com.michaelgatesdev.ExifExplorer.photo.filters.datetime;
 
-public enum PhotoPropertyType
+import java.time.LocalDateTime;
+
+public class BeforeDateTimeCriteria extends DateTimeCriteria
 {
-    DATE_TIME,
-    SIZE_DIMENSIONS,
-    MANUFACTURER,
-    MODEL,
-    ISO,
-    APERTURE,
-    SHUTTER_SPEED,
-    FOCAL_LENGTH
+    public BeforeDateTimeCriteria(LocalDateTime ldt)
+    {
+        super(DateTimeCriteriaCondition.BEFORE, new LocalDateTime[]{ ldt });
+    }
+    
+    
+    @Override
+    public boolean compare(LocalDateTime ldt)
+    {
+        return ldt.isBefore(this.getDates()[0]);
+    }
 }

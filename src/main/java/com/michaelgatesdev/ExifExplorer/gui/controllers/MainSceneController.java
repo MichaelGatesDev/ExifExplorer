@@ -25,6 +25,17 @@ import com.jfoenix.controls.JFXTimePicker;
 import com.michaelgatesdev.ExifExplorer.Main;
 import com.michaelgatesdev.ExifExplorer.gui.StageManager;
 import com.michaelgatesdev.ExifExplorer.gui.components.PhotoRow;
+import com.michaelgatesdev.ExifExplorer.photo.FilteredPhotosList;
+import com.michaelgatesdev.ExifExplorer.photo.SizeDimensions;
+import com.michaelgatesdev.ExifExplorer.photo.filters.Criteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.datetime.AfterDateTimeCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.datetime.BeforeDateTimeCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.datetime.BetweenDateTimeCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.datetime.DateTimeCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions.BetweenSizeDimensionsCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions.LargerThanSizeDimensionsCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions.SizeDimensionsCriteria;
+import com.michaelgatesdev.ExifExplorer.photo.filters.sizedimensions.SmallerThanSizeDimensionsCriteria;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Control;
@@ -33,7 +44,12 @@ import javafx.scene.control.TableView;
 import org.apache.log4j.Logger;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class MainSceneController implements Initializable
 {
@@ -41,12 +57,14 @@ public class MainSceneController implements Initializable
     
     private final StageManager stageManager;
     
+    private Set<Criteria> activeFilters;
+    
     @FXML
     private TableView<PhotoRow> table;
     
     @FXML
     private
-    JFXRadioButton beforeDateTimeRadioBtn, afterDateTimeRadioBtn, betweenDateTimeRadioBtn;
+    JFXRadioButton beforeDateTimeRadioBtn, afterDateTimeRadioBtn, betweenDateTimeRadioBtn, equalDateBtn;
     @FXML
     private
     JFXDatePicker datePickerA, datePickerB;
@@ -55,7 +73,7 @@ public class MainSceneController implements Initializable
     JFXTimePicker timePickerA, timePickerB;
     
     @FXML
-    private JFXRadioButton lessThanSizeBtn, greaterThanSizeBtn, betweenSizeBtn;
+    private JFXRadioButton smallerThanBtn, largerThanBtn, betweenSizeBtn, equalSizeBtn;
     @FXML
     private JFXTextField widthFieldA, heightFieldA, sizeFieldA, widthFieldB, heightFieldB, sizeFieldB;
     
@@ -71,6 +89,7 @@ public class MainSceneController implements Initializable
     public MainSceneController(StageManager stageManager)
     {
         this.stageManager = stageManager;
+        this.activeFilters = new HashSet<>();
     }
     
     
@@ -83,13 +102,76 @@ public class MainSceneController implements Initializable
         betweenDateTimeRadioBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(beforeDateTimeRadioBtn, false, afterDateTimeRadioBtn, false, betweenDateTimeRadioBtn, newValue, datePickerB, timePickerB));
         
         // SIZE & DIMENSIONS
-        lessThanSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(lessThanSizeBtn, newValue, greaterThanSizeBtn, false, betweenSizeBtn, false, widthFieldB, heightFieldB, sizeFieldB));
-        greaterThanSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(lessThanSizeBtn, false, greaterThanSizeBtn, newValue, betweenSizeBtn, false, widthFieldB, heightFieldB, sizeFieldB));
-        betweenSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(lessThanSizeBtn, false, greaterThanSizeBtn, false, betweenSizeBtn, newValue, widthFieldB, heightFieldB, sizeFieldB));
+        smallerThanBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(smallerThanBtn, newValue, largerThanBtn, false, betweenSizeBtn, false, widthFieldB, heightFieldB, sizeFieldB));
+        largerThanBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(smallerThanBtn, false, largerThanBtn, newValue, betweenSizeBtn, false, widthFieldB, heightFieldB, sizeFieldB));
+        betweenSizeBtn.selectedProperty().addListener((observable, oldValue, newValue) -> toggleTrifectaRadioButtons(smallerThanBtn, false, largerThanBtn, false, betweenSizeBtn, newValue, widthFieldB, heightFieldB, sizeFieldB));
         
         
         // Update table with imported photo data
-        this.refreshTable();
+        this.refreshTable(null);
+    }
+    
+    
+    void checkFilters()
+    {
+        //TODO user property change listeners instead
+        
+        
+        // datetime and time
+        DateTimeCriteria dtCrit = null;
+        LocalDate date = datePickerA.getValue() != null ? datePickerA.getValue() : LocalDate.MIN;
+        LocalTime time = timePickerA.getValue() != null ? timePickerA.getValue() : LocalTime.MIN;
+        LocalDateTime ldt = LocalDateTime.of(date, time);
+        if (beforeDateTimeRadioBtn.isSelected())
+        {
+            dtCrit = new BeforeDateTimeCriteria(ldt);
+        }
+        else if (afterDateTimeRadioBtn.isSelected())
+        {
+            dtCrit = new AfterDateTimeCriteria(ldt);
+        }
+        else if (betweenDateTimeRadioBtn.isSelected())
+        {
+            LocalDate dateB = datePickerB.getValue() != null ? datePickerB.getValue() : LocalDate.MIN;
+            LocalTime timeB = timePickerB.getValue() != null ? timePickerB.getValue() : LocalTime.MIN;
+            LocalDateTime ldtB = LocalDateTime.of(dateB, timeB);
+            
+            dtCrit = new BetweenDateTimeCriteria(ldt, ldtB);
+        }
+        if (dtCrit != null)
+        {
+            activeFilters.add(dtCrit);
+        }
+        
+        
+        // Dimensions & Size
+        SizeDimensionsCriteria sdCrit = null;
+        long width = !widthFieldA.getText().isEmpty() ? Long.parseLong(widthFieldA.getText()) : 0;
+        long height = !heightFieldA.getText().isEmpty() ? Long.parseLong(heightFieldA.getText()) : 0;
+        long size = !sizeFieldA.getText().isEmpty() ? Long.parseLong(sizeFieldA.getText()) : 0;
+        if (smallerThanBtn.isSelected())
+        {
+            sdCrit = new SmallerThanSizeDimensionsCriteria(new SizeDimensions(width, height, size));
+        }
+        else if (largerThanBtn.isSelected())
+        {
+            sdCrit = new LargerThanSizeDimensionsCriteria(new SizeDimensions(width, height, size));
+        }
+        else if (betweenSizeBtn.isSelected())
+        {
+            long widthB = !widthFieldB.getText().isEmpty() ? Long.parseLong(widthFieldB.getText()) : 0;
+            long heightB = !heightFieldB.getText().isEmpty() ? Long.parseLong(heightFieldB.getText()) : 0;
+            long sizeB = !sizeFieldB.getText().isEmpty() ? Long.parseLong(sizeFieldB.getText()) : 0;
+            
+            sdCrit = new BetweenSizeDimensionsCriteria(new SizeDimensions(width, height, size), new SizeDimensions(widthB, heightB, sizeB));
+        }
+        if (sdCrit != null)
+        {
+            activeFilters.add(sdCrit);
+        }
+        
+        FilteredPhotosList fpl = new FilteredPhotosList(Main.getInstance().getPhotos(), activeFilters);
+        this.refreshTable(fpl);
     }
     
     
@@ -126,8 +208,15 @@ public class MainSceneController implements Initializable
     }
     
     
-    private void refreshTable()
+    private void refreshTable(FilteredPhotosList fpl)
     {
-        stageManager.populateTable(table, Main.getInstance().getPhotos());
+        if (fpl == null)
+        {
+            stageManager.populateTable(table, Main.getInstance().getPhotos());
+        }
+        else
+        {
+            stageManager.populateTable(table, Main.getInstance().getPhotos());
+        }
     }
 }
