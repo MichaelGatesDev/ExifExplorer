@@ -62,10 +62,10 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER"/>
-                        <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" valignment="TOP" vgrow="NEVER"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="30.0" maxHeight="30.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER"/>
+                        <RowConstraints minHeight="75.0" prefHeight="75.0" valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="75.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="75.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
                         <RowConstraints fillHeight="false" maxHeight="100.0" valignment="BOTTOM" vgrow="ALWAYS"/>
                         <RowConstraints fillHeight="false" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" valignment="BOTTOM" vgrow="ALWAYS"/>
                     </rowConstraints>
